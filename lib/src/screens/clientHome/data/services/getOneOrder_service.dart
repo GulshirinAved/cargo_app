@@ -1,17 +1,19 @@
 import 'package:dio/dio.dart';
 import 'package:kargo_app/src/screens/clientHome/data/models/getOneOrder_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class GetOneOrderService {
   final Dio dio = Dio();
   Future<List<Datum>> fetchOneOrder({required String userId}) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    final String? token = preferences.getString('token');
     final String oneOrderUrl =
         'https://106cargo.com.tm/api/collector/fetch-user-debt/${userId}';
     try {
       var headers = {
         'User-Agent': 'application/json',
         'Accept': 'application/json',
-        'Authorization':
-            'Bearer 1704|vwLSM4Nda8e7IFHy9X0rMa7ixgnvDKfH8xWmdUZz6b3b4b3d'
+        'Authorization': 'Bearer ${token}'
       };
 
       var response = await dio.get(

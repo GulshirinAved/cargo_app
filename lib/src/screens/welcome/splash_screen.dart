@@ -22,12 +22,12 @@ class _SpalshScreenState extends State<SpalshScreen>
 
     Future.delayed(const Duration(seconds: 3), () {
       ////!!!!!!!!!Suny men calyshdym for testing client ui
-      // Navigator.of(context).pushReplacement(MaterialPageRoute(
-      //   builder: (_) => const BottomNavScreen(),
-      // ));
       Navigator.of(context).pushReplacement(MaterialPageRoute(
-        builder: (_) => const ClientHomeScreen(),
+        builder: (_) => const BottomNavScreen(),
       ));
+      // Navigator.of(context).pushReplacement(MaterialPageRoute(
+      //   builder: (_) => const ClientHomeScreen(),
+      // ));
     });
     sendToken();
   }

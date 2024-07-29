@@ -162,7 +162,7 @@ class ExploreScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  mainAxisExtent: 220,
+                  mainAxisExtent: 230,
                 ),
                 itemBuilder: (BuildContext context, int index) {
                   return InkWell(

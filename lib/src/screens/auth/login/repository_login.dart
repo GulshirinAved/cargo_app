@@ -13,39 +13,45 @@ class LoginRepository {
   bool isLoading = false;
   static Dio dio = Dio();
 
-  Future<void> login(
-      BuildContext context, String phone, String password) async {
+  Future<bool> login(
+    BuildContext context,
+    String phone,
+    String password,
+  ) async {
     try {
       var response = await dio.post(
-        "${Constants.baseUrl}/auth/login",
-        data: jsonEncode({"phone": phone, "password": password}),
-        options: Options(headers: {
-          'Content-Type': 'application/json',
-        }),
+        'https://106cargo.com.tm/api/auth/login',
+        data: jsonEncode({'phone': phone, 'password': password}),
+        options: Options(
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+        ),
       );
-      print("here");
+      print('here');
       isLoading = true;
       print(response.data);
       if (response.statusCode == 200) {
         isLoading = false;
         SharedPreferences preferences = await SharedPreferences.getInstance();
 
-        tokens = response.data!['data']['token'];
+        tokens = response.data['data']['token'];
         await preferences.setString('token', tokens!);
-        Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => const BottomNavScreen()));
 
-        return;
+        return response.data['data']['user']['is_collector'];
+      } else {
+        print('Error: ${response.statusCode} - ${response.data}');
       }
     } on DioError catch (e) {
       isLoading = false;
-      print('fuckkkkk');
-      print(e.error);
-      print("====== ${e.response!.data}");
-      if (e.response != null) print("Error= ${e.response!.statusMessage}");
-      if (e.response != null) print(e.response!.data);
+      if (e.response != null) {
+        print('Dio error: ${e.response!.statusCode} - ${e.response!.data}');
+      } else {
+        print('Error: $e');
+      }
     }
-    return;
+    return false;
   }
 }
 
@@ -61,8 +67,10 @@ class LogOutRepository {
       'Authorization': 'Bearer $tokens',
     };
     try {
-      var response = await dio.post("${Constants.baseUrl}/auth/logout",
-          options: Options(headers: headers));
+      var response = await dio.post(
+        '${Constants.baseUrl}/auth/logout',
+        options: Options(headers: headers),
+      );
       isLoading = true;
       print(response.data);
       if (response.statusCode == 200) {
@@ -70,7 +78,8 @@ class LogOutRepository {
         SharedPreferences preferences = await SharedPreferences.getInstance();
         preferences.remove('token');
         Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => const BottomNavScreen()));
+          MaterialPageRoute(builder: (context) => const BottomNavScreen()),
+        );
 
         return;
       }
@@ -78,7 +87,7 @@ class LogOutRepository {
       isLoading = false;
       print('fuckkkkk');
       print(e.error);
-      if (e.response != null) print("Error= ${e.response!.realUri}");
+      if (e.response != null) print('Error= ${e.response!.realUri}');
       if (e.response != null) print(e.response!.data);
     }
     return;

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:kargo_app/src/screens/auth/providers/me_provider.dart';
 import 'package:kargo_app/src/screens/profile/edit/contaacts.dart';
 import 'package:kargo_app/src/screens/profile/edit/lanuage_chnage.dart';
@@ -375,7 +376,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         String? val = preferences.getString('token');
                         preferences.remove('token');
                         print(val);
-                        LogOutRepository().logOut(context, val!);
+                        LogOutRepository().logOut(context, val ?? '');
+                        Get.back();
                       },
                       child: Container(
                         height: 40,

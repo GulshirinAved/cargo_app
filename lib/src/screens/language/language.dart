@@ -142,7 +142,7 @@ class _LanguageScreenState extends State<LanguageScreen> {
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(
-                        top: 40,
+                        top: 38,
                         right: 20,
                         left: 20,
                         bottom: 30,
