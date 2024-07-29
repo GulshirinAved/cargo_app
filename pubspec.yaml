@@ -39,7 +39,7 @@ dependencies:
   photo_view: ^0.14.0
   editable: ^2.0.0
   get: ^4.6.6
-  flutter_stepindicator: ^0.1.7
+  flutter_phone_direct_caller: ^2.1.1
 
 flutter_launcher_icons:
   android: "launcher_icon"

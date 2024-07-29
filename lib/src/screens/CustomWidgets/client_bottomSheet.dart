@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:kargo_app/src/design/app_colors.dart';
-import 'package:kargo_app/src/screens/clientHome/clientHome_screen.dart';
 
 class CustomClientBottomSheet extends StatelessWidget {
   const CustomClientBottomSheet({
@@ -12,7 +11,7 @@ class CustomClientBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Get.off(() => const ClientHomeScreen()),
+      onTap: () => Get.back(),
       child: Container(
         height: 70,
         width: MediaQuery.of(context).size.width,

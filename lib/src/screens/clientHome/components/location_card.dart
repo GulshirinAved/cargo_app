@@ -5,8 +5,10 @@ import 'package:kargo_app/src/screens/clientHome/clientHome_controller.dart';
 
 class LocationCard extends StatelessWidget {
   final String locationName;
+  final String locationId;
   const LocationCard({
     required this.locationName,
+    required this.locationId,
     Key? key,
   }) : super(key: key);
 
@@ -15,8 +17,8 @@ class LocationCard extends StatelessWidget {
     final ClientHomeController clientHomeController =
         Get.put(ClientHomeController());
     return GestureDetector(
-      onTap: () =>
-          clientHomeController.selectLocation(selectedLocation: locationName),
+      onTap: () => clientHomeController.selectLocation(
+          selectedLocation: locationName, regionId: locationId),
       child: Obx(() => Container(
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
             margin: const EdgeInsets.symmetric(horizontal: 10),

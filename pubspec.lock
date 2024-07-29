@@ -307,6 +307,14 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.4.0"
+  flutter_phone_direct_caller:
+    dependency: "direct main"
+    description:
+      name: flutter_phone_direct_caller
+      sha256: a50abfb49656d39e777278348742d0d09ecfa5d4918bbc4e0b19df46e8dfd858
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "2.1.1"
   flutter_spinkit:
     dependency: "direct main"
     description:
@@ -315,14 +323,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "5.2.1"
-  flutter_stepindicator:
-    dependency: "direct main"
-    description:
-      name: flutter_stepindicator
-      sha256: f167786cae32b38a093eb3b7757ef359e8ba165e0fa3570015a45394d873daf9
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.1.7"
   flutter_svg:
     dependency: "direct main"
     description:

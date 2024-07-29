@@ -1,17 +1,28 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+
 import 'package:kargo_app/src/design/app_colors.dart';
-import 'package:kargo_app/src/design/constants.dart';
 import 'package:kargo_app/src/screens/clientHome/components/custom_button.dart';
 import 'package:kargo_app/src/screens/clientHome/components/numberStepper.dart';
+import 'package:kargo_app/src/screens/clientHome/data/models/getOneOrder_model.dart';
 
 class DeliveryTrackerCard extends StatelessWidget {
+  final AsyncSnapshot<List<Datum>> snapshot;
+  final int index;
   const DeliveryTrackerCard({
+    required this.snapshot,
+    required this.index,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    int currentStepIndex = snapshot.data![index].points!
+        .indexWhere((point) => point.isCurrent == 1);
+    int curStep = (currentStepIndex == -1 ? 1 : currentStepIndex + 1)
+        .clamp(1, snapshot.data![index].points!.length + 1);
+
     return Container(
       margin: const EdgeInsets.only(top: 12),
       padding: const EdgeInsets.all(20).copyWith(bottom: 16),
@@ -30,7 +41,7 @@ class DeliveryTrackerCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          //id and car number
+          // ID and car number
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -38,14 +49,15 @@ class DeliveryTrackerCard extends StatelessWidget {
                 TextSpan(
                   children: [
                     const TextSpan(
-                        text: 'ID: ',
-                        style: TextStyle(
-                          fontFamily: 'ALSHauss',
-                          fontWeight: FontWeight.w400,
-                          fontSize: 14,
-                        )),
+                      text: 'ID: ',
+                      style: TextStyle(
+                        fontFamily: 'ALSHauss',
+                        fontWeight: FontWeight.w400,
+                        fontSize: 14,
+                      ),
+                    ),
                     TextSpan(
-                      text: ids[0],
+                      text: snapshot.data![index].id.toString(),
                       style: const TextStyle(
                         fontFamily: 'ALSHauss',
                         fontWeight: FontWeight.w500,
@@ -55,49 +67,64 @@ class DeliveryTrackerCard extends StatelessWidget {
                   ],
                 ),
               ),
-              const Text(
-                'Maşyn №',
-                style: TextStyle(
-                  fontFamily: 'ALSHauss',
-                  fontWeight: FontWeight.w400,
-                  fontSize: 14,
+              Text.rich(
+                TextSpan(
+                  children: [
+                    const TextSpan(
+                      text: 'Maşyn №',
+                      style: TextStyle(
+                        fontFamily: 'ALSHauss',
+                        fontWeight: FontWeight.w400,
+                        fontSize: 14,
+                      ),
+                    ),
+                    TextSpan(
+                      text: snapshot.data![index].transportNumber ?? '',
+                      style: const TextStyle(
+                        fontFamily: 'ALSHauss',
+                        fontWeight: FontWeight.w500,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
           ),
-          //data
-          const Text(
-            '01.08.2023',
-            style: TextStyle(
+          // Date
+          Text(
+            snapshot.data![index].date ?? '',
+            style: const TextStyle(
               color: AppColors.lightBlueColor,
               fontFamily: 'ALSHauss',
               fontWeight: FontWeight.w400,
               fontSize: 12,
             ),
           ),
-          //transport and location
+          // Transport and location
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
-                'Urumçy',
-                style: TextStyle(
+              Text(
+                snapshot.data![index].pointFrom ?? '',
+                style: const TextStyle(
                   fontFamily: 'ALSHauss',
                   fontWeight: FontWeight.w500,
                   fontSize: 16,
                 ),
               ),
-              IconButton.filled(
+              IconButton(
                 onPressed: () {},
                 iconSize: 20,
                 style: const ButtonStyle(
-                  backgroundColor: WidgetStatePropertyAll(AppColors.grey4Color),
+                  backgroundColor:
+                      MaterialStatePropertyAll(AppColors.grey4Color),
                 ),
                 icon: SvgPicture.asset('assets/icons/arrow_right.svg'),
               ),
-              const Text(
-                'Aşgabat',
-                style: TextStyle(
+              Text(
+                snapshot.data![index].pointTo ?? '',
+                style: const TextStyle(
                   fontFamily: 'ALSHauss',
                   fontWeight: FontWeight.w500,
                   fontSize: 16,
@@ -105,22 +132,24 @@ class DeliveryTrackerCard extends StatelessWidget {
               ),
             ],
           ),
+          // Number stepper
           NumberStepper(
-            totalSteps: 5,
+            totalSteps: snapshot.data![index].points!.length,
             width: MediaQuery.of(context).size.width,
-            curStep: 3,
+            curStep: curStep,
             stepCompleteColor: AppColors.blueColor,
             currentStepColor: const Color(0xffdbecff),
             inactiveColor: AppColors.grey3Color,
             lineWidth: 3.5,
           ),
-          const Row(
+          // Summary details
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text.rich(
                 TextSpan(
                   children: [
-                    TextSpan(
+                    const TextSpan(
                       text: 'Ýer: ',
                       style: TextStyle(
                         fontFamily: 'ALSHauss',
@@ -129,8 +158,8 @@ class DeliveryTrackerCard extends StatelessWidget {
                       ),
                     ),
                     TextSpan(
-                      text: '1',
-                      style: TextStyle(
+                      text: snapshot.data![index].summarySeats.toString(),
+                      style: const TextStyle(
                         fontFamily: 'ALSHauss',
                         fontWeight: FontWeight.w500,
                         fontSize: 14,
@@ -141,7 +170,7 @@ class DeliveryTrackerCard extends StatelessWidget {
               ),
               Row(
                 children: [
-                  Text(
+                  const Text(
                     'Kub: ',
                     style: TextStyle(
                       fontFamily: 'ALSHauss',
@@ -150,18 +179,18 @@ class DeliveryTrackerCard extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '0.055',
-                    style: TextStyle(
+                    snapshot.data![index].summaryCube.toString(),
+                    style: const TextStyle(
                       fontFamily: 'ALSHauss',
                       fontWeight: FontWeight.w400,
                       fontSize: 14,
                     ),
-                  )
+                  ),
                 ],
               ),
               Row(
                 children: [
-                  Text(
+                  const Text(
                     'Baha: ',
                     style: TextStyle(
                       fontFamily: 'ALSHauss',
@@ -170,40 +199,48 @@ class DeliveryTrackerCard extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '0.55',
-                    style: TextStyle(
+                    snapshot.data![index].summaryPaid.toString(),
+                    style: const TextStyle(
                       fontFamily: 'ALSHauss',
                       fontWeight: FontWeight.w400,
                       fontSize: 14,
                     ),
-                  )
-                ],
-              )
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  SvgPicture.asset(
-                    'assets/icons/map_pin.svg',
-                    color: AppColors.blueColor,
                   ),
-                  const Text(
-                    'Urumçy',
-                    style: TextStyle(
-                      color: AppColors.blueColor,
-                      fontFamily: 'ALSHauss',
-                      fontWeight: FontWeight.w500,
-                      fontSize: 14,
-                    ),
-                  )
                 ],
               ),
-              const CustomButton()
             ],
-          )
+          ),
+          // Current location and custom button
+          if (currentStepIndex != -1)
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    SvgPicture.asset(
+                      'assets/icons/map_pin.svg',
+                      color: AppColors.blueColor,
+                    ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width / 3,
+                      child: Text(
+                        snapshot.data![index].points![currentStepIndex].point
+                            .toString(),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                          color: AppColors.blueColor,
+                          fontFamily: 'ALSHauss',
+                          fontWeight: FontWeight.w500,
+                          fontSize: 14,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const CustomButton(),
+              ],
+            ),
         ],
       ),
     );
