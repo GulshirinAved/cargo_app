@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:kargo_app/src/bottom_nav/bottom_nav_screen.dart';
 import 'package:kargo_app/src/screens/auth/providers/me_provider.dart';
 import 'package:kargo_app/src/screens/profile/edit/contaacts.dart';
 import 'package:kargo_app/src/screens/profile/edit/lanuage_chnage.dart';
@@ -341,7 +341,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   Future showDalogdExit() async {
-    showDialog(
+    await showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
@@ -371,13 +371,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   children: [
                     InkWell(
                       onTap: () async {
-                        SharedPreferences preferences =
+                        final SharedPreferences preferences =
                             await SharedPreferences.getInstance();
                         String? val = preferences.getString('token');
-                        preferences.remove('token');
-                        print(val);
-                        LogOutRepository().logOut(context, val ?? '');
-                        Get.back();
+
+                        await LogOutRepository()
+                            .logOut(context, val ?? '')
+                            .then((value) => value == true
+                                ? Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const BottomNavScreen()),
+                                  )
+                                : () {});
                       },
                       child: Container(
                         height: 40,

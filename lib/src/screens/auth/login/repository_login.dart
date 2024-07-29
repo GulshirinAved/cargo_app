@@ -5,9 +5,6 @@ import 'package:flutter/material.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../bottom_nav/bottom_nav_screen.dart';
-import '../../../design/constants.dart';
-
 class LoginRepository {
   String? tokens;
   bool isLoading = false;
@@ -29,27 +26,20 @@ class LoginRepository {
           },
         ),
       );
-      print('here');
       isLoading = true;
-      print(response.data);
       if (response.statusCode == 200) {
         isLoading = false;
         SharedPreferences preferences = await SharedPreferences.getInstance();
 
         tokens = response.data['data']['token'];
         await preferences.setString('token', tokens!);
+        await preferences.setBool(
+            'is_collector', response.data['data']['user']['is_collector']!);
 
         return response.data['data']['user']['is_collector'];
-      } else {
-        print('Error: ${response.statusCode} - ${response.data}');
       }
     } on DioError catch (e) {
       isLoading = false;
-      if (e.response != null) {
-        print('Dio error: ${e.response!.statusCode} - ${e.response!.data}');
-      } else {
-        print('Error: $e');
-      }
     }
     return false;
   }
@@ -59,7 +49,7 @@ class LogOutRepository {
   bool isLoading = false;
   static Dio dio = Dio();
 
-  Future<void> logOut(
+  Future<bool?> logOut(
     BuildContext context,
     String tokens,
   ) async {
@@ -68,28 +58,21 @@ class LogOutRepository {
     };
     try {
       var response = await dio.post(
-        '${Constants.baseUrl}/auth/logout',
+        'https://106cargo.com.tm/api/auth/logout',
         options: Options(headers: headers),
       );
       isLoading = true;
-      print(response.data);
+
       if (response.statusCode == 200) {
         isLoading = false;
         SharedPreferences preferences = await SharedPreferences.getInstance();
         preferences.remove('token');
-        Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => const BottomNavScreen()),
-        );
 
-        return;
+        return response.statusCode == 200 ? true : false;
       }
     } on DioError catch (e) {
       isLoading = false;
-      print('fuckkkkk');
-      print(e.error);
-      if (e.response != null) print('Error= ${e.response!.realUri}');
-      if (e.response != null) print(e.response!.data);
     }
-    return;
+    return false;
   }
 }

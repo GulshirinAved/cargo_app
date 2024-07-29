@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:kargo_app/src/bottom_nav/bottom_nav_screen.dart';
 import 'package:kargo_app/src/core/send_token.dart';
 import 'package:kargo_app/src/screens/clientHome/clientHome_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../core/firebase_setup.dart';
 
@@ -15,19 +16,26 @@ class SpalshScreen extends StatefulWidget {
 
 class _SpalshScreenState extends State<SpalshScreen>
     with SingleTickerProviderStateMixin {
+  late bool? val;
+  Future<void> checkUser() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    val = preferences.getBool('is_collector');
+  }
+
   @override
   void initState() {
     super.initState();
     FirebaseSetup();
+    checkUser();
 
     Future.delayed(const Duration(seconds: 3), () {
-      ////!!!!!!!!!Suny men calyshdym for testing client ui
-      Navigator.of(context).pushReplacement(MaterialPageRoute(
-        builder: (_) => const BottomNavScreen(),
-      ));
-      // Navigator.of(context).pushReplacement(MaterialPageRoute(
-      //   builder: (_) => const ClientHomeScreen(),
-      // ));
+      val == null
+          ? Navigator.of(context).pushReplacement(MaterialPageRoute(
+              builder: (_) => const ClientHomeScreen(),
+            ))
+          : Navigator.of(context).pushReplacement(MaterialPageRoute(
+              builder: (_) => const BottomNavScreen(),
+            ));
     });
     sendToken();
   }
