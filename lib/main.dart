@@ -108,6 +108,11 @@ class MyApp extends StatelessWidget {
             ...GlobalMaterialLocalizations.delegates,
             GlobalWidgetsLocalizations.delegate,
           ],
+          builder: (context, child) => MediaQuery(
+            data: MediaQuery.of(context)
+                .copyWith(textScaler: TextScaler.noScaling),
+            child: child!,
+          ),
         );
       },
     );
