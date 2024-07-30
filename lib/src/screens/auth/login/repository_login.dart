@@ -40,6 +40,8 @@ class LoginRepository {
       }
     } on DioError catch (e) {
       isLoading = false;
+
+      throw Exception(e);
     }
     return false;
   }
@@ -72,6 +74,8 @@ class LogOutRepository {
       }
     } on DioError catch (e) {
       isLoading = false;
+
+      throw Exception(e);
     }
     return false;
   }

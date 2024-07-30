@@ -23,17 +23,19 @@ class RegisterRepository {
   ) async {
     try {
       var response = await dio.post(
-        "${Constants.baseUrl}/auth/register",
+        '${Constants.baseUrl}/auth/register',
         data: jsonEncode({
-          "first_name": firstName,
-          "last_name": lastName,
-          "phone": phone,
-          "password": password,
-          "password_confirmation": passwordConfirmation
+          'first_name': firstName,
+          'last_name': lastName,
+          'phone': phone,
+          'password': password,
+          'password_confirmation': passwordConfirmation,
         }),
-        options: Options(headers: {
-          'Content-Type': 'application/json',
-        }),
+        options: Options(
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        ),
       );
 
       isLoading = true;
@@ -51,13 +53,7 @@ class RegisterRepository {
       }
     } on DioError catch (e) {
       isLoading = false;
-      print('fuckkkkk');
-      print(e.error);
-      print('${e.response?.statusCode} it is sttaus code');
-      print('${e.response?.statusMessage} it is sttaus message');
-
-      if (e.response != null) print("Error= ${e.response!.realUri}");
-      if (e.response != null) print(e.response!.data);
+      throw Exception(e);
     }
     return;
   }

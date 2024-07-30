@@ -29,7 +29,7 @@ class _SpalshScreenState extends State<SpalshScreen>
     checkUser();
 
     Future.delayed(const Duration(seconds: 3), () {
-      val == null
+      val == true
           ? Navigator.of(context).pushReplacement(MaterialPageRoute(
               builder: (_) => const ClientHomeScreen(),
             ))
