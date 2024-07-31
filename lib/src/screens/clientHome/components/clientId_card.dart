@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+// ignore_for_file: public_member_api_docs, sort_constructors_first, file_names
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:get/get.dart';
@@ -44,7 +44,7 @@ class ClientIdCard extends StatelessWidget {
                   user.userName ?? '',
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontFamily: 'ALSHauss',
                     fontWeight: FontWeight.w500,
                     fontSize: 18,
@@ -53,7 +53,7 @@ class ClientIdCard extends StatelessWidget {
               ),
               Text(
                 '${user.totalDebt} TMT',
-                style: TextStyle(
+                style: const TextStyle(
                   color: AppColors.redColor,
                   fontFamily: 'ALSHauss',
                   fontWeight: FontWeight.w500,
@@ -71,7 +71,7 @@ class ClientIdCard extends StatelessWidget {
               shrinkWrap: true,
               itemCount: user.tickets!.length,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2, childAspectRatio: 1 / 3.8),
+                  crossAxisCount: 2, childAspectRatio: 1 / 3.8,),
               itemBuilder: (context, index) =>
                   Text('ID:  ${user.tickets![index].id}'),
             ),
@@ -82,7 +82,7 @@ class ClientIdCard extends StatelessWidget {
               CustomButton(
                 onTap: () => Get.to(() => OrdersScreen(
                       index: index,
-                    )),
+                    ),),
               ),
               CustomButton(
                 onTap: () {

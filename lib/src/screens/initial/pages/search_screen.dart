@@ -25,7 +25,7 @@ class _SearchScreenState extends State<SearchScreen> {
             height: 50,
             decoration: BoxDecoration(
                 color: AppColors.searchColor,
-                borderRadius: BorderRadius.circular(10)),
+                borderRadius: BorderRadius.circular(10),),
             child: Row(
               children: [
                 Padding(
@@ -34,7 +34,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       title: 'assets/icons/searchnormal1.svg',
                       height: 20,
                       width: 20,
-                      color: AppColors.profilColor),
+                      color: AppColors.profilColor,),
                 ),
                 // SizedBox(
                 //     height: 50,
@@ -55,7 +55,7 @@ class _SearchScreenState extends State<SearchScreen> {
                           errorBorder: InputBorder.none,
                           disabledBorder: InputBorder.none,
                         ),
-                      )),
+                      ),),
                   // Text(
                   //   'Искать товары',
                   //   style: TextStyle(
@@ -65,7 +65,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   //       fontStyle: FontStyle.normal,
                   //       fontWeight: FontWeight.w400),
                   // ),
-                )
+                ),
               ],
             ),
           ),

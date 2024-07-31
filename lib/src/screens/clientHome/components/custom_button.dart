@@ -12,7 +12,7 @@ class CustomButton extends StatelessWidget {
       this.withIcon = false,
       this.backColor,
       this.textColor,
-      this.onTap})
+      this.onTap,})
       : super(key: key);
 
   @override
@@ -35,7 +35,7 @@ class CustomButton extends StatelessWidget {
                     color: textColor,
                     height: 16,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 3,
                   ),
                   Text(

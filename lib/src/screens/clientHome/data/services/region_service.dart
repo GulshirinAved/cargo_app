@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class RegionService {
   final Dio dio = Dio();
   Future<List<Datum>> fetchRegion({required final String? id}) async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
+    final SharedPreferences preferences = await SharedPreferences.getInstance();
     final String? token = preferences.getString('token');
     final String regionUrl =
         'https://106cargo.com.tm/api/collector/debt-list?region_id=$id';

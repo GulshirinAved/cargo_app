@@ -39,68 +39,72 @@ class _AboutUsState extends State<AboutUs> {
               child: Text(
                 'Biz barada',
                 style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20,
-                    fontFamily: 'Roboto',
-                    fontStyle: FontStyle.normal,
-                    fontWeight: FontWeight.w700),
+                  color: Colors.black,
+                  fontSize: 20,
+                  fontFamily: 'Roboto',
+                  fontStyle: FontStyle.normal,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
             ),
           ),
         ),
       ),
       body: SafeArea(
-          child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: SizedBox(
-              height: 210,
-              width: MediaQuery.of(context).size.width - 40,
-              child: Image.asset(
-                'assets/images/delivery.png',
-                fit: BoxFit.fill,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: SizedBox(
+                height: 210,
+                width: MediaQuery.of(context).size.width - 40,
+                child: Image.asset(
+                  'assets/images/delivery.png',
+                  fit: BoxFit.fill,
+                ),
               ),
             ),
-          ),
-          GestureDetector(
-            onTap: () {
-              // final url = '';
-              //                         if (await canLaunch(url)) {
-              //                           await launch(url);
-              //                         } else {
-              //                           throw 'Could not launch $url';
-              //                         }
-            },
-            child: const Padding(
-              padding: EdgeInsets.only(left: 22),
-              child: Text(
-                'cargotm@gmail.com',
-                style: TextStyle(
+            GestureDetector(
+              onTap: () {
+                // final url = '';
+                //                         if (await canLaunch(url)) {
+                //                           await launch(url);
+                //                         } else {
+                //                           throw 'Could not launch $url';
+                //                         }
+              },
+              child: const Padding(
+                padding: EdgeInsets.only(left: 22),
+                child: Text(
+                  'cargotm@gmail.com',
+                  style: TextStyle(
                     color: Colors.black,
                     fontSize: 18,
                     fontFamily: 'Rubik',
                     fontStyle: FontStyle.normal,
-                    fontWeight: FontWeight.w600),
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
               ),
             ),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(left: 22, top: 10),
-            child: Text(
-              'cargotm@gmail.com',
-              style: TextStyle(
+            const Padding(
+              padding: EdgeInsets.only(left: 22, top: 10),
+              child: Text(
+                'cargotm@gmail.com',
+                style: TextStyle(
                   color: Colors.black,
                   fontSize: 16,
                   fontFamily: 'Rubik',
                   fontStyle: FontStyle.normal,
-                  fontWeight: FontWeight.w400),
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
             ),
-          )
-        ],
-      )),
+          ],
+        ),
+      ),
     );
   }
 }

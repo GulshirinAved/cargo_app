@@ -42,7 +42,7 @@ class Notifications extends StatelessWidget {
                   fontSize: 20,
                   fontFamily: 'Roboto',
                   fontStyle: FontStyle.normal,
-                  fontWeight: FontWeight.w700),
+                  fontWeight: FontWeight.w700,),
             ),
           ),
         ),
@@ -77,7 +77,7 @@ class Notifications extends StatelessWidget {
                           fontSize: 18,
                           fontFamily: 'Montserrat',
                           fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.w400),
+                          fontWeight: FontWeight.w400,),
                     ),
                   ),
                   ListView.builder(
@@ -94,7 +94,7 @@ class Notifications extends StatelessWidget {
                                   visible: index == 0 ? false : true,
                                   child: Padding(
                                     padding: const EdgeInsets.only(
-                                        top: 0, bottom: 15, right: 0),
+                                        top: 0, bottom: 15, right: 0,),
                                     child: Container(
                                       color: AppColors.profilColor
                                           .withOpacity(0.1),
@@ -110,7 +110,7 @@ class Notifications extends StatelessWidget {
                                       width: 60,
                                       decoration: const BoxDecoration(
                                           color: AppColors.searchColor,
-                                          shape: BoxShape.circle),
+                                          shape: BoxShape.circle,),
                                       child: Padding(
                                         padding: const EdgeInsets.all(15.0),
                                         child: CustomIcon(
@@ -142,7 +142,7 @@ class Notifications extends StatelessWidget {
                                                   fontSize: 14,
                                                   fontFamily: 'Montserrat',
                                                   fontStyle: FontStyle.normal,
-                                                  fontWeight: FontWeight.w400),
+                                                  fontWeight: FontWeight.w400,),
                                             ),
                                           ),
                                         ),
@@ -160,7 +160,7 @@ class Notifications extends StatelessWidget {
                                                     fontFamily: 'Roboto',
                                                     fontStyle: FontStyle.normal,
                                                     fontWeight:
-                                                        FontWeight.w400),
+                                                        FontWeight.w400,),
                                               ),
                                             ),
                                             Text(
@@ -170,17 +170,17 @@ class Notifications extends StatelessWidget {
                                                   fontSize: 16,
                                                   fontFamily: 'Roboto',
                                                   fontStyle: FontStyle.normal,
-                                                  fontWeight: FontWeight.w600),
+                                                  fontWeight: FontWeight.w600,),
                                             ),
                                           ],
-                                        )
+                                        ),
                                       ],
-                                    )
+                                    ),
                                   ],
                                 ),
                               ],
-                            ));
-                      }),
+                            ),);
+                      },),
                 ],
               ),
             ),

@@ -14,30 +14,32 @@ class AuthScreen extends StatelessWidget {
       body: SafeArea(
         child: Container(
           decoration: const BoxDecoration(
-              image: DecorationImage(
-            image: AssetImage('assets/images/background.png'),
-            fit: BoxFit.cover,
-          )),
+            image: DecorationImage(
+              image: AssetImage('assets/images/background.png'),
+              fit: BoxFit.cover,
+            ),
+          ),
           child: Center(
-              child: Image.asset(
-            'assets/images/logo.png',
-            height: MediaQuery.of(context).size.height / 2 - 90,
-            width: MediaQuery.of(context).size.width / 2,
-          )
-              // CustomIcon(
-              //     title: 'assets/icons/logo106.svg',
-              //     height: MediaQuery.of(context).size.height / 3 - 90,
-              //     width: MediaQuery.of(context).size.width / 3 - 90,
-              //     color: Colors.transparent),
-              ),
+            child: Image.asset(
+              'assets/images/logo.png',
+              height: MediaQuery.of(context).size.height / 2 - 90,
+              width: MediaQuery.of(context).size.width / 2,
+            ),
+            // CustomIcon(
+            //     title: 'assets/icons/logo106.svg',
+            //     height: MediaQuery.of(context).size.height / 3 - 90,
+            //     width: MediaQuery.of(context).size.width / 3 - 90,
+            //     color: Colors.transparent),
+          ),
         ),
       ),
       bottomNavigationBar: Container(
         decoration: const BoxDecoration(
-            image: DecorationImage(
-          image: AssetImage('assets/images/background.png'),
-          fit: BoxFit.cover,
-        )),
+          image: DecorationImage(
+            image: AssetImage('assets/images/background.png'),
+            fit: BoxFit.cover,
+          ),
+        ),
         child: Padding(
           padding: const EdgeInsets.only(bottom: 40, right: 20, left: 20),
           child: Container(
@@ -63,11 +65,12 @@ class AuthScreen extends StatelessWidget {
                   child: Text(
                     'Hoş geldiňiz!',
                     style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 25,
-                        fontFamily: 'Roboto',
-                        fontStyle: FontStyle.normal,
-                        fontWeight: FontWeight.w700),
+                      color: Colors.black,
+                      fontSize: 25,
+                      fontFamily: 'Roboto',
+                      fontStyle: FontStyle.normal,
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                 ),
                 const Padding(
@@ -76,36 +79,41 @@ class AuthScreen extends StatelessWidget {
                     'Her ädimde iberilen harytlaryňyzy hakyky wagtda görmek',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        color: AppColors.authTextColor,
-                        fontSize: 18,
-                        fontFamily: 'Roboto',
-                        fontStyle: FontStyle.normal,
-                        fontWeight: FontWeight.w400),
+                      color: AppColors.authTextColor,
+                      fontSize: 18,
+                      fontFamily: 'Roboto',
+                      fontStyle: FontStyle.normal,
+                      fontWeight: FontWeight.w400,
+                    ),
                   ),
                 ),
                 InkWell(
                   onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const LoginScreen()));
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const LoginScreen(),
+                      ),
+                    );
                   },
                   child: Padding(
-                    padding:
-                        const EdgeInsets.only(top: 40, right: 20, left: 20),
+                    padding: const EdgeInsets.only(top: 40, right: 20, left: 20),
                     child: Container(
                       height: 65,
                       width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
-                          color: AppColors.mainColor,
-                          borderRadius: BorderRadius.circular(20)),
+                        color: AppColors.mainColor,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
                       child: const Center(
                         child: Text(
                           'Ulgama gir',
                           style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontFamily: 'Roboto',
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w700),
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontFamily: 'Roboto',
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.w700,
+                          ),
                         ),
                       ),
                     ),
@@ -113,28 +121,32 @@ class AuthScreen extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const RegisterScreen()));
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const RegisterScreen(),
+                      ),
+                    );
                   },
                   child: Padding(
-                    padding:
-                        const EdgeInsets.only(top: 20, right: 20, left: 20),
+                    padding: const EdgeInsets.only(top: 20, right: 20, left: 20),
                     child: Container(
                       height: 65,
                       width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
-                          border: Border.all(color: AppColors.borderColor),
-                          color: AppColors.authRegisterColor,
-                          borderRadius: BorderRadius.circular(20)),
+                        border: Border.all(color: AppColors.borderColor),
+                        color: AppColors.authRegisterColor,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
                       child: const Center(
                         child: Text(
                           'Akkaunt döret',
                           style: TextStyle(
-                              color: AppColors.mainColor,
-                              fontSize: 16,
-                              fontFamily: 'Roboto',
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w700),
+                            color: AppColors.mainColor,
+                            fontSize: 16,
+                            fontFamily: 'Roboto',
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.w700,
+                          ),
                         ),
                       ),
                     ),

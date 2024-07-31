@@ -53,7 +53,7 @@ class _CartMainState extends State<CartMain> {
                             fontSize: 16,
                             fontFamily: 'Roboto',
                             fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.w400),
+                            fontWeight: FontWeight.w400,),
                       ),
                       Text(
                         widget.model.ticketCode,
@@ -62,7 +62,7 @@ class _CartMainState extends State<CartMain> {
                             fontSize: 14,
                             fontFamily: 'Roboto',
                             fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.w400),
+                            fontWeight: FontWeight.w400,),
                       ),
                     ],
                   ),
@@ -72,7 +72,7 @@ class _CartMainState extends State<CartMain> {
                           title: 'assets/icons/boxh.svg',
                           height: 20,
                           width: 20,
-                          color: AppColors.authTextColor),
+                          color: AppColors.authTextColor,),
                       const Text(
                         ' Guty: ',
                         style: TextStyle(
@@ -80,7 +80,7 @@ class _CartMainState extends State<CartMain> {
                             fontSize: 16,
                             fontFamily: 'Roboto',
                             fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.w400),
+                            fontWeight: FontWeight.w400,),
                       ),
                       Text(
                         widget.model.summarySeats.toString(),
@@ -89,7 +89,7 @@ class _CartMainState extends State<CartMain> {
                             fontSize: 16,
                             fontFamily: 'Roboto',
                             fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.w400),
+                            fontWeight: FontWeight.w400,),
                       ),
                     ],
                   ),
@@ -99,7 +99,7 @@ class _CartMainState extends State<CartMain> {
                           title: 'assets/icons/gps.svg',
                           height: 20,
                           width: 20,
-                          color: AppColors.authTextColor),
+                          color: AppColors.authTextColor,),
                       const SizedBox(
                         width: 3,
                       ),
@@ -110,7 +110,7 @@ class _CartMainState extends State<CartMain> {
                             fontSize: 16,
                             fontFamily: 'Roboto',
                             fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.w400),
+                            fontWeight: FontWeight.w400,),
                       ),
                     ],
                   ),
@@ -136,7 +136,7 @@ class _CartMainState extends State<CartMain> {
                                     fontSize: 14,
                                     fontFamily: 'Roboto',
                                     fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.w400),
+                                    fontWeight: FontWeight.w400,),
                               ),
                               SizedBox(
                                 width: 150,
@@ -148,7 +148,7 @@ class _CartMainState extends State<CartMain> {
                                       fontSize: 16,
                                       fontFamily: 'Roboto',
                                       fontStyle: FontStyle.normal,
-                                      fontWeight: FontWeight.w600),
+                                      fontWeight: FontWeight.w600,),
                                 ),
                               ),
                             ],
@@ -172,7 +172,7 @@ class _CartMainState extends State<CartMain> {
                                           title: 'assets/icons/arrow_right.svg',
                                           height: 20,
                                           width: 20,
-                                          color: AppColors.authTextColor),
+                                          color: AppColors.authTextColor,),
                                     ),
                                   ),
                                 ),
@@ -196,7 +196,7 @@ class _CartMainState extends State<CartMain> {
                                   fontSize: 16,
                                   fontFamily: 'Roboto',
                                   fontStyle: FontStyle.normal,
-                                  fontWeight: FontWeight.w600),
+                                  fontWeight: FontWeight.w600,),
                             ),
                           ),
                         ],
@@ -244,17 +244,17 @@ class _CartMainState extends State<CartMain> {
                                                             left: 3,
                                                             right: 3,
                                                             top: 7,
-                                                            bottom: 5),
+                                                            bottom: 5,),
                                                     child: Container(
                                                       height: 2.5,
                                                       width: 42,
                                                       color: index <= t
                                                           ? AppColors.mainColor
                                                           : Colors.grey,
-                                                    )),
+                                                    ),),
                                               ),
                                             ),
-                                          ]),
+                                          ],),
                                         ),
                                         index != t
                                             ? Container(
@@ -264,7 +264,7 @@ class _CartMainState extends State<CartMain> {
                                                     shape: BoxShape.circle,
                                                     color: index < t
                                                         ? AppColors.mainColor
-                                                        : Colors.grey),
+                                                        : Colors.grey,),
                                               )
                                             : Stack(
                                                 alignment: Alignment.center,
@@ -279,7 +279,7 @@ class _CartMainState extends State<CartMain> {
                                                           color: AppColors
                                                               .mainColor
                                                               .withOpacity(
-                                                                  0.1)),
+                                                                  0.1,),),
                                                     ),
                                                   ),
                                                   Container(
@@ -290,11 +290,11 @@ class _CartMainState extends State<CartMain> {
                                                             shape:
                                                                 BoxShape.circle,
                                                             color: AppColors
-                                                                .mainColor),
+                                                                .mainColor,),
                                                     child: Padding(
                                                       padding:
                                                           const EdgeInsets.all(
-                                                              4.0),
+                                                              4.0,),
                                                       child: CustomIcon(
                                                         title: t == 0
                                                             ? 'assets/icons/home.svg'
@@ -308,18 +308,18 @@ class _CartMainState extends State<CartMain> {
                                                     ),
                                                   ),
                                                 ],
-                                              )
-                                      ]);
+                                              ),
+                                      ],);
                                 } else {
                                   return SpinKitFadingFour(
                                     size: 30,
                                   );
                                 }
-                              }),
+                              },),
                         ),
-                      )
+                      ),
                     ],
-                  )
+                  ),
                   // : const Text('Fucking'),
                   ),
             ),
@@ -331,10 +331,10 @@ class _CartMainState extends State<CartMain> {
                   Container(
                     decoration: BoxDecoration(
                         color: AppColors.initialButtonColor,
-                        borderRadius: BorderRadius.circular(10)),
+                        borderRadius: BorderRadius.circular(10),),
                     child: Padding(
                       padding: const EdgeInsets.only(
-                          left: 12, top: 10, bottom: 10, right: 12),
+                          left: 12, top: 10, bottom: 10, right: 12,),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -342,7 +342,7 @@ class _CartMainState extends State<CartMain> {
                               title: 'assets/icons/map_pin.svg',
                               height: 18,
                               width: 18,
-                              color: AppColors.mainColor),
+                              color: AppColors.mainColor,),
                           const SizedBox(
                             width: 5,
                           ),
@@ -353,7 +353,7 @@ class _CartMainState extends State<CartMain> {
                                 fontSize: 14,
                                 fontFamily: 'Roboto',
                                 fontStyle: FontStyle.normal,
-                                fontWeight: FontWeight.w600),
+                                fontWeight: FontWeight.w600,),
                           ),
                         ],
                       ),
@@ -364,15 +364,15 @@ class _CartMainState extends State<CartMain> {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => InfoOreder(
                                 id: widget.model.id,
-                              )));
+                              ),),);
                     },
                     child: Container(
                       decoration: BoxDecoration(
                           color: AppColors.mainColor,
-                          borderRadius: BorderRadius.circular(10)),
+                          borderRadius: BorderRadius.circular(10),),
                       child: const Padding(
                         padding: EdgeInsets.only(
-                            left: 10, right: 10, bottom: 10, top: 10),
+                            left: 10, right: 10, bottom: 10, top: 10,),
                         child: Text(
                           'Doly maglumat',
                           style: TextStyle(
@@ -380,11 +380,11 @@ class _CartMainState extends State<CartMain> {
                               fontSize: 14,
                               fontFamily: 'Roboto',
                               fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w600),
+                              fontWeight: FontWeight.w600,),
                         ),
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),

@@ -72,7 +72,7 @@ class _InfoOrederState extends State<InfoOreder> {
                   fontSize: 20,
                   fontFamily: 'Roboto',
                   fontStyle: FontStyle.normal,
-                  fontWeight: FontWeight.w700),
+                  fontWeight: FontWeight.w700,),
             ),
           ),
         ),
@@ -115,7 +115,7 @@ class _InfoOrederState extends State<InfoOreder> {
                                     fontSize: 16,
                                     fontFamily: 'Roboto',
                                     fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.w400),
+                                    fontWeight: FontWeight.w400,),
                               ),
                               Text(
                                 orderById.ordersById!.pointTo,
@@ -124,7 +124,7 @@ class _InfoOrederState extends State<InfoOreder> {
                                     fontSize: 14,
                                     fontFamily: 'Roboto',
                                     fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.w400),
+                                    fontWeight: FontWeight.w400,),
                               ),
                             ],
                           ),
@@ -134,7 +134,7 @@ class _InfoOrederState extends State<InfoOreder> {
                                   title: 'assets/icons/boxh.svg',
                                   height: 20,
                                   width: 20,
-                                  color: AppColors.authTextColor),
+                                  color: AppColors.authTextColor,),
                               const Text(
                                 ' Guty: ',
                                 style: TextStyle(
@@ -142,7 +142,7 @@ class _InfoOrederState extends State<InfoOreder> {
                                     fontSize: 16,
                                     fontFamily: 'Roboto',
                                     fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.w400),
+                                    fontWeight: FontWeight.w400,),
                               ),
                               Text(
                                 orderById.ordersById!.summarySeats.toString(),
@@ -151,7 +151,7 @@ class _InfoOrederState extends State<InfoOreder> {
                                     fontSize: 16,
                                     fontFamily: 'Roboto',
                                     fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.w400),
+                                    fontWeight: FontWeight.w400,),
                               ),
                             ],
                           ),
@@ -161,7 +161,7 @@ class _InfoOrederState extends State<InfoOreder> {
                                   title: 'assets/icons/gps.svg',
                                   height: 20,
                                   width: 20,
-                                  color: AppColors.authTextColor),
+                                  color: AppColors.authTextColor,),
                               const Text(
                                 'GPS',
                                 style: TextStyle(
@@ -169,7 +169,7 @@ class _InfoOrederState extends State<InfoOreder> {
                                     fontSize: 16,
                                     fontFamily: 'Roboto',
                                     fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.w400),
+                                    fontWeight: FontWeight.w400,),
                               ),
                             ],
                           ),
@@ -194,7 +194,7 @@ class _InfoOrederState extends State<InfoOreder> {
                                         fontSize: 14,
                                         fontFamily: 'Roboto',
                                         fontStyle: FontStyle.normal,
-                                        fontWeight: FontWeight.w400),
+                                        fontWeight: FontWeight.w400,),
                                   ),
                                   Text(
                                     orderById.ordersById!.pointFrom,
@@ -203,7 +203,7 @@ class _InfoOrederState extends State<InfoOreder> {
                                         fontSize: 16,
                                         fontFamily: 'Roboto',
                                         fontStyle: FontStyle.normal,
-                                        fontWeight: FontWeight.w600),
+                                        fontWeight: FontWeight.w600,),
                                   ),
                                 ],
                               ),
@@ -222,7 +222,7 @@ class _InfoOrederState extends State<InfoOreder> {
                                         title: 'assets/icons/arrow_right.svg',
                                         height: 20,
                                         width: 20,
-                                        color: AppColors.authTextColor),
+                                        color: AppColors.authTextColor,),
                                   ),
                                 ),
                               ),
@@ -243,7 +243,7 @@ class _InfoOrederState extends State<InfoOreder> {
                                       fontSize: 16,
                                       fontFamily: 'Roboto',
                                       fontStyle: FontStyle.normal,
-                                      fontWeight: FontWeight.w600),
+                                      fontWeight: FontWeight.w600,),
                                 ),
                               ),
                             ],
@@ -293,7 +293,7 @@ class _InfoOrederState extends State<InfoOreder> {
                                                                   left: 3,
                                                                   right: 3,
                                                                   top: 7,
-                                                                  bottom: 5),
+                                                                  bottom: 5,),
                                                           child: Container(
                                                             height: 2.5,
                                                             width: 42,
@@ -303,10 +303,10 @@ class _InfoOrederState extends State<InfoOreder> {
                                                                 ? AppColors
                                                                     .mainColor
                                                                 : Colors.grey,
-                                                          )),
+                                                          ),),
                                                     ),
                                                   ),
-                                                ]),
+                                                ],),
                                               ),
                                               index != orderById.loc
                                                   ? Container(
@@ -319,7 +319,7 @@ class _InfoOrederState extends State<InfoOreder> {
                                                                   orderById.loc
                                                               ? AppColors
                                                                   .mainColor
-                                                              : Colors.grey),
+                                                              : Colors.grey,),
                                                     )
                                                   : Stack(
                                                       alignment:
@@ -335,7 +335,7 @@ class _InfoOrederState extends State<InfoOreder> {
                                                                 color: AppColors
                                                                     .mainColor
                                                                     .withOpacity(
-                                                                        0.1)),
+                                                                        0.1,),),
                                                           ),
                                                         ),
                                                         Container(
@@ -346,7 +346,7 @@ class _InfoOrederState extends State<InfoOreder> {
                                                                   shape: BoxShape
                                                                       .circle,
                                                                   color: AppColors
-                                                                      .mainColor),
+                                                                      .mainColor,),
                                                           child: Padding(
                                                             padding:
                                                                 const EdgeInsets
@@ -368,13 +368,13 @@ class _InfoOrederState extends State<InfoOreder> {
                                                           ),
                                                         ),
                                                       ],
-                                                    )
-                                            ]);
-                                      }),
+                                                    ),
+                                            ],);
+                                      },),
                                 ),
                               ),
                             ],
-                          )),
+                          ),),
                     ),
                     Padding(
                       padding:
@@ -385,10 +385,10 @@ class _InfoOrederState extends State<InfoOreder> {
                           Container(
                             decoration: BoxDecoration(
                                 color: AppColors.initialButtonColor,
-                                borderRadius: BorderRadius.circular(10)),
+                                borderRadius: BorderRadius.circular(10),),
                             child: Padding(
                               padding: const EdgeInsets.only(
-                                  left: 12, top: 10, bottom: 10, right: 12),
+                                  left: 12, top: 10, bottom: 10, right: 12,),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -396,7 +396,7 @@ class _InfoOrederState extends State<InfoOreder> {
                                       title: 'assets/icons/map_pin.svg',
                                       height: 18,
                                       width: 18,
-                                      color: AppColors.mainColor),
+                                      color: AppColors.mainColor,),
                                   const SizedBox(
                                     width: 5,
                                   ),
@@ -407,7 +407,7 @@ class _InfoOrederState extends State<InfoOreder> {
                                         fontSize: 14,
                                         fontFamily: 'Roboto',
                                         fontStyle: FontStyle.normal,
-                                        fontWeight: FontWeight.w600),
+                                        fontWeight: FontWeight.w600,),
                                   ),
                                 ],
                               ),
@@ -415,7 +415,7 @@ class _InfoOrederState extends State<InfoOreder> {
                           ),
                         ],
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -464,7 +464,7 @@ class _InfoOrederState extends State<InfoOreder> {
                                     builder: (BuildContext context, int index) {
                                       return PhotoViewGalleryPageOptions(
                                         imageProvider: NetworkImage(orderById
-                                            .ordersById!.images[index]),
+                                            .ordersById!.images[index],),
                                         minScale:
                                             PhotoViewComputedScale.contained *
                                                 0.8,
@@ -488,14 +488,14 @@ class _InfoOrederState extends State<InfoOreder> {
                                       });
                                     },
                                     pageController: PageController(
-                                        initialPage: _selectedIndex),
+                                        initialPage: _selectedIndex,),
                                   ),
                                 );
-                              });
+                              },);
                         },
                         child: Padding(
                           padding: const EdgeInsets.only(
-                              top: 8, bottom: 8, right: 5),
+                              top: 8, bottom: 8, right: 5,),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(12),
                             child: SizedBox(
@@ -510,7 +510,7 @@ class _InfoOrederState extends State<InfoOreder> {
                                   //   color: AppColors.mainColor,
                                   //   size: 50,
                                   // ),
-                                )),
+                                ),),
                           ),
                         ),
                       );
@@ -521,7 +521,7 @@ class _InfoOrederState extends State<InfoOreder> {
             ),
             Padding(
               padding: const EdgeInsets.only(
-                  left: 15, right: 15, top: 10, bottom: 20),
+                  left: 15, right: 15, top: 10, bottom: 20,),
               child: Container(
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
@@ -549,7 +549,7 @@ class _InfoOrederState extends State<InfoOreder> {
                             fontSize: 20,
                             fontFamily: 'Roboto',
                             fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.w600),
+                            fontWeight: FontWeight.w600,),
                       ),
                     ),
                     Padding(
@@ -573,7 +573,7 @@ class _InfoOrederState extends State<InfoOreder> {
                                       children: [
                                         Padding(
                                           padding: const EdgeInsets.only(
-                                              left: 15, bottom: 0),
+                                              left: 15, bottom: 0,),
                                           child: Column(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
@@ -592,7 +592,7 @@ class _InfoOrederState extends State<InfoOreder> {
                                                     fontFamily: 'Montserrat',
                                                     fontStyle: FontStyle.normal,
                                                     fontWeight:
-                                                        FontWeight.w400),
+                                                        FontWeight.w400,),
                                               ),
                                               Row(
                                                 mainAxisAlignment:
@@ -611,7 +611,7 @@ class _InfoOrederState extends State<InfoOreder> {
                                                   Padding(
                                                     padding:
                                                         const EdgeInsets.only(
-                                                            left: 5),
+                                                            left: 5,),
                                                     child: Text(
                                                       orderById.ordersById!
                                                           .points[index].point,
@@ -627,20 +627,20 @@ class _InfoOrederState extends State<InfoOreder> {
                                                           fontStyle:
                                                               FontStyle.normal,
                                                           fontWeight:
-                                                              FontWeight.w400),
+                                                              FontWeight.w400,),
                                                     ),
                                                   ),
                                                 ],
-                                              )
+                                              ),
                                             ],
                                           ),
-                                        )
+                                        ),
                                       ],
-                                    )
-                                  ]),
+                                    ),
+                                  ],),
                                   Padding(
                                     padding: const EdgeInsets.only(
-                                        top: 2.5, right: 10),
+                                        top: 2.5, right: 10,),
                                     child: Stack(
                                       children: [
                                         Container(
@@ -650,7 +650,7 @@ class _InfoOrederState extends State<InfoOreder> {
                                               shape: BoxShape.circle,
                                               color: index < orderById.loc + 1
                                                   ? AppColors.mainColor
-                                                  : Colors.grey),
+                                                  : Colors.grey,),
                                         ),
                                         Padding(
                                           padding:
@@ -671,7 +671,7 @@ class _InfoOrederState extends State<InfoOreder> {
                                                             left: 4,
                                                             right: 5,
                                                             top: 0,
-                                                            bottom: 3),
+                                                            bottom: 3,),
                                                     child: Container(
                                                       height: 6,
                                                       width: 3,
@@ -679,7 +679,7 @@ class _InfoOrederState extends State<InfoOreder> {
                                                               orderById.loc
                                                           ? AppColors.mainColor
                                                           : Colors.grey,
-                                                    )),
+                                                    ),),
                                               ),
                                             ),
                                           ),
@@ -689,16 +689,16 @@ class _InfoOrederState extends State<InfoOreder> {
                                   ),
                                 ],
                               );
-                            }),
+                            },),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
-            )
+            ),
           ],
         ),
-      )),
+      ),),
       bottomNavigationBar: Container(
         height: 80,
         width: MediaQuery.of(context).size.width,
@@ -768,14 +768,14 @@ class _InfoOrederState extends State<InfoOreder> {
                   child: InkWell(
                     onTap: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const OrderImageView()));
+                          builder: (context) => const OrderImageView(),),);
                     },
                     child: Container(
                       height: 50,
                       width: MediaQuery.of(context).size.width / 2 - 10,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: AppColors.mainColor),
+                          color: AppColors.mainColor,),
                       child: const Center(
                         child: Text(
                           'Hasap-faktura',
@@ -785,7 +785,7 @@ class _InfoOrederState extends State<InfoOreder> {
                               fontSize: 16,
                               fontFamily: 'Roboto',
                               fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w500),
+                              fontWeight: FontWeight.w500,),
                         ),
                       ),
                     ),
@@ -794,7 +794,7 @@ class _InfoOrederState extends State<InfoOreder> {
               ],
             ),
           ),
-        ]),
+        ],),
       ),
     );
   }

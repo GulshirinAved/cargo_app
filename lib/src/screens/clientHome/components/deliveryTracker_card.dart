@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+// ignore_for_file: public_member_api_docs, sort_constructors_first, file_names
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -18,9 +18,9 @@ class DeliveryTrackerCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int currentStepIndex = snapshot.data![index].points!
+    final int currentStepIndex = snapshot.data![index].points!
         .indexWhere((point) => point.isCurrent == 1);
-    int curStep = (currentStepIndex == -1 ? 1 : currentStepIndex + 1)
+    final int curStep = (currentStepIndex == -1 ? 1 : currentStepIndex + 1)
         .clamp(1, snapshot.data![index].points!.length + 1);
 
     return Container(
@@ -118,7 +118,7 @@ class DeliveryTrackerCard extends StatelessWidget {
                 iconSize: 20,
                 style: const ButtonStyle(
                   backgroundColor:
-                      MaterialStatePropertyAll(AppColors.grey4Color),
+                      WidgetStatePropertyAll(AppColors.grey4Color),
                 ),
                 icon: SvgPicture.asset('assets/icons/arrow_right.svg'),
               ),

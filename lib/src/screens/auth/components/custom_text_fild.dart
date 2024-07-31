@@ -5,7 +5,7 @@ import '../../../design/app_colors.dart';
 class CustomTextFild extends StatelessWidget {
   String hint;
   TextEditingController controller;
-  CustomTextFild({Key? key, required this.hint, required this.controller})
+  CustomTextFild({required this.hint, required this.controller, Key? key})
       : super(key: key);
 
   @override
@@ -36,7 +36,7 @@ class CustomTextFild extends StatelessWidget {
                     fontSize: 18,
                     fontFamily: 'Roboto',
                     fontStyle: FontStyle.normal,
-                    fontWeight: FontWeight.w400)),
+                    fontWeight: FontWeight.w400,),),
           ),
         ),
       ),

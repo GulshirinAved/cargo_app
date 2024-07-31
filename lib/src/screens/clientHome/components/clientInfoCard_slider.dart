@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:get/get.dart';
@@ -87,11 +89,11 @@ class ClientInfoCardSlider extends StatelessWidget {
                             children: [
                               CustomButton(onTap: () {
                                 clientHomeController.selectUserId(
-                                    value: snapshot.data![index].id.toString());
+                                    value: snapshot.data![index].id.toString(),);
                                 Get.to(() => OrdersScreen(
                                       index: index,
-                                    ));
-                              }),
+                                    ),);
+                              },),
                               CustomButton(
                                 onTap: () =>
                                     FlutterPhoneDirectCaller.callNumber(

@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
@@ -15,8 +17,7 @@ class BottomNavAll extends StatefulWidget {
 }
 
 class _BottomNavAllState extends State<BottomNavAll> {
-  final PersistentTabController _controller =
-      PersistentTabController(initialIndex: 0);
+  final PersistentTabController _controller = PersistentTabController(initialIndex: 0);
 
   List<Widget> _NavScreens() {
     return [

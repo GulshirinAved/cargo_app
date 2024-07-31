@@ -44,7 +44,7 @@ class ExploreScreen extends StatelessWidget {
                     fontSize: 20,
                     fontFamily: 'Roboto',
                     fontStyle: FontStyle.normal,
-                    fontWeight: FontWeight.w700),
+                    fontWeight: FontWeight.w700,),
               ),
             ),
           ),
@@ -61,7 +61,7 @@ class ExploreScreen extends StatelessWidget {
               child: InkWell(
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const SearchScreen()));
+                      builder: (context) => const SearchScreen(),),);
                 },
                 child: Container(
                   height: 60,
@@ -86,7 +86,7 @@ class ExploreScreen extends StatelessWidget {
                             title: 'assets/icons/searchnormal1.svg',
                             height: 24,
                             width: 24,
-                            color: AppColors.profilColor),
+                            color: AppColors.profilColor,),
                       ),
                       const Padding(
                         padding: EdgeInsets.only(left: 22),
@@ -97,9 +97,9 @@ class ExploreScreen extends StatelessWidget {
                               fontSize: 16,
                               fontFamily: 'Rubik',
                               fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w400),
+                              fontWeight: FontWeight.w400,),
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -135,12 +135,12 @@ class ExploreScreen extends StatelessWidget {
                         fontSize: 16,
                         fontFamily: 'Rubik',
                         fontStyle: FontStyle.normal,
-                        fontWeight: FontWeight.w600),
+                        fontWeight: FontWeight.w600,),
                   ),
                   TextButton(
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const AllProducts()));
+                          builder: (context) => const AllProducts(),),);
                     },
                     child: const Text(
                       'hemmesi',
@@ -149,7 +149,7 @@ class ExploreScreen extends StatelessWidget {
                           fontSize: 14,
                           fontFamily: 'Rubik',
                           fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.w400),
+                          fontWeight: FontWeight.w400,),
                     ),
                   ),
                 ],
@@ -168,7 +168,7 @@ class ExploreScreen extends StatelessWidget {
                   return InkWell(
                     onTap: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const ItemMarket()));
+                          builder: (context) => const ItemMarket(),),);
                     },
                     child: Padding(
                       padding: const EdgeInsets.all(5),
@@ -184,7 +184,7 @@ class ExploreScreen extends StatelessWidget {
                               child: ClipRRect(
                                   borderRadius: BorderRadius.circular(15),
                                   child:
-                                      Image.asset('assets/images/ayakgap.png')),
+                                      Image.asset('assets/images/ayakgap.png'),),
                             ),
                             const Padding(
                               padding: EdgeInsets.only(top: 5, bottom: 5),
@@ -196,7 +196,7 @@ class ExploreScreen extends StatelessWidget {
                                     fontSize: 14,
                                     fontFamily: 'Montserrat',
                                     fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.w600),
+                                    fontWeight: FontWeight.w600,),
                               ),
                             ),
                           ],
@@ -204,10 +204,10 @@ class ExploreScreen extends StatelessWidget {
                       ),
                     ),
                   );
-                }),
+                },),
           ],
         ),
-      )),
+      ),),
     );
   }
 }

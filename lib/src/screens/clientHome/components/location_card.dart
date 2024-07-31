@@ -1,3 +1,5 @@
+// ignore_for_file: unrelated_type_equality_checks
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kargo_app/src/design/app_colors.dart';
@@ -18,7 +20,7 @@ class LocationCard extends StatelessWidget {
         Get.put(ClientHomeController());
     return GestureDetector(
       onTap: () => clientHomeController.selectLocation(
-          selectedLocation: locationName, regionId: locationId),
+          selectedLocation: locationName, regionId: locationId,),
       child: Obx(() => Container(
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
             margin: const EdgeInsets.symmetric(horizontal: 10),
@@ -26,7 +28,7 @@ class LocationCard extends StatelessWidget {
               color: clientHomeController.locationName == locationName
                   ? AppColors.blueColor.withOpacity(0.2)
                   : AppColors.grey1Color,
-              borderRadius: BorderRadius.all(
+              borderRadius: const BorderRadius.all(
                 Radius.circular(8),
               ),
             ),
@@ -41,7 +43,7 @@ class LocationCard extends StatelessWidget {
                 fontSize: 14,
               ),
             ),
-          )),
+          ),),
     );
   }
 }

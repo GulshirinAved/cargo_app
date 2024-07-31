@@ -231,11 +231,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(25.0),
                                     ),
-                                    title: Column(
+                                    title: const Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
                                       children: [
-                                        const Padding(
+                                        Padding(
                                           padding: EdgeInsets.all(10.0),
                                           child: Text(
                                             'Açar sözüni dikeltmek üçin administrator bilen habarlaşyň:',
@@ -250,7 +250,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                           ),
                                         ),
                                         Row(
-                                          children: const [
+                                          children: [
                                             Padding(
                                               padding: EdgeInsets.all(10.0),
                                               child: Text(

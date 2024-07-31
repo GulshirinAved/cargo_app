@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'dart:convert';
 
 class RegionModel {
@@ -296,7 +298,7 @@ class User {
         tickets: json['tickets'] == null
             ? []
             : List<Ticket>.from(
-                json['tickets']!.map((x) => Ticket.fromJson(x))),
+                json['tickets']!.map((x) => Ticket.fromJson(x)),),
       );
 
   Map<String, dynamic> toJson() => {

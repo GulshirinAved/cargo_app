@@ -1,5 +1,6 @@
+// ignore_for_file: avoid_print
+
 import 'package:get/get.dart';
-import 'package:get/get_rx/get_rx.dart';
 import 'package:kargo_app/src/screens/clientHome/data/models/meRegions_model.dart';
 import 'package:kargo_app/src/screens/clientHome/data/services/meRegions_service.dart';
 
@@ -11,7 +12,7 @@ class ClientHomeController extends GetxController {
   RxList<Point> regionNames = <Point>[].obs;
 
   void selectLocation(
-      {required String selectedLocation, required String regionId}) {
+      {required String selectedLocation, required String regionId,}) {
     locationName.value = selectedLocation;
     locationId.value = regionId;
   }

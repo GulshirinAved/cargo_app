@@ -110,14 +110,14 @@ class _BottomNavbarButtonState extends State<BottomNavbarButton> {
                                 padding: const EdgeInsets.all(10.0),
                                 child: Container(
                                   child: iconsBold[widget.index],
-                                )
+                                ),
 
                                 // Icon(
                                 //   iconsBold[index],
                                 //   size: 18,
                                 //   color: Colors.amber,
                                 // ),
-                                ),
+                              ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 10),
@@ -125,17 +125,14 @@ class _BottomNavbarButtonState extends State<BottomNavbarButton> {
                       title[widget.index],
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          color: widget.index == widget.selectedIndex
-                              ? AppColors.mainColor
-                              : AppColors.disableColor,
-                          fontWeight: widget.index == widget.selectedIndex
-                              ? FontWeight.w600
-                              : FontWeight.w400,
-                          fontStyle: FontStyle.normal,
-                          fontFamily: 'Rubik',
-                          fontSize: 12),
+                        color: widget.index == widget.selectedIndex ? AppColors.mainColor : AppColors.disableColor,
+                        fontWeight: widget.index == widget.selectedIndex ? FontWeight.w600 : FontWeight.w400,
+                        fontStyle: FontStyle.normal,
+                        fontFamily: 'Rubik',
+                        fontSize: 12,
+                      ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),

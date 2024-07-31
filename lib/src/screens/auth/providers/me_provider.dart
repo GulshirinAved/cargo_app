@@ -12,15 +12,15 @@ class GetMeProvider with ChangeNotifier {
   static Dio dio = Dio();
 
   Future<void> getMeResponse() async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    String? val = preferences.getString('token');
+    final SharedPreferences preferences = await SharedPreferences.getInstance();
+    final String? val = preferences.getString('token');
     final headers = {
       'Authorization': 'Bearer $val',
     };
 
     try {
-      var response = await dio.get("${Constants.baseUrl}/auth/me",
-          options: Options(headers: headers));
+      final response = await dio.get('${Constants.baseUrl}/auth/me',
+          options: Options(headers: headers),);
       isLoading = true;
       print(response.data);
       if (response.statusCode == 200) {
@@ -36,7 +36,7 @@ class GetMeProvider with ChangeNotifier {
       isLoading = false;
       print('fuckkkkk');
       print(e.error);
-      if (e.response != null) print("Error= ${e.response!.realUri}");
+      if (e.response != null) print('Error= ${e.response!.realUri}');
       if (e.response != null) print(e.response!.data);
 
       notifyListeners();

@@ -105,7 +105,7 @@ class _InitialScreenState extends State<InitialScreen> {
                                 fontSize: 14,
                                 fontFamily: 'Rubik',
                                 fontStyle: FontStyle.normal,
-                                fontWeight: FontWeight.w400),
+                                fontWeight: FontWeight.w400,),
                           ),
                         ],
                       ),
@@ -191,7 +191,7 @@ class _InitialScreenState extends State<InitialScreen> {
                                   title: 'assets/icons/searchnormal1.svg',
                                   height: 20,
                                   width: 20,
-                                  color: AppColors.profilColor),
+                                  color: AppColors.profilColor,),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(left: 10),
@@ -205,7 +205,7 @@ class _InitialScreenState extends State<InitialScreen> {
                                   fontWeight: FontWeight.w400,
                                 ),
                               ),
-                            )
+                            ),
                           ],
                         ),
                       ),
@@ -236,7 +236,7 @@ class _InitialScreenState extends State<InitialScreen> {
                       child: Image.asset(
                         'assets/images/anmation.gif',
                         fit: BoxFit.fill,
-                      )),
+                      ),),
                 ),
                 ListView.builder(
                   padding: EdgeInsets.zero,

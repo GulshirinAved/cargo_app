@@ -65,7 +65,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     fontSize: 20,
                     fontFamily: 'Roboto',
                     fontStyle: FontStyle.normal,
-                    fontWeight: FontWeight.w700),
+                    fontWeight: FontWeight.w700,),
               ),
             ),
           ),
@@ -112,14 +112,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         IconButton(
                           onPressed: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => const EditProfil()));
+                                builder: (context) => const EditProfil(),),);
                           },
                           icon: CustomIcon(
                               title: 'assets/icons/edit.svg',
                               height: 22,
                               width: 22,
-                              color: AppColors.profilColor),
-                        )
+                              color: AppColors.profilColor,),
+                        ),
                       ],
                     ),
                     Padding(
@@ -131,7 +131,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             fontSize: 16,
                             fontFamily: 'Roboto',
                             fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.w600),
+                            fontWeight: FontWeight.w600,),
                       ),
                     ),
                     Padding(
@@ -143,14 +143,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             fontSize: 16,
                             fontFamily: 'Roboto',
                             fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.w600),
+                            fontWeight: FontWeight.w600,),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 15),
+                    const Padding(
+                      padding: EdgeInsets.only(top: 15),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
-                        children: const [
+                        children: [
                           Text(
                             'ID: ',
                             style: TextStyle(
@@ -158,7 +158,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 fontSize: 16,
                                 fontFamily: 'Roboto',
                                 fontStyle: FontStyle.normal,
-                                fontWeight: FontWeight.w600),
+                                fontWeight: FontWeight.w600,),
                           ),
                           Text(
                             'D45',
@@ -167,7 +167,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 fontSize: 16,
                                 fontFamily: 'Roboto',
                                 fontStyle: FontStyle.normal,
-                                fontWeight: FontWeight.w600),
+                                fontWeight: FontWeight.w600,),
                           ),
                           Padding(
                             padding: EdgeInsets.only(left: 50),
@@ -178,7 +178,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   fontSize: 16,
                                   fontFamily: 'Roboto',
                                   fontStyle: FontStyle.normal,
-                                  fontWeight: FontWeight.w600),
+                                  fontWeight: FontWeight.w600,),
                             ),
                           ),
                           Text(
@@ -188,7 +188,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 fontSize: 16,
                                 fontFamily: 'Roboto',
                                 fontStyle: FontStyle.normal,
-                                fontWeight: FontWeight.w600),
+                                fontWeight: FontWeight.w600,),
                           ),
                         ],
                       ),
@@ -205,7 +205,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     InkWell(
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const LanguageChange()));
+                            builder: (context) => const LanguageChange(),),);
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -216,7 +216,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   title: 'assets/icons/globe.svg',
                                   height: 24,
                                   width: 24,
-                                  color: AppColors.profilColor),
+                                  color: AppColors.profilColor,),
                               const Padding(
                                 padding: EdgeInsets.only(left: 10),
                                 child: Text(
@@ -226,7 +226,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       fontSize: 16,
                                       fontFamily: 'Roboto',
                                       fontStyle: FontStyle.normal,
-                                      fontWeight: FontWeight.w600),
+                                      fontWeight: FontWeight.w600,),
                                 ),
                               ),
                             ],
@@ -237,7 +237,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 title: 'assets/icons/chevron_right.svg',
                                 height: 24,
                                 width: 24,
-                                color: AppColors.profilColor),
+                                color: AppColors.profilColor,),
                           ),
                         ],
                       ),
@@ -254,7 +254,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     InkWell(
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const Contacts()));
+                            builder: (context) => const Contacts(),),);
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -265,7 +265,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   title: 'assets/icons/mail.svg',
                                   height: 24,
                                   width: 24,
-                                  color: AppColors.profilColor),
+                                  color: AppColors.profilColor,),
                               const Padding(
                                 padding: EdgeInsets.only(left: 10),
                                 child: Text(
@@ -275,7 +275,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       fontSize: 16,
                                       fontFamily: 'Roboto',
                                       fontStyle: FontStyle.normal,
-                                      fontWeight: FontWeight.w600),
+                                      fontWeight: FontWeight.w600,),
                                 ),
                               ),
                             ],
@@ -286,7 +286,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 title: 'assets/icons/chevron_right.svg',
                                 height: 24,
                                 width: 24,
-                                color: AppColors.profilColor),
+                                color: AppColors.profilColor,),
                           ),
                         ],
                       ),
@@ -298,13 +298,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       },
                       child: Padding(
                         padding: const EdgeInsets.only(
-                            top: 40, right: 20, left: 20, bottom: 30),
+                            top: 40, right: 20, left: 20, bottom: 30,),
                         child: Container(
                           height: 55,
                           width: MediaQuery.of(context).size.width,
                           decoration: BoxDecoration(
                               color: AppColors.mainColor,
-                              borderRadius: BorderRadius.circular(15)),
+                              borderRadius: BorderRadius.circular(15),),
                           child: Center(
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -313,7 +313,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     title: 'assets/icons/log_out.svg',
                                     height: 24,
                                     width: 24,
-                                    color: Colors.white),
+                                    color: Colors.white,),
                                 const Padding(
                                   padding: EdgeInsets.only(left: 10),
                                   child: Text(
@@ -323,7 +323,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         fontSize: 16,
                                         fontFamily: 'Roboto',
                                         fontStyle: FontStyle.normal,
-                                        fontWeight: FontWeight.w700),
+                                        fontWeight: FontWeight.w700,),
                                   ),
                                 ),
                               ],
@@ -335,8 +335,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ],
                 ),
               ),
-            )),
-      )),
+            ),),
+      ),),
     );
   }
 
@@ -361,7 +361,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       fontSize: 16,
                       fontFamily: 'Roboto',
                       fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight.w400),
+                      fontWeight: FontWeight.w400,),
                 ),
               ),
               Padding(
@@ -373,7 +373,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       onTap: () async {
                         final SharedPreferences preferences =
                             await SharedPreferences.getInstance();
-                        String? val = preferences.getString('token');
+                        final String? val = preferences.getString('token');
 
                         await LogOutRepository()
                             .logOut(context, val ?? '')
@@ -381,16 +381,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 ? Navigator.of(context).push(
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            const BottomNavScreen()),
+                                            const BottomNavScreen(),),
                                   )
-                                : () {});
+                                : () {},);
                       },
                       child: Container(
                         height: 40,
                         width: MediaQuery.of(context).size.width / 3 - 20,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: Colors.blue[100]),
+                            color: Colors.blue[100],),
                         child: const Center(
                           child: Text(
                             'Hawa',
@@ -400,7 +400,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 fontSize: 16,
                                 fontFamily: 'Roboto',
                                 fontStyle: FontStyle.normal,
-                                fontWeight: FontWeight.w400),
+                                fontWeight: FontWeight.w400,),
                           ),
                         ),
                       ),
@@ -414,7 +414,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         width: MediaQuery.of(context).size.width / 3 - 20,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: AppColors.mainColor),
+                            color: AppColors.mainColor,),
                         child: const Center(
                           child: Text(
                             'Ýok',
@@ -424,14 +424,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 fontSize: 16,
                                 fontFamily: 'Roboto',
                                 fontStyle: FontStyle.normal,
-                                fontWeight: FontWeight.w400),
+                                fontWeight: FontWeight.w400,),
                           ),
                         ),
                       ),
                     ),
                   ],
                 ),
-              )
+              ),
             ],
           ),
         );

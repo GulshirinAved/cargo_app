@@ -1,16 +1,18 @@
+// ignore_for_file: join_return_with_assignment
+
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-// ignore: depend_on_referenced_packages
-import 'package:intl/intl.dart' as intl;
-// ignore: depend_on_referenced_packages
-import 'package:intl/date_symbols.dart' as intl;
-// ignore: depend_on_referenced_packages
-import 'package:intl/date_symbol_data_custom.dart' as date_symbol_data_custom;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+// ignore: depend_on_referenced_packages
+import 'package:intl/date_symbol_data_custom.dart' as date_symbol_data_custom;
+// ignore: depend_on_referenced_packages
+import 'package:intl/date_symbols.dart' as intl;
+// ignore: depend_on_referenced_packages
+import 'package:intl/intl.dart' as intl;
 
 import '../application/settings_singleton.dart';
 import '../design/constants.dart';
@@ -59,7 +61,7 @@ const _tkDatePatterns = {
   'v': 'v',
   'z': 'z',
   'zzzz': 'zzzz',
-  'ZZZZ': 'ZZZZ'
+  'ZZZZ': 'ZZZZ',
 };
 
 const _tkSymbols = {
@@ -79,7 +81,7 @@ const _tkSymbols = {
     'S',
     'O',
     'N',
-    'D'
+    'D',
   ],
   'MONTHS': [
     'Ýanwar',
@@ -93,7 +95,7 @@ const _tkSymbols = {
     'Sentýabr',
     'Oktýabr',
     'Noýabr',
-    'Dekabr'
+    'Dekabr',
   ],
   'STANDALONEMONTHS': [
     'Ýanwar',
@@ -107,7 +109,7 @@ const _tkSymbols = {
     'Sentýabr',
     'Oktýabr',
     'Noýabr',
-    'Dekabr'
+    'Dekabr',
   ],
   'SHORTMONTHS': [
     'Ýan',
@@ -121,7 +123,7 @@ const _tkSymbols = {
     'Sen',
     'Okt',
     'Noý',
-    'Dek'
+    'Dek',
   ],
   'STANDALONESHORTMONTHS': [
     'Ýan',
@@ -135,7 +137,7 @@ const _tkSymbols = {
     'Sen',
     'Okt',
     'Noý',
-    'Dek'
+    'Dek',
   ],
   'WEEKDAYS': [
     'Ýekşenbe',
@@ -144,7 +146,7 @@ const _tkSymbols = {
     'Çarşenbe',
     'Penşenbe',
     'Anna',
-    'Şenbe'
+    'Şenbe',
   ],
   'STANDALONEWEEKDAYS': [
     'Ýekşenbe',
@@ -153,7 +155,7 @@ const _tkSymbols = {
     'Çarşenbe',
     'Penşenbe',
     'Anna',
-    'Şenbe'
+    'Şenbe',
   ],
   'SHORTWEEKDAYS': ['Ýek', 'Duş', 'Siş', 'Çar', 'Pen', 'Ann', 'Şen'],
   'STANDALONESHORTWEEKDAYS': ['Ýek', 'Duş', 'Siş', 'Çar', 'Pen', 'Ann', 'Şen'],
@@ -164,7 +166,7 @@ const _tkSymbols = {
     '1-nji kwartal',
     '2-nji kwartal',
     '3-nji kwartal',
-    '4-nji kwartal'
+    '4-nji kwartal',
   ],
   'AMPMS': ['am', 'pm'],
   'DATEFORMATS': ['EEEE, d MMMM y', 'd MMMM y', 'd MMM y', 'dd/MM/y'],
@@ -173,7 +175,7 @@ const _tkSymbols = {
   'FIRSTDAYOFWEEK': 0,
   'WEEKENDRANGE': [6],
   'FIRSTWEEKCUTOFFDAY': 3,
-  'DATETIMEFORMATS': ['{1}, {0}', '{1}, {0}', '{1}, {0}', '{1}, {0}']
+  'DATETIMEFORMATS': ['{1}, {0}', '{1}, {0}', '{1}, {0}', '{1}, {0}'],
 };
 
 const List<String> _shortWeekdays = <String>[
@@ -230,16 +232,7 @@ extension L10n on String {
 }
 
 class AppLocalizations {
-  static AppLocalizations _instance =
-      AppLocalizations._(AppConstants.defaultLocale);
-  AppLocalizations._(this.locale);
-  final Locale locale;
-
-  /// This static temporary localized strings used for
-  /// avoid null _localizedStrings, because it can be null
-  /// when applocalization delegate loads translations from
-  /// json file
-  static Map<String, String> templocalizedStrings = {};
+  static AppLocalizations _instance = AppLocalizations._(AppConstants.defaultLocale);
 
   factory AppLocalizations(Locale? locale) {
     if (locale != null && locale != _instance.locale) {
@@ -252,20 +245,26 @@ class AppLocalizations {
     }
     return _instance;
   }
+  AppLocalizations._(this.locale);
+  final Locale locale;
+
+  /// This static temporary localized strings used for
+  /// avoid null _localizedStrings, because it can be null
+  /// when applocalization delegate loads translations from
+  /// json file
+  static Map<String, String> templocalizedStrings = {};
 
   static AppLocalizations of(BuildContext context) {
     return Localizations.of<AppLocalizations>(context, AppLocalizations)!;
   }
 
-  static const LocalizationsDelegate<AppLocalizations> delegate =
-      _AppLocalizationsDelegate();
+  static const LocalizationsDelegate<AppLocalizations> delegate = _AppLocalizationsDelegate();
 
   Map<String, String> _localizedStrings = {};
 
   Future<bool> load() async {
-    String jsonString = await rootBundle
-        .loadString('assets/languages/${locale.languageCode}.json');
-    Map<String, dynamic> jsonMap = jsonDecode(jsonString);
+    final String jsonString = await rootBundle.loadString('assets/languages/${locale.languageCode}.json');
+    final Map<String, dynamic> jsonMap = jsonDecode(jsonString);
 
     _localizedStrings = jsonMap.map((key, value) {
       return MapEntry(key, value.toString());
@@ -275,13 +274,12 @@ class AppLocalizations {
   }
 
   String? translate(String key) {
-    String? result = _localizedStrings[key];
+    final String? result = _localizedStrings[key];
     return result;
   }
 }
 
-class _AppLocalizationsDelegate
-    extends LocalizationsDelegate<AppLocalizations> {
+class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
   const _AppLocalizationsDelegate();
 
   @override
@@ -291,8 +289,7 @@ class _AppLocalizationsDelegate
 
   @override
   Future<AppLocalizations> load(Locale locale) async {
-    AppLocalizations localizations =
-        AppLocalizations(SettingsSingleton().locale);
+    final AppLocalizations localizations = AppLocalizations(SettingsSingleton().locale);
     await localizations.load();
     return localizations;
   }
@@ -304,8 +301,7 @@ class _AppLocalizationsDelegate
 }
 
 // class TmMaterialLocalization extends MaterialLocalizations {}
-class _TmCupertinoLocalizationsDelegate
-    extends LocalizationsDelegate<CupertinoLocalizations> {
+class _TmCupertinoLocalizationsDelegate extends LocalizationsDelegate<CupertinoLocalizations> {
   const _TmCupertinoLocalizationsDelegate();
 
   @override
@@ -340,23 +336,21 @@ class _TmCupertinoLocalizationsDelegate
   }
 
   @override
-  bool isSupported(Locale locale) =>
-      locale.countryCode == 'TM' && locale.languageCode == 'tk';
+  bool isSupported(Locale locale) => locale.countryCode == 'TM' && locale.languageCode == 'tk';
 
   @override
   bool shouldReload(
-      covariant LocalizationsDelegate<CupertinoLocalizations> old) {
+    covariant LocalizationsDelegate<CupertinoLocalizations> old,
+  ) {
     return false;
   }
 }
 
-class _TmMaterialLocalizationsDelegate
-    extends LocalizationsDelegate<MaterialLocalizations> {
+class _TmMaterialLocalizationsDelegate extends LocalizationsDelegate<MaterialLocalizations> {
   const _TmMaterialLocalizationsDelegate();
 
   @override
-  bool isSupported(Locale locale) =>
-      locale.countryCode == 'TM' && locale.languageCode == 'tk';
+  bool isSupported(Locale locale) => locale.countryCode == 'TM' && locale.languageCode == 'tk';
 
   @override
   Future<MaterialLocalizations> load(Locale locale) async {
@@ -385,7 +379,6 @@ class _TmMaterialLocalizationsDelegate
 
 class TmCupertinoLocalizations extends GlobalCupertinoLocalizations {
   const TmCupertinoLocalizations({
-    String localeName = 'tk',
     required intl.DateFormat fullYearFormat,
     required intl.DateFormat dayFormat,
     required intl.DateFormat mediumDateFormat,
@@ -394,6 +387,7 @@ class TmCupertinoLocalizations extends GlobalCupertinoLocalizations {
     required intl.DateFormat doubleDigitMinuteFormat,
     required intl.DateFormat singleDigitSecondFormat,
     required intl.NumberFormat decimalFormat,
+    String localeName = 'tk',
   }) : super(
           localeName: localeName,
           fullYearFormat: fullYearFormat,
@@ -406,8 +400,7 @@ class TmCupertinoLocalizations extends GlobalCupertinoLocalizations {
           decimalFormat: decimalFormat,
         );
 
-  static const LocalizationsDelegate<CupertinoLocalizations> delegate =
-      _TmCupertinoLocalizationsDelegate();
+  static const LocalizationsDelegate<CupertinoLocalizations> delegate = _TmCupertinoLocalizationsDelegate();
 
   @override
   String datePickerYear(int yearIndex) => yearIndex.toString();
@@ -443,8 +436,7 @@ class TmCupertinoLocalizations extends GlobalCupertinoLocalizations {
   DatePickerDateOrder get datePickerDateOrder => DatePickerDateOrder.mdy;
 
   @override
-  DatePickerDateTimeOrder get datePickerDateTimeOrder =>
-      DatePickerDateTimeOrder.date_time_dayPeriod;
+  DatePickerDateTimeOrder get datePickerDateTimeOrder => DatePickerDateTimeOrder.date_time_dayPeriod;
 
   @override
   String get anteMeridiemAbbreviation => 'AM';
@@ -541,33 +533,26 @@ class TmCupertinoLocalizations extends GlobalCupertinoLocalizations {
   String get datePickerMinuteSemanticsLabelOther => r'$minute minut';
 
   @override
-  // TODO: implement clearButtonLabel
   String get clearButtonLabel => throw UnimplementedError();
 
   @override
-  // TODO: implement lookUpButtonLabel
   String get lookUpButtonLabel => throw UnimplementedError();
 
   @override
-  // TODO: implement menuDismissLabel
   String get menuDismissLabel => throw UnimplementedError();
 
   @override
-  // TODO: implement noSpellCheckReplacementsLabel
   String get noSpellCheckReplacementsLabel => throw UnimplementedError();
 
   @override
-  // TODO: implement searchWebButtonLabel
   String get searchWebButtonLabel => throw UnimplementedError();
 
   @override
-  // TODO: implement shareButtonLabel
   String get shareButtonLabel => throw UnimplementedError();
 }
 
 class TmMaterialLocalizations extends GlobalMaterialLocalizations {
   const TmMaterialLocalizations({
-    String localeName = 'tk',
     required intl.DateFormat fullYearFormat,
     required intl.DateFormat compactDateFormat,
     required intl.DateFormat shortDateFormat,
@@ -577,6 +562,7 @@ class TmMaterialLocalizations extends GlobalMaterialLocalizations {
     required intl.DateFormat shortMonthDayFormat,
     required intl.NumberFormat decimalFormat,
     required intl.NumberFormat twoDigitZeroPaddedFormat,
+    String localeName = 'tk',
   }) : super(
           localeName: localeName,
           fullYearFormat: fullYearFormat,
@@ -762,8 +748,7 @@ class TmMaterialLocalizations extends GlobalMaterialLocalizations {
   String get pageRowsInfoTitleRaw => r'$firstRow–$lastRow of $rowCount';
 
   @override
-  String get pageRowsInfoTitleApproximateRaw =>
-      r'$firstRow–$lastRow of about $rowCount';
+  String get pageRowsInfoTitleApproximateRaw => r'$firstRow–$lastRow of about $rowCount';
 
   @override
   String get pasteButtonLabel => r'GIRIZ';
@@ -793,8 +778,7 @@ class TmMaterialLocalizations extends GlobalMaterialLocalizations {
   String get remainingTextFieldCharacterCountOne => r'1 harp galdy';
 
   @override
-  String get remainingTextFieldCharacterCountOther =>
-      r'$remainingCount harplar galdy';
+  String get remainingTextFieldCharacterCountOther => r'$remainingCount harplar galdy';
 
   @override
   String? get remainingTextFieldCharacterCountTwo => null;
@@ -842,8 +826,7 @@ class TmMaterialLocalizations extends GlobalMaterialLocalizations {
   String get selectedRowCountTitleOne => r'1 element saýlandy';
 
   @override
-  String get selectedRowCountTitleOther =>
-      r'$selectedRowCount elementler saýlandy';
+  String get selectedRowCountTitleOther => r'$selectedRowCount elementler saýlandy';
 
   @override
   String? get selectedRowCountTitleTwo => null;
@@ -876,14 +859,12 @@ class TmMaterialLocalizations extends GlobalMaterialLocalizations {
   String get viewLicensesButtonLabel => r'LISENZIÝALARY GÖRKEZ';
 
   @override
-  List<String> get narrowWeekdays =>
-      const <String>['Ý', 'D', 'S', 'Ç', 'P', 'A', 'Ş'];
+  List<String> get narrowWeekdays => const <String>['Ý', 'D', 'S', 'Ç', 'P', 'A', 'Ş'];
 
   @override
   int get firstDayOfWeekIndex => 0;
 
-  static const LocalizationsDelegate<MaterialLocalizations> delegate =
-      _TmMaterialLocalizationsDelegate();
+  static const LocalizationsDelegate<MaterialLocalizations> delegate = _TmMaterialLocalizationsDelegate();
 
   @override
   String get calendarModeButtonLabel => r'Senenama geç';
@@ -967,74 +948,56 @@ class TmMaterialLocalizations extends GlobalMaterialLocalizations {
   String get unspecifiedDateRange => 'Sene aralygy';
 
   @override
-  // TODO: implement bottomSheetLabel
   String get bottomSheetLabel => throw UnimplementedError();
 
   @override
-  // TODO: implement clearButtonTooltip
   String get clearButtonTooltip => throw UnimplementedError();
 
   @override
-  // TODO: implement collapsedHint
   String get collapsedHint => throw UnimplementedError();
 
   @override
-  // TODO: implement currentDateLabel
   String get currentDateLabel => throw UnimplementedError();
 
   @override
-  // TODO: implement expandedHint
   String get expandedHint => throw UnimplementedError();
 
   @override
-  // TODO: implement expansionTileCollapsedHint
   String get expansionTileCollapsedHint => throw UnimplementedError();
 
   @override
-  // TODO: implement expansionTileCollapsedTapHint
   String get expansionTileCollapsedTapHint => throw UnimplementedError();
 
   @override
-  // TODO: implement expansionTileExpandedHint
   String get expansionTileExpandedHint => throw UnimplementedError();
 
   @override
-  // TODO: implement expansionTileExpandedTapHint
   String get expansionTileExpandedTapHint => throw UnimplementedError();
 
   @override
-  // TODO: implement keyboardKeyShift
   String get keyboardKeyShift => throw UnimplementedError();
 
   @override
-  // TODO: implement lookUpButtonLabel
   String get lookUpButtonLabel => throw UnimplementedError();
 
   @override
-  // TODO: implement menuDismissLabel
   String get menuDismissLabel => throw UnimplementedError();
 
   @override
-  // TODO: implement scanTextButtonLabel
   String get scanTextButtonLabel => throw UnimplementedError();
 
   @override
-  // TODO: implement scrimLabel
   String get scrimLabel => throw UnimplementedError();
 
   @override
-  // TODO: implement scrimOnTapHintRaw
   String get scrimOnTapHintRaw => throw UnimplementedError();
 
   @override
-  // TODO: implement searchWebButtonLabel
   String get searchWebButtonLabel => throw UnimplementedError();
 
   @override
-  // TODO: implement selectedDateLabel
   String get selectedDateLabel => throw UnimplementedError();
 
   @override
-  // TODO: implement shareButtonLabel
   String get shareButtonLabel => throw UnimplementedError();
 }

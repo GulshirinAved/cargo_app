@@ -56,14 +56,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
               image: DecorationImage(
             image: AssetImage('assets/images/background.png'),
             fit: BoxFit.cover,
-          )),
+          ),),
           child: Center(
             child: Form(
               key: _formKey,
               child: SingleChildScrollView(
                 child: Padding(
                   padding: const EdgeInsets.only(
-                      bottom: 40, right: 20, left: 20, top: 40),
+                      bottom: 40, right: 20, left: 20, top: 40,),
                   child: Container(
                     decoration: BoxDecoration(
                       color: Colors.white,
@@ -92,21 +92,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   fontSize: 25,
                                   fontFamily: 'Roboto',
                                   fontStyle: FontStyle.normal,
-                                  fontWeight: FontWeight.w700),
+                                  fontWeight: FontWeight.w700,),
                             ),
                           ),
                         ),
                         Padding(
                             padding: const EdgeInsets.only(
-                                left: 15, right: 15, top: 20),
+                                left: 15, right: 15, top: 20,),
                             child: CustomTextFild(
-                                hint: 'Ady', controller: nameController)),
+                                hint: 'Ady', controller: nameController,),),
                         Padding(
                             padding:
                                 const EdgeInsets.only(left: 20.0, top: 5.0),
                             child: Text(errorText,
                                 style: TextStyle(
-                                    fontSize: 12.0, color: Colors.red[700]))),
+                                    fontSize: 12.0, color: Colors.red[700],),),),
                         const SizedBox(
                           height: 10.0,
                         ),
@@ -117,13 +117,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             ),
                             child: CustomTextFild(
                                 hint: 'Familiýasy',
-                                controller: lastNameController)),
+                                controller: lastNameController,),),
                         Padding(
                             padding:
                                 const EdgeInsets.only(left: 20.0, top: 5.0),
                             child: Text(errorText2,
                                 style: TextStyle(
-                                    fontSize: 12.0, color: Colors.red[700]))),
+                                    fontSize: 12.0, color: Colors.red[700],),),),
                         const SizedBox(
                           height: 10.0,
                         ),
@@ -162,7 +162,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   padding: EdgeInsets.only(left: 8),
                                   child: Padding(
                                     padding: EdgeInsets.only(
-                                        left: 10, right: 10, top: 6, bottom: 6),
+                                        left: 10, right: 10, top: 6, bottom: 6,),
                                     child: Text(
                                       '+993',
                                       style: TextStyle(
@@ -170,7 +170,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                           fontSize: 18,
                                           fontFamily: 'Montserrat',
                                           fontStyle: FontStyle.normal,
-                                          fontWeight: FontWeight.w400),
+                                          fontWeight: FontWeight.w400,),
                                     ),
                                   ),
                                 ),
@@ -210,7 +210,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 const EdgeInsets.only(left: 20.0, top: 5.0),
                             child: Text(errorText4,
                                 style: TextStyle(
-                                    fontSize: 12.0, color: Colors.red[700]))),
+                                    fontSize: 12.0, color: Colors.red[700],),),),
                         const SizedBox(
                           height: 10.0,
                         ),
@@ -242,7 +242,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                           fontSize: 18,
                                           fontFamily: 'Roboto',
                                           fontStyle: FontStyle.normal,
-                                          fontWeight: FontWeight.w400),
+                                          fontWeight: FontWeight.w400,),
                                       suffixIcon: GestureDetector(
                                         onTap: () {
                                           setState(() {
@@ -251,10 +251,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         },
                                         child: _isHidden
                                             ? const Icon(
-                                                Icons.visibility_outlined)
+                                                Icons.visibility_outlined,)
                                             : const Icon(
-                                                Icons.visibility_off_outlined),
-                                      )),
+                                                Icons.visibility_off_outlined,),
+                                      ),),
                                 ),
                               ),
                             ),
@@ -265,7 +265,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 const EdgeInsets.only(left: 20.0, top: 5.0),
                             child: Text(errorText5,
                                 style: TextStyle(
-                                    fontSize: 12.0, color: Colors.red[700]))),
+                                    fontSize: 12.0, color: Colors.red[700],),),),
                         const SizedBox(
                           height: 10.0,
                         ),
@@ -297,7 +297,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                           fontSize: 18,
                                           fontFamily: 'Roboto',
                                           fontStyle: FontStyle.normal,
-                                          fontWeight: FontWeight.w400),
+                                          fontWeight: FontWeight.w400,),
                                       suffixIcon: GestureDetector(
                                         onTap: () {
                                           setState(() {
@@ -306,10 +306,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         },
                                         child: _isHidden2
                                             ? const Icon(
-                                                Icons.visibility_outlined)
+                                                Icons.visibility_outlined,)
                                             : const Icon(
-                                                Icons.visibility_off_outlined),
-                                      )),
+                                                Icons.visibility_off_outlined,),
+                                      ),),
                                 ),
                               ),
                             ),
@@ -320,7 +320,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 const EdgeInsets.only(left: 20.0, top: 5.0),
                             child: Text(errorText6,
                                 style: TextStyle(
-                                    fontSize: 12.0, color: Colors.red[700]))),
+                                    fontSize: 12.0, color: Colors.red[700],),),),
                         InkWell(
                           onTap: () {
                             if (lastNameController.text.isEmpty) {
@@ -365,13 +365,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           },
                           child: Padding(
                             padding: const EdgeInsets.only(
-                                top: 40, right: 20, left: 20, bottom: 30),
+                                top: 40, right: 20, left: 20, bottom: 30,),
                             child: Container(
                               height: 65,
                               width: MediaQuery.of(context).size.width,
                               decoration: BoxDecoration(
                                   color: AppColors.mainColor,
-                                  borderRadius: BorderRadius.circular(20)),
+                                  borderRadius: BorderRadius.circular(20),),
                               child: const Center(
                                 child: Text(
                                   'Ulgama gir',
@@ -380,7 +380,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       fontSize: 16,
                                       fontFamily: 'Roboto',
                                       fontStyle: FontStyle.normal,
-                                      fontWeight: FontWeight.w700),
+                                      fontWeight: FontWeight.w700,),
                                 ),
                               ),
                             ),

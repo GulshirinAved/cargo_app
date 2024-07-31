@@ -42,7 +42,7 @@ class ItemMarket extends StatelessWidget {
                   fontSize: 20,
                   fontFamily: 'Roboto',
                   fontStyle: FontStyle.normal,
-                  fontWeight: FontWeight.w700),
+                  fontWeight: FontWeight.w700,),
             ),
           ),
         ),
@@ -86,7 +86,7 @@ class ItemMarket extends StatelessWidget {
                               fontSize: 14,
                               fontFamily: 'Montserrat',
                               fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w600),
+                              fontWeight: FontWeight.w600,),
                         ),
                       ),
                       Row(
@@ -99,12 +99,12 @@ class ItemMarket extends StatelessWidget {
                                 fontSize: 14,
                                 fontFamily: 'Rubik',
                                 fontStyle: FontStyle.normal,
-                                fontWeight: FontWeight.w400),
+                                fontWeight: FontWeight.w400,),
                           ),
                           TextButton(
                             onPressed: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => const ReadMore()));
+                                  builder: (context) => const ReadMore(),),);
                             },
                             style: TextButton.styleFrom(
                               padding: EdgeInsets.zero,
@@ -116,14 +116,14 @@ class ItemMarket extends StatelessWidget {
                                   fontSize: 14,
                                   fontFamily: 'Rubik',
                                   fontStyle: FontStyle.normal,
-                                  fontWeight: FontWeight.w400),
+                                  fontWeight: FontWeight.w400,),
                             ),
                           ),
                         ],
                       ),
                     ],
-                  ));
-            }),
+                  ),);
+            },),
       ),
     );
   }

@@ -20,7 +20,7 @@ class WelcomePage extends StatelessWidget {
             image: DecorationImage(
               image: AssetImage('assets/images/background.png'),
               fit: BoxFit.cover,
-            )),
+            ),),
         child: PageView.builder(
           controller: _pageController,
           itemBuilder: (context, index) {
@@ -34,7 +34,7 @@ class WelcomePage extends StatelessWidget {
                       TextButton(
                           onPressed: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => const BottomNavScreen()));
+                                builder: (context) => const BottomNavScreen(),),);
                           },
                           child: const Text(
                             'Geç',
@@ -43,8 +43,8 @@ class WelcomePage extends StatelessWidget {
                                 fontSize: 18,
                                 fontFamily: 'Roboto',
                                 fontStyle: FontStyle.normal,
-                                fontWeight: FontWeight.w600),
-                          )),
+                                fontWeight: FontWeight.w600,),
+                          ),),
                     ],
                   ),
                 ),
@@ -63,7 +63,7 @@ class WelcomePage extends StatelessWidget {
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.only(
-                        top: 20, left: 30, right: 30, bottom: 40),
+                        top: 20, left: 30, right: 30, bottom: 40,),
                     child: SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: SafeArea(
@@ -74,7 +74,7 @@ class WelcomePage extends StatelessWidget {
                             style: const TextStyle(
                                 color: Colors.black,
                                 fontSize: 30,
-                                fontWeight: FontWeight.bold),
+                                fontWeight: FontWeight.bold,),
                           ),
                           const SizedBox(
                             height: 11,
@@ -100,7 +100,7 @@ class WelcomePage extends StatelessWidget {
                                       3,
                                       (indicator) => Container(
                                             margin: const EdgeInsets.symmetric(
-                                                horizontal: 3.0),
+                                                horizontal: 3.0,),
                                             height: 10.0,
                                             width:
                                                 indicator == index ? 20 : 10.0,
@@ -109,8 +109,8 @@ class WelcomePage extends StatelessWidget {
                                                     BorderRadius.circular(10),
                                                 color: indicator == index
                                                     ? const Color(0xff347af0)
-                                                    : const Color(0xffedf1f9)),
-                                          )),
+                                                    : const Color(0xffedf1f9),),
+                                          ),),
                                 ),
                               ),
                               InkWell(
@@ -119,12 +119,12 @@ class WelcomePage extends StatelessWidget {
                                     _pageController.animateToPage(index + 1,
                                         duration:
                                             const Duration(microseconds: 500),
-                                        curve: Curves.ease);
+                                        curve: Curves.ease,);
                                   } else {
                                     Navigator.of(context).push(
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                const BottomNavScreen()));
+                                                const BottomNavScreen(),),);
                                   }
                                 },
                                 child: Container(
@@ -132,24 +132,24 @@ class WelcomePage extends StatelessWidget {
                                   width: 60,
                                   decoration: BoxDecoration(
                                       color: AppColors.mainColor,
-                                      borderRadius: BorderRadius.circular(24)),
+                                      borderRadius: BorderRadius.circular(24),),
                                   child: Padding(
                                     padding: const EdgeInsets.all(15.0),
                                     child: CustomIcon(
                                         title: 'assets/icons/arrow_right.svg',
                                         height: 10,
                                         width: 10,
-                                        color: Colors.white),
+                                        color: Colors.white,),
                                   ),
                                 ),
                               ),
                             ],
                           ),
-                        ]),
+                        ],),
                       ),
                     ),
                   ),
-                )
+                ),
               ],
             );
           },

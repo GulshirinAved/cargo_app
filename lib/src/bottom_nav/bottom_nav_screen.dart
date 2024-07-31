@@ -33,8 +33,8 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
   int changer = 0;
 
   Future<void> checkUser() async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    String? val = preferences.getString('token');
+    final SharedPreferences preferences = await SharedPreferences.getInstance();
+    final String? val = preferences.getString('token');
 
     if (val != null) {
       changer = 1;
@@ -45,7 +45,7 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
     const InitialScreen(),
     const ExploreScreen(),
     const AboutUs(),
-    const ProfileLogOut()
+    const ProfileLogOut(),
     // const ProfileScreen(),
   ];
 

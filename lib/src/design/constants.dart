@@ -7,7 +7,7 @@ class SharedPrefKeys {
 }
 
 class Constants {
-  static const baseUrl = "http://216.250.11.150/api";
+  static const baseUrl = 'http://216.250.11.150/api';
 }
 
 class AppConstants {

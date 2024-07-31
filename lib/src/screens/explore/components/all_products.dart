@@ -42,7 +42,7 @@ class AllProducts extends StatelessWidget {
                   fontSize: 20,
                   fontFamily: 'Roboto',
                   fontStyle: FontStyle.normal,
-                  fontWeight: FontWeight.w700),
+                  fontWeight: FontWeight.w700,),
             ),
           ),
         ),
@@ -61,7 +61,7 @@ class AllProducts extends StatelessWidget {
             return InkWell(
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const ItemMarket()));
+                    builder: (context) => const ItemMarket(),),);
               },
               child: Padding(
                 padding: const EdgeInsets.all(5),
@@ -76,7 +76,7 @@ class AllProducts extends StatelessWidget {
                         width: MediaQuery.of(context).size.width / 2 - 40,
                         child: ClipRRect(
                             borderRadius: BorderRadius.circular(15),
-                            child: Image.asset('assets/images/ayakgap.png')),
+                            child: Image.asset('assets/images/ayakgap.png'),),
                       ),
                       const Padding(
                         padding: EdgeInsets.only(top: 5, bottom: 5),
@@ -88,7 +88,7 @@ class AllProducts extends StatelessWidget {
                               fontSize: 14,
                               fontFamily: 'Montserrat',
                               fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w600),
+                              fontWeight: FontWeight.w600,),
                         ),
                       ),
                     ],
@@ -96,7 +96,7 @@ class AllProducts extends StatelessWidget {
                 ),
               ),
             );
-          }),
+          },),
     );
   }
 }

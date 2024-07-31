@@ -49,7 +49,7 @@ class _LanguageChangeState extends State<LanguageChange> {
                   fontSize: 20,
                   fontFamily: 'Roboto',
                   fontStyle: FontStyle.normal,
-                  fontWeight: FontWeight.w700),
+                  fontWeight: FontWeight.w700,),
             ),
           ),
         ),
@@ -85,7 +85,7 @@ class _LanguageChangeState extends State<LanguageChange> {
                           fontSize: 20,
                           fontFamily: 'Roboto',
                           fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.w700),
+                          fontWeight: FontWeight.w700,),
                     ),
                   ),
                 ),
@@ -119,9 +119,9 @@ class _LanguageChangeState extends State<LanguageChange> {
                                 fontSize: 18,
                                 fontFamily: 'Roboto',
                                 fontStyle: FontStyle.normal,
-                                fontWeight: FontWeight.w400),
+                                fontWeight: FontWeight.w400,),
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -158,9 +158,9 @@ class _LanguageChangeState extends State<LanguageChange> {
                                     fontSize: 18,
                                     fontFamily: 'Roboto',
                                     fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.w400),
+                                    fontWeight: FontWeight.w400,),
                               ),
-                            )
+                            ),
                           ],
                         ),
                       ],
@@ -173,13 +173,13 @@ class _LanguageChangeState extends State<LanguageChange> {
                   },
                   child: Padding(
                     padding: const EdgeInsets.only(
-                        top: 40, right: 20, left: 20, bottom: 30),
+                        top: 40, right: 20, left: 20, bottom: 30,),
                     child: Container(
                       height: 50,
                       width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
                           color: AppColors.mainColor,
-                          borderRadius: BorderRadius.circular(15)),
+                          borderRadius: BorderRadius.circular(15),),
                       child: const Center(
                         child: Text(
                           'Ýatda sakla',
@@ -188,7 +188,7 @@ class _LanguageChangeState extends State<LanguageChange> {
                               fontSize: 16,
                               fontFamily: 'Roboto',
                               fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w700),
+                              fontWeight: FontWeight.w700,),
                         ),
                       ),
                     ),

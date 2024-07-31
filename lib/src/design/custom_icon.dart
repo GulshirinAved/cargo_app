@@ -8,11 +8,11 @@ class CustomIcon extends StatelessWidget {
   double width;
   Color color;
   CustomIcon({
-    Key? key,
     required this.title,
     required this.height,
     required this.width,
     required this.color,
+    Key? key,
   }) : super(key: key);
 
   bool mode = false;

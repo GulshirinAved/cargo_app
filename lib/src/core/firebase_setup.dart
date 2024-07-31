@@ -24,21 +24,20 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 class FirebaseSetup {
   static void init(BuildContext context) async {
     final FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
-    var set = await firebaseMessaging.requestPermission(
+    final set = await firebaseMessaging.requestPermission(
       alert: true,
       sound: true,
       badge: true,
       provisional: true,
     );
-    if (set.authorizationStatus == AuthorizationStatus.authorized ||
-        set.authorizationStatus == AuthorizationStatus.provisional) {
+    if (set.authorizationStatus == AuthorizationStatus.authorized || set.authorizationStatus == AuthorizationStatus.provisional) {
       if (context.mounted) {
-        setupInteractedMessage(context);
+        await setupInteractedMessage(context);
       }
     }
-    String? token = await firebaseMessaging.getToken();
+    final String? token = await firebaseMessaging.getToken();
 
-    SendFcmTokenRepository().sendToken(token!);
+    await SendFcmTokenRepository().sendToken(token!);
 
     // var state = a.AuthBloc.instance.state;
     // bool date = SingletonSharedPreference.checkTokenTime();
@@ -64,8 +63,7 @@ class FirebaseSetup {
 
     // Get any messages which caused the application to open from
     // a terminated state.
-    RemoteMessage? initialMessage =
-        await FirebaseMessaging.instance.getInitialMessage();
+    final RemoteMessage? initialMessage = await FirebaseMessaging.instance.getInitialMessage();
 
     // If the message also contains a data property with a "type" of "chat",
     // navigate to a chat screen
@@ -79,17 +77,16 @@ class FirebaseSetup {
       _handleMessage(message, context);
     });
 
-    await FirebaseMessaging.instance
-        .setForegroundNotificationPresentationOptions(
+    await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
       alert: true, // Required to display a heads up notification
       badge: true,
       sound: true,
     );
 
     FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
-      RemoteNotification? notification = message.notification;
-      AndroidNotification? android = message.notification?.android;
-      AppleNotification? apple = message.notification?.apple;
+      final RemoteNotification? notification = message.notification;
+      final AndroidNotification? android = message.notification?.android;
+      final AppleNotification? apple = message.notification?.apple;
 
       // If `onMessage` is triggered with a notification, construct our own
       // local notification to show to users using the created channel.
@@ -123,29 +120,30 @@ class FirebaseSetup {
         //   );
         // }
         if (context.mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            duration: const Duration(seconds: 5),
-            content: GestureDetector(
-              onTap: () {
-                // Navigator.pushNamed(
-                //   context,
-                //   FirebaseScreen.routeName,
-                //   arguments: NotificationModel.fromMap(message.toCustomMap()),
-                // );
-                // Navigator.of(context).pushNamed(NotificationScreen.routeName);
-              },
-              child: Card(
-                color: Colors.grey.shade500,
-                child: ListTile(
-                  title: Text(message.notification?.title ?? ''),
-                  subtitle: Text(message.notification?.body ?? ''),
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              duration: const Duration(seconds: 5),
+              content: GestureDetector(
+                onTap: () {
+                  // Navigator.pushNamed(
+                  //   context,
+                  //   FirebaseScreen.routeName,
+                  //   arguments: NotificationModel.fromMap(message.toCustomMap()),
+                  // );
+                  // Navigator.of(context).pushNamed(NotificationScreen.routeName);
+                },
+                child: Card(
+                  color: Colors.grey.shade500,
+                  child: ListTile(
+                    title: Text(message.notification?.title ?? ''),
+                    subtitle: Text(message.notification?.body ?? ''),
+                  ),
                 ),
               ),
             ),
-          )
 
-              // duration: const Duration(seconds: 5),
-              );
+            // duration: const Duration(seconds: 5),
+          );
         }
       }
     }).onError((e) {

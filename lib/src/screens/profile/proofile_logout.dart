@@ -47,7 +47,7 @@ class _ProfileLogOutState extends State<ProfileLogOut> {
                     fontSize: 20,
                     fontFamily: 'Roboto',
                     fontStyle: FontStyle.normal,
-                    fontWeight: FontWeight.w700),
+                    fontWeight: FontWeight.w700,),
               ),
             ),
           ),
@@ -69,7 +69,7 @@ class _ProfileLogOutState extends State<ProfileLogOut> {
                   fontSize: 20,
                   fontFamily: 'Roboto',
                   fontStyle: FontStyle.normal,
-                  fontWeight: FontWeight.w700),
+                  fontWeight: FontWeight.w700,),
             ),
           ),
           const Padding(
@@ -82,7 +82,7 @@ class _ProfileLogOutState extends State<ProfileLogOut> {
                   fontSize: 16,
                   fontFamily: 'Roboto',
                   fontStyle: FontStyle.normal,
-                  fontWeight: FontWeight.w400),
+                  fontWeight: FontWeight.w400,),
             ),
           ),
           SizedBox(
@@ -91,7 +91,7 @@ class _ProfileLogOutState extends State<ProfileLogOut> {
           InkWell(
             onTap: () {
               Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const LoginScreen()));
+                  MaterialPageRoute(builder: (context) => const LoginScreen()),);
             },
             child: Padding(
               padding: const EdgeInsets.only(top: 40, right: 20, left: 20),
@@ -100,7 +100,7 @@ class _ProfileLogOutState extends State<ProfileLogOut> {
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                     color: AppColors.mainColor,
-                    borderRadius: BorderRadius.circular(15)),
+                    borderRadius: BorderRadius.circular(15),),
                 child: const Center(
                   child: Text(
                     'Ulgama gir',
@@ -109,7 +109,7 @@ class _ProfileLogOutState extends State<ProfileLogOut> {
                         fontSize: 16,
                         fontFamily: 'Roboto',
                         fontStyle: FontStyle.normal,
-                        fontWeight: FontWeight.w700),
+                        fontWeight: FontWeight.w700,),
                   ),
                 ),
               ),
@@ -118,7 +118,7 @@ class _ProfileLogOutState extends State<ProfileLogOut> {
           InkWell(
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const RegisterScreen()));
+                  builder: (context) => const RegisterScreen(),),);
             },
             child: Padding(
               padding: const EdgeInsets.only(top: 20, right: 20, left: 20),
@@ -128,7 +128,7 @@ class _ProfileLogOutState extends State<ProfileLogOut> {
                 decoration: BoxDecoration(
                     border: Border.all(color: AppColors.borderColor),
                     color: AppColors.authRegisterColor,
-                    borderRadius: BorderRadius.circular(15)),
+                    borderRadius: BorderRadius.circular(15),),
                 child: const Center(
                   child: Text(
                     'Akkaunt döret',
@@ -137,14 +137,14 @@ class _ProfileLogOutState extends State<ProfileLogOut> {
                         fontSize: 16,
                         fontFamily: 'Roboto',
                         fontStyle: FontStyle.normal,
-                        fontWeight: FontWeight.w700),
+                        fontWeight: FontWeight.w700,),
                   ),
                 ),
               ),
             ),
           ),
         ],
-      )),
+      ),),
     );
   }
 }

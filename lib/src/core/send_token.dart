@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
@@ -10,20 +12,20 @@ class SendFcmTokenRepository {
   static Dio dio = Dio();
 
   Future<void> sendToken(
-    String fcm_token,
+    String fcmToken,
   ) async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    String? val = preferences.getString('token');
+    final SharedPreferences preferences = await SharedPreferences.getInstance();
+    final String? val = preferences.getString('token');
 
     final headers = {
       'Authorization': 'Bearer $val',
       'Content-Type': 'application/json',
     };
     try {
-      var response = await dio.patch(
-        "${Constants.baseUrl}/auth/update-token",
+      final response = await dio.patch(
+        '${Constants.baseUrl}/auth/update-token',
         data: jsonEncode({
-          "fcm_token": fcm_token,
+          'fcm_token': fcmToken,
         }),
         options: Options(
           headers: headers,
@@ -37,12 +39,16 @@ class SendFcmTokenRepository {
 
         return;
       }
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       isLoading = false;
       print('fuckkkkk');
       print(e.error);
-      if (e.response != null) print("Error= ${e.response!.realUri}");
-      if (e.response != null) print(e.response!.data);
+      if (e.response != null) {
+        print('Error= ${e.response!.realUri}');
+      }
+      if (e.response != null) {
+        print(e.response!.data);
+      }
     }
     return;
   }
