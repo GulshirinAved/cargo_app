@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_print
-
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
@@ -24,7 +22,7 @@ class RegisterRepository {
     String passwordConfirmation,
   ) async {
     try {
-      final response = await dio.post(
+      var response = await dio.post(
         '${Constants.baseUrl}/auth/register',
         data: jsonEncode({
           'first_name': firstName,
@@ -33,37 +31,29 @@ class RegisterRepository {
           'password': password,
           'password_confirmation': passwordConfirmation,
         }),
-        options: Options(headers: {
-          'Content-Type': 'application/json',
-        },),
+        options: Options(
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        ),
       );
 
       isLoading = true;
       print(response.data);
       if (response.statusCode == 200) {
         isLoading = false;
-        final SharedPreferences preferences = await SharedPreferences.getInstance();
+        SharedPreferences preferences = await SharedPreferences.getInstance();
 
         tokens = response.data!['data']['token'];
         await preferences.setString('token', tokens!);
         Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => const BottomNavScreen()),);
+            MaterialPageRoute(builder: (context) => const BottomNavScreen()));
 
         return;
       }
     } on DioError catch (e) {
       isLoading = false;
-      print('fuckkkkk');
-      print(e.error);
-      print('${e.response?.statusCode} it is sttaus code');
-      print('${e.response?.statusMessage} it is sttaus message');
-
-      if (e.response != null) {
-        print('Error= ${e.response!.realUri}');
-      }
-      if (e.response != null) {
-        print(e.response!.data);
-      }
+      throw Exception(e);
     }
     return;
   }

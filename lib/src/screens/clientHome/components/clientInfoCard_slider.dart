@@ -1,124 +1,175 @@
-// ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:get/get.dart';
 import 'package:kargo_app/src/design/app_colors.dart';
 import 'package:kargo_app/src/screens/clientHome/clientHome_controller.dart';
 import 'package:kargo_app/src/screens/clientHome/components/custom_button.dart';
-import 'package:kargo_app/src/screens/clientHome/data/models/region_model.dart';
 import 'package:kargo_app/src/screens/clientHome/data/services/region_service.dart';
 import 'package:kargo_app/src/screens/clientHome/orders_screen.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-class ClientInfoCardSlider extends StatelessWidget {
+import '../../CustomWidgets/widgets.dart';
+
+class ClientInfoCardSlider extends StatefulWidget {
   const ClientInfoCardSlider({
     Key? key,
   }) : super(key: key);
 
   @override
+  State<ClientInfoCardSlider> createState() => _ClientInfoCardSliderState();
+}
+
+class _ClientInfoCardSliderState extends State<ClientInfoCardSlider> {
+  final ClientHomeController clientHomeController = Get.put(ClientHomeController());
+
+  final RefreshController _refreshController = RefreshController(initialRefresh: false);
+
+  @override
+  void initState() {
+    super.initState();
+    clientHomeController.showUsersList.clear();
+    clientHomeController.page.value = 0;
+    clientHomeController.loading.value = 0;
+    clientHomeController.fetchRegions();
+  }
+
+  void _onRefresh() async {
+    await Future.delayed(const Duration(milliseconds: 1000));
+    _refreshController.refreshCompleted();
+    clientHomeController.showUsersList.clear();
+
+    clientHomeController.page.value = 0;
+    clientHomeController.loading.value = 0;
+    await RegionService().fetchRegion(id: clientHomeController.locationId.value, limit: clientHomeController.limit.value, page: clientHomeController.page.value);
+  }
+
+  void _onLoading() async {
+    await Future.delayed(const Duration(milliseconds: 1000));
+    _refreshController.loadComplete();
+    clientHomeController.page.value += 1;
+    await RegionService().fetchRegion(id: clientHomeController.locationId.value, limit: clientHomeController.limit.value, page: clientHomeController.page.value);
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final ClientHomeController clientHomeController =
-        Get.put(ClientHomeController());
     return Expanded(
-      child: Container(
-        padding: const EdgeInsets.only(bottom: 70),
-        width: MediaQuery.of(context).size.width,
-        child: Container(
-          padding: const EdgeInsets.all(20),
-          margin: const EdgeInsets.symmetric(horizontal: 18),
-          decoration: BoxDecoration(
-            color: AppColors.whiteColor,
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Obx(
-            () => FutureBuilder<List<Datum>>(
-              future: RegionService()
-                  .fetchRegion(id: clientHomeController.locationId.value),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                } else if (snapshot.hasError) {
-                  return Center(
-                    child: Text('Error fetching data: ${snapshot.error}'),
-                  );
-                } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                  return const Center(child: Text('No data available'));
-                } else {
-                  return ListView.separated(
-                    shrinkWrap: true,
-                    physics: const AlwaysScrollableScrollPhysics(),
-                    scrollDirection: Axis.vertical,
-                    itemBuilder: (context, index) => Container(
-                      color: Colors.transparent,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              SizedBox(
-                                width: MediaQuery.of(context).size.width / 2.2,
-                                child: Text(
-                                  snapshot.data![index].userName ?? '',
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: const TextStyle(
-                                    color: AppColors.mainTextColor,
-                                    fontFamily: 'ALSHauss',
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 18,
-                                  ),
-                                ),
-                              ),
-                              Text(
-                                '${snapshot.data![index].debt} TMT',
-                                overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(
-                                  color: AppColors.redColor,
-                                  fontFamily: 'ALSHauss',
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              CustomButton(onTap: () {
-                                clientHomeController.selectUserId(
-                                    value: snapshot.data![index].id.toString(),);
-                                Get.to(() => OrdersScreen(
-                                      index: index,
-                                    ),);
-                              },),
-                              CustomButton(
-                                onTap: () =>
-                                    FlutterPhoneDirectCaller.callNumber(
-                                  '+993${snapshot.data![index].phone}',
-                                ),
-                                withIcon: true,
-                                backColor: AppColors.lightBlue1Color,
-                                textColor: AppColors.blueColor,
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                    separatorBuilder: (context, index) => const Divider(
-                      color: AppColors.grey2Color,
-                    ),
-                    itemCount: snapshot.data!.length,
-                  );
+      child: SmartRefresher(
+        footer: footer(),
+        controller: _refreshController,
+        onRefresh: _onRefresh,
+        onLoading: _onLoading,
+        enablePullDown: true,
+        enablePullUp: true,
+        physics: const BouncingScrollPhysics(),
+        header: const MaterialClassicHeader(
+          color: AppColors.blueColor,
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(20),
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            margin: const EdgeInsets.symmetric(horizontal: 18),
+            decoration: BoxDecoration(
+              color: AppColors.whiteColor,
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Obx(
+              () {
+                if (clientHomeController.loading.value == 0) {
+                  return const Center(child: CircularProgressIndicator());
+                } else if (clientHomeController.loading.value == 1) {
+                  return hasError();
+                } else if (clientHomeController.loading.value == 2) {
+                  return emptyData();
+                } else if (clientHomeController.showUsersList.isEmpty && clientHomeController.loading.value == 3) {
+                  return emptyData();
                 }
+                return showPage();
               },
             ),
           ),
         ),
       ),
+    );
+  }
+
+  ListView showPage() {
+    return ListView.separated(
+      shrinkWrap: true,
+      physics: const BouncingScrollPhysics(),
+      scrollDirection: Axis.vertical,
+      itemBuilder: (context, index) => Padding(
+        padding: const EdgeInsets.only(top: 15, bottom: 8),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width / 2.2,
+                    child: Text(
+                      clientHomeController.showUsersList[index]['userName'],
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        color: AppColors.mainTextColor,
+                        fontFamily: 'ALSHauss',
+                        fontWeight: FontWeight.w500,
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
+                  Text(
+                    clientHomeController.showUsersList[index]['debt'],
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      color: AppColors.redColor,
+                      fontFamily: 'ALSHauss',
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                CustomButton(
+                  onTap: () {
+                    clientHomeController.selectUserId(
+                      value: clientHomeController.showUsersList[index]['id'].toString(),
+                    );
+                    Get.to(
+                      () => OrdersScreen(
+                        index: index,
+                      ),
+                    );
+                  },
+                ),
+                CustomButton(
+                  onTap: () => FlutterPhoneDirectCaller.callNumber(
+                    '+993${clientHomeController.showUsersList[index]['phone']
+
+                    // snapshot.data![index].phone
+                    }',
+                  ),
+                  withIcon: true,
+                  backColor: AppColors.lightBlue1Color,
+                  textColor: AppColors.blueColor,
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+      separatorBuilder: (context, index) => const Divider(
+        color: AppColors.grey2Color,
+      ),
+      itemCount: clientHomeController.showUsersList.length,
     );
   }
 }

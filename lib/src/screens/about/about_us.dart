@@ -52,7 +52,7 @@ class _AboutUsState extends State<AboutUs> {
       ),
       body: SafeArea(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Padding(
@@ -66,38 +66,26 @@ class _AboutUsState extends State<AboutUs> {
                 ),
               ),
             ),
-            GestureDetector(
-              onTap: () {
-                // final url = '';
-                //                         if (await canLaunch(url)) {
-                //                           await launch(url);
-                //                         } else {
-                //                           throw 'Could not launch $url';
-                //                         }
-              },
-              child: const Padding(
-                padding: EdgeInsets.only(left: 22),
-                child: Text(
-                  'cargotm@gmail.com',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 18,
-                    fontFamily: 'Rubik',
-                    fontStyle: FontStyle.normal,
-                    fontWeight: FontWeight.w600,
-                  ),
+            const Padding(
+              padding: EdgeInsets.only(left: 22),
+              child: Text(
+                'cargotm@gmail.com',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 22,
+                  fontFamily: 'ALSHauss',
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),
             const Padding(
               padding: EdgeInsets.only(left: 22, top: 10),
               child: Text(
-                'cargotm@gmail.com',
+                'Habaşlamşmak üçin şu gmail sms ýazyň.',
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 16,
-                  fontFamily: 'Rubik',
-                  fontStyle: FontStyle.normal,
+                  fontFamily: 'ALSHauss',
                   fontWeight: FontWeight.w400,
                 ),
               ),

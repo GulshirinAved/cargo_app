@@ -111,12 +111,6 @@ class _BottomNavbarButtonState extends State<BottomNavbarButton> {
                                 child: Container(
                                   child: iconsBold[widget.index],
                                 ),
-
-                                // Icon(
-                                //   iconsBold[index],
-                                //   size: 18,
-                                //   color: Colors.amber,
-                                // ),
                               ),
                   ),
                   Padding(
@@ -128,7 +122,7 @@ class _BottomNavbarButtonState extends State<BottomNavbarButton> {
                         color: widget.index == widget.selectedIndex ? AppColors.mainColor : AppColors.disableColor,
                         fontWeight: widget.index == widget.selectedIndex ? FontWeight.w600 : FontWeight.w400,
                         fontStyle: FontStyle.normal,
-                        fontFamily: 'Rubik',
+                        fontFamily: 'ALSHauss',
                         fontSize: 12,
                       ),
                     ),

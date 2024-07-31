@@ -28,8 +28,7 @@ class ItemMarket extends StatelessWidget {
             toolbarHeight: 70,
             elevation: 0,
             centerTitle: true,
-            iconTheme:
-                const IconThemeData(color: AppColors.profilColor, size: 30),
+            iconTheme: const IconThemeData(color: AppColors.profilColor, size: 30),
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(
                 bottom: Radius.circular(15),
@@ -37,12 +36,7 @@ class ItemMarket extends StatelessWidget {
             ),
             title: const Text(
               'Aýakgap',
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
-                  fontFamily: 'Roboto',
-                  fontStyle: FontStyle.normal,
-                  fontWeight: FontWeight.w700,),
+              style: TextStyle(color: Colors.black, fontSize: 20, fontFamily: 'Roboto', fontStyle: FontStyle.normal, fontWeight: FontWeight.w700),
             ),
           ),
         ),
@@ -81,12 +75,7 @@ class ItemMarket extends StatelessWidget {
                         child: Text(
                           'Aýakgap',
                           textAlign: TextAlign.center,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 14,
-                              fontFamily: 'Montserrat',
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w600,),
+                          style: TextStyle(color: Colors.black, fontSize: 14, fontFamily: 'Montserrat', fontStyle: FontStyle.normal, fontWeight: FontWeight.w600),
                         ),
                       ),
                       Row(
@@ -94,36 +83,25 @@ class ItemMarket extends StatelessWidget {
                         children: [
                           const Text(
                             'Kitayskiy rynok Kitayskiy rynok  Kitaýski',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 14,
-                                fontFamily: 'Rubik',
-                                fontStyle: FontStyle.normal,
-                                fontWeight: FontWeight.w400,),
+                            style: TextStyle(color: Colors.black, fontSize: 14, fontFamily: 'ALSHauss', fontStyle: FontStyle.normal, fontWeight: FontWeight.w400),
                           ),
                           TextButton(
                             onPressed: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => const ReadMore(),),);
+                              Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ReadMore()));
                             },
                             style: TextButton.styleFrom(
                               padding: EdgeInsets.zero,
                             ),
                             child: const Text(
                               'doly oka',
-                              style: TextStyle(
-                                  color: AppColors.mainColor,
-                                  fontSize: 14,
-                                  fontFamily: 'Rubik',
-                                  fontStyle: FontStyle.normal,
-                                  fontWeight: FontWeight.w400,),
+                              style: TextStyle(color: AppColors.mainColor, fontSize: 14, fontFamily: 'ALSHauss', fontStyle: FontStyle.normal, fontWeight: FontWeight.w400),
                             ),
                           ),
                         ],
                       ),
                     ],
-                  ),);
-            },),
+                  ));
+            }),
       ),
     );
   }

@@ -82,7 +82,7 @@ class _EditProfilState extends State<EditProfil> {
                   fontSize: 20,
                   fontFamily: 'Roboto',
                   fontStyle: FontStyle.normal,
-                  fontWeight: FontWeight.w700,),
+                  fontWeight: FontWeight.w700),
             ),
           ),
         ),
@@ -93,7 +93,7 @@ class _EditProfilState extends State<EditProfil> {
           child: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.only(
-                  bottom: 40, right: 20, left: 20, top: 40,),
+                  bottom: 40, right: 20, left: 20, top: 40),
               child: Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -116,12 +116,12 @@ class _EditProfilState extends State<EditProfil> {
                         padding:
                             const EdgeInsets.only(left: 15, right: 15, top: 30),
                         child: CustomTextFild(
-                            hint: 'Ady', controller: nameController,),),
+                            hint: 'Ady', controller: nameController)),
                     Padding(
                         padding: const EdgeInsets.only(left: 20.0, top: 5.0),
                         child: Text(errorText,
                             style: TextStyle(
-                                fontSize: 12.0, color: Colors.red[700],),),),
+                                fontSize: 12.0, color: Colors.red[700]))),
                     const SizedBox(
                       height: 10.0,
                     ),
@@ -132,12 +132,12 @@ class _EditProfilState extends State<EditProfil> {
                         ),
                         child: CustomTextFild(
                             hint: 'Familiýasy',
-                            controller: lastNameController,),),
+                            controller: lastNameController)),
                     Padding(
                         padding: const EdgeInsets.only(left: 20.0, top: 5.0),
                         child: Text(errorText2,
                             style: TextStyle(
-                                fontSize: 12.0, color: Colors.red[700],),),),
+                                fontSize: 12.0, color: Colors.red[700]))),
                     const SizedBox(
                       height: 10.0,
                     ),
@@ -148,12 +148,12 @@ class _EditProfilState extends State<EditProfil> {
                         ),
                         child: CustomTextFild(
                             hint: 'Ulanyjy ady',
-                            controller: userNameController,),),
+                            controller: userNameController)),
                     Padding(
                         padding: const EdgeInsets.only(left: 20.0, top: 5.0),
                         child: Text(errorText3,
                             style: TextStyle(
-                                fontSize: 12.0, color: Colors.red[700],),),),
+                                fontSize: 12.0, color: Colors.red[700]))),
                     const SizedBox(
                       height: 10.0,
                     ),
@@ -175,7 +175,7 @@ class _EditProfilState extends State<EditProfil> {
                               padding: EdgeInsets.only(left: 8),
                               child: Padding(
                                 padding: EdgeInsets.only(
-                                    left: 10, right: 10, top: 6, bottom: 6,),
+                                    left: 10, right: 10, top: 6, bottom: 6),
                                 child: Text(
                                   '+993',
                                   style: TextStyle(
@@ -183,7 +183,7 @@ class _EditProfilState extends State<EditProfil> {
                                       fontSize: 18,
                                       fontFamily: 'Montserrat',
                                       fontStyle: FontStyle.normal,
-                                      fontWeight: FontWeight.w400,),
+                                      fontWeight: FontWeight.w400),
                                 ),
                               ),
                             ),
@@ -221,7 +221,7 @@ class _EditProfilState extends State<EditProfil> {
                         padding: const EdgeInsets.only(left: 20.0, top: 5.0),
                         child: Text(errorText4,
                             style: TextStyle(
-                                fontSize: 12.0, color: Colors.red[700],),),),
+                                fontSize: 12.0, color: Colors.red[700]))),
                     Padding(
                       padding: const EdgeInsets.only(
                         left: 22,
@@ -241,7 +241,7 @@ class _EditProfilState extends State<EditProfil> {
                                     fontSize: 16,
                                     fontFamily: 'Roboto',
                                     fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.w400,),
+                                    fontWeight: FontWeight.w400),
                               ),
                               IconButton(
                                 onPressed: () {
@@ -261,15 +261,15 @@ class _EditProfilState extends State<EditProfil> {
                               width: 25,
                               decoration: const BoxDecoration(
                                   shape: BoxShape.circle,
-                                  color: AppColors.mainColor,),
+                                  color: AppColors.mainColor),
                               child: const Center(
                                   child: Icon(
                                 Icons.add,
                                 size: 20,
                                 color: Colors.white,
-                              ),),
+                              )),
                             ),
-                          ),
+                          )
                         ],
                       ),
                     ),
@@ -306,7 +306,7 @@ class _EditProfilState extends State<EditProfil> {
                                           title: 'assets/icons/x.svg',
                                           height: 0,
                                           width: 0,
-                                          color: AppColors.authTextColor,),
+                                          color: AppColors.authTextColor),
                                     ),
                                   ),
                                   hintStyle: const TextStyle(
@@ -314,7 +314,7 @@ class _EditProfilState extends State<EditProfil> {
                                       fontSize: 18,
                                       fontFamily: 'Roboto',
                                       fontStyle: FontStyle.normal,
-                                      fontWeight: FontWeight.w400,),),
+                                      fontWeight: FontWeight.w400)),
                             ),
                           ),
                         ),
@@ -357,13 +357,13 @@ class _EditProfilState extends State<EditProfil> {
                       },
                       child: Padding(
                         padding: const EdgeInsets.only(
-                            top: 40, right: 20, left: 20, bottom: 30,),
+                            top: 40, right: 20, left: 20, bottom: 30),
                         child: Container(
                           height: 55,
                           width: MediaQuery.of(context).size.width,
                           decoration: BoxDecoration(
                               color: AppColors.mainColor,
-                              borderRadius: BorderRadius.circular(20),),
+                              borderRadius: BorderRadius.circular(20)),
                           child: const Center(
                             child: Text(
                               'Ýatda sakla',
@@ -372,7 +372,7 @@ class _EditProfilState extends State<EditProfil> {
                                   fontSize: 16,
                                   fontFamily: 'Roboto',
                                   fontStyle: FontStyle.normal,
-                                  fontWeight: FontWeight.w700,),
+                                  fontWeight: FontWeight.w700),
                             ),
                           ),
                         ),
@@ -389,16 +389,16 @@ class _EditProfilState extends State<EditProfil> {
   }
 
   Future showDalog() async {
-    await showDialog(
+    showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(25.0),
           ),
-          title: const Column(
+          title: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
+            children: const [
               Text(
                 'ID',
                 textAlign: TextAlign.center,
@@ -407,7 +407,7 @@ class _EditProfilState extends State<EditProfil> {
                     fontSize: 20,
                     fontFamily: 'Roboto',
                     fontStyle: FontStyle.normal,
-                    fontWeight: FontWeight.w700,),
+                    fontWeight: FontWeight.w700),
               ),
               Padding(
                 padding: EdgeInsets.all(10.0),
@@ -419,7 +419,7 @@ class _EditProfilState extends State<EditProfil> {
                       fontSize: 16,
                       fontFamily: 'Roboto',
                       fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight.w400,),
+                      fontWeight: FontWeight.w400),
                 ),
               ),
             ],
@@ -450,7 +450,7 @@ class _EditProfilState extends State<EditProfil> {
                       fontSize: 16,
                       fontFamily: 'Roboto',
                       fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight.w400,),
+                      fontWeight: FontWeight.w400),
                 ),
               ),
               Padding(
@@ -463,7 +463,7 @@ class _EditProfilState extends State<EditProfil> {
                       width: MediaQuery.of(context).size.width / 3 - 20,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: Colors.blue[100],),
+                          color: Colors.blue[100]),
                       child: const Center(
                         child: Text(
                           'Hawa',
@@ -473,7 +473,7 @@ class _EditProfilState extends State<EditProfil> {
                               fontSize: 16,
                               fontFamily: 'Roboto',
                               fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w400,),
+                              fontWeight: FontWeight.w400),
                         ),
                       ),
                     ),
@@ -482,7 +482,7 @@ class _EditProfilState extends State<EditProfil> {
                       width: MediaQuery.of(context).size.width / 3 - 20,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: AppColors.mainColor,),
+                          color: AppColors.mainColor),
                       child: const Center(
                         child: Text(
                           'Ýok',
@@ -492,13 +492,13 @@ class _EditProfilState extends State<EditProfil> {
                               fontSize: 16,
                               fontFamily: 'Roboto',
                               fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w400,),
+                              fontWeight: FontWeight.w400),
                         ),
                       ),
                     ),
                   ],
                 ),
-              ),
+              )
             ],
           ),
         );

@@ -7,13 +7,13 @@ class CustomButton extends StatelessWidget {
   final Color? backColor;
   final Color? textColor;
   final VoidCallback? onTap;
-  const CustomButton(
-      {Key? key,
-      this.withIcon = false,
-      this.backColor,
-      this.textColor,
-      this.onTap,})
-      : super(key: key);
+  const CustomButton({
+    Key? key,
+    this.withIcon = false,
+    this.backColor,
+    this.textColor,
+    this.onTap,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,14 +29,15 @@ class CustomButton extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
         child: withIcon == true
             ? Row(
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  SvgPicture.asset(
-                    'assets/icons/phone.svg',
-                    color: textColor,
-                    height: 16,
-                  ),
-                  const SizedBox(
-                    width: 3,
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 3, right: 5),
+                    child: SvgPicture.asset(
+                      'assets/icons/phone.svg',
+                      color: textColor,
+                      height: 16,
+                    ),
                   ),
                   Text(
                     'Jaň et',

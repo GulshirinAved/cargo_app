@@ -43,108 +43,120 @@ class _ProfileLogOutState extends State<ProfileLogOut> {
               child: Text(
                 'Profil',
                 style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20,
-                    fontFamily: 'Roboto',
-                    fontStyle: FontStyle.normal,
-                    fontWeight: FontWeight.w700,),
+                  color: Colors.black,
+                  fontSize: 20,
+                  fontFamily: 'Roboto',
+                  fontStyle: FontStyle.normal,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
             ),
           ),
         ),
       ),
       body: SafeArea(
-          child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SizedBox(
-            height: MediaQuery.of(context).size.height / 6,
-          ),
-          const Center(
-            child: Text(
-              'Şahsy otag',
-              style: TextStyle(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: MediaQuery.of(context).size.height / 6,
+            ),
+            const Center(
+              child: Text(
+                'Şahsy otag',
+                style: TextStyle(
                   color: Colors.black,
                   fontSize: 20,
                   fontFamily: 'Roboto',
                   fontStyle: FontStyle.normal,
-                  fontWeight: FontWeight.w700,),
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
             ),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(left: 40, right: 40, top: 20),
-            child: Text(
-              'Goşundynyň mümkinçiliklerini doly ulanmak üçin ulgama giriň ýa-da akkaunt dörediň',
-              textAlign: TextAlign.center,
-              style: TextStyle(
+            const Padding(
+              padding: EdgeInsets.only(left: 40, right: 40, top: 20),
+              child: Text(
+                'Goşundynyň mümkinçiliklerini doly ulanmak üçin ulgama giriň ýa-da akkaunt dörediň',
+                textAlign: TextAlign.center,
+                style: TextStyle(
                   color: AppColors.profilColor,
                   fontSize: 16,
                   fontFamily: 'Roboto',
                   fontStyle: FontStyle.normal,
-                  fontWeight: FontWeight.w400,),
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
             ),
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height / 6,
-          ),
-          InkWell(
-            onTap: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const LoginScreen()),);
-            },
-            child: Padding(
-              padding: const EdgeInsets.only(top: 40, right: 20, left: 20),
-              child: Container(
-                height: 55,
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
+            SizedBox(
+              height: MediaQuery.of(context).size.height / 6,
+            ),
+            InkWell(
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const LoginScreen()),
+                );
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(top: 40, right: 20, left: 20),
+                child: Container(
+                  height: 55,
+                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
                     color: AppColors.mainColor,
-                    borderRadius: BorderRadius.circular(15),),
-                child: const Center(
-                  child: Text(
-                    'Ulgama gir',
-                    style: TextStyle(
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: const Center(
+                    child: Text(
+                      'Ulgama gir',
+                      style: TextStyle(
                         color: Colors.white,
                         fontSize: 16,
                         fontFamily: 'Roboto',
                         fontStyle: FontStyle.normal,
-                        fontWeight: FontWeight.w700,),
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-          InkWell(
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const RegisterScreen(),),);
-            },
-            child: Padding(
-              padding: const EdgeInsets.only(top: 20, right: 20, left: 20),
-              child: Container(
-                height: 55,
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
+            InkWell(
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const RegisterScreen(),
+                  ),
+                );
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(top: 20, right: 20, left: 20),
+                child: Container(
+                  height: 55,
+                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
                     border: Border.all(color: AppColors.borderColor),
                     color: AppColors.authRegisterColor,
-                    borderRadius: BorderRadius.circular(15),),
-                child: const Center(
-                  child: Text(
-                    'Akkaunt döret',
-                    style: TextStyle(
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: const Center(
+                    child: Text(
+                      'Akkaunt döret',
+                      style: TextStyle(
                         color: AppColors.mainColor,
                         fontSize: 16,
                         fontFamily: 'Roboto',
                         fontStyle: FontStyle.normal,
-                        fontWeight: FontWeight.w700,),
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-        ],
-      ),),
+          ],
+        ),
+      ),
     );
   }
 }

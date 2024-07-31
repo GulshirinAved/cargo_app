@@ -27,11 +27,11 @@ class _CreateIdState extends State<CreateId> {
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Container(
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
               image: DecorationImage(
             image: AssetImage('assets/images/background.png'),
             fit: BoxFit.cover,
-          ),),
+          )),
           child: Center(
               child: Form(
                   key: _formKey,
@@ -69,7 +69,7 @@ class _CreateIdState extends State<CreateId> {
                                     fontSize: 25,
                                     fontFamily: 'Roboto',
                                     fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.w700,),
+                                    fontWeight: FontWeight.w700),
                               ),
                             ),
                           ),
@@ -84,22 +84,22 @@ class _CreateIdState extends State<CreateId> {
                                     fontSize: 14,
                                     fontFamily: 'Roboto',
                                     fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.w400,),
+                                    fontWeight: FontWeight.w400),
                               ),
                             ),
                           ),
                           Padding(
                               padding: const EdgeInsets.only(
-                                  left: 15, right: 15, top: 20,),
+                                  left: 15, right: 15, top: 20),
                               child: CustomTextFild(
                                   hint: 'ID giriziň',
-                                  controller: idController,),),
+                                  controller: idController)),
                           Padding(
                               padding:
                                   const EdgeInsets.only(left: 20.0, top: 5.0),
                               child: Text(errorText,
                                   style: TextStyle(
-                                      fontSize: 12.0, color: Colors.red[700],),),),
+                                      fontSize: 12.0, color: Colors.red[700]))),
                           InkWell(
                             onTap: () {
                               if (idController.text.isEmpty) {
@@ -108,19 +108,19 @@ class _CreateIdState extends State<CreateId> {
                               if (idController.text.isNotEmpty) {
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: (context) =>
-                                        const BottomNavAll(),),);
+                                        const BottomNavAll()));
                                 // _onLoginButtonPressed();
                               } else {}
                             },
                             child: Padding(
                               padding: const EdgeInsets.only(
-                                  top: 40, right: 20, left: 20, bottom: 30,),
+                                  top: 40, right: 20, left: 20, bottom: 30),
                               child: Container(
                                 height: 65,
                                 width: MediaQuery.of(context).size.width,
                                 decoration: BoxDecoration(
                                     color: AppColors.mainColor,
-                                    borderRadius: BorderRadius.circular(20),),
+                                    borderRadius: BorderRadius.circular(20)),
                                 child: const Center(
                                   child: Text(
                                     'Tassykla',
@@ -129,7 +129,7 @@ class _CreateIdState extends State<CreateId> {
                                         fontSize: 16,
                                         fontFamily: 'Roboto',
                                         fontStyle: FontStyle.normal,
-                                        fontWeight: FontWeight.w700,),
+                                        fontWeight: FontWeight.w700),
                                   ),
                                 ),
                               ),
@@ -138,7 +138,7 @@ class _CreateIdState extends State<CreateId> {
                         ],
                       ),
                     ),
-                  ),),),
+                  ))),
         ),
       ),
     );

@@ -1,7 +1,6 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first, file_names
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
 import 'package:kargo_app/src/design/app_colors.dart';
 import 'package:kargo_app/src/screens/clientHome/components/custom_button.dart';
 import 'package:kargo_app/src/screens/clientHome/components/numberStepper.dart';
@@ -18,10 +17,8 @@ class DeliveryTrackerCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final int currentStepIndex = snapshot.data![index].points!
-        .indexWhere((point) => point.isCurrent == 1);
-    final int curStep = (currentStepIndex == -1 ? 1 : currentStepIndex + 1)
-        .clamp(1, snapshot.data![index].points!.length + 1);
+    final int currentStepIndex = snapshot.data![index].points!.indexWhere((point) => point.isCurrent == 1);
+    final int curStep = (currentStepIndex == -1 ? 1 : currentStepIndex + 1).clamp(1, snapshot.data![index].points!.length + 1);
 
     return Container(
       margin: const EdgeInsets.only(top: 12),
@@ -57,10 +54,10 @@ class DeliveryTrackerCard extends StatelessWidget {
                       ),
                     ),
                     TextSpan(
-                      text: snapshot.data![index].id.toString(),
+                      text: snapshot.data![index].ticketCode.toString(),
                       style: const TextStyle(
                         fontFamily: 'ALSHauss',
-                        fontWeight: FontWeight.w500,
+                        fontWeight: FontWeight.w400,
                         fontSize: 14,
                       ),
                     ),
@@ -117,8 +114,7 @@ class DeliveryTrackerCard extends StatelessWidget {
                 onPressed: () {},
                 iconSize: 20,
                 style: const ButtonStyle(
-                  backgroundColor:
-                      WidgetStatePropertyAll(AppColors.grey4Color),
+                  backgroundColor: WidgetStatePropertyAll(AppColors.grey4Color),
                 ),
                 icon: SvgPicture.asset('assets/icons/arrow_right.svg'),
               ),
@@ -199,7 +195,7 @@ class DeliveryTrackerCard extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    snapshot.data![index].summaryPaid.toString(),
+                    snapshot.data![index].summaryPrice.toString(),
                     style: const TextStyle(
                       fontFamily: 'ALSHauss',
                       fontWeight: FontWeight.w400,
@@ -224,8 +220,7 @@ class DeliveryTrackerCard extends StatelessWidget {
                     SizedBox(
                       width: MediaQuery.of(context).size.width / 3,
                       child: Text(
-                        snapshot.data![index].points![currentStepIndex].point
-                            .toString(),
+                        snapshot.data![index].points![currentStepIndex].point.toString(),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(

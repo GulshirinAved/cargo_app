@@ -1,5 +1,3 @@
-// ignore_for_file: join_return_with_assignment
-
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
@@ -533,21 +531,27 @@ class TmCupertinoLocalizations extends GlobalCupertinoLocalizations {
   String get datePickerMinuteSemanticsLabelOther => r'$minute minut';
 
   @override
+  // TODO: implement clearButtonLabel
   String get clearButtonLabel => throw UnimplementedError();
 
   @override
+  // TODO: implement lookUpButtonLabel
   String get lookUpButtonLabel => throw UnimplementedError();
 
   @override
+  // TODO: implement menuDismissLabel
   String get menuDismissLabel => throw UnimplementedError();
 
   @override
+  // TODO: implement noSpellCheckReplacementsLabel
   String get noSpellCheckReplacementsLabel => throw UnimplementedError();
 
   @override
+  // TODO: implement searchWebButtonLabel
   String get searchWebButtonLabel => throw UnimplementedError();
 
   @override
+  // TODO: implement shareButtonLabel
   String get shareButtonLabel => throw UnimplementedError();
 }
 
@@ -811,7 +815,7 @@ class TmMaterialLocalizations extends GlobalMaterialLocalizations {
   ScriptCategory get scriptCategory => ScriptCategory.englishLike;
 
   @override
-  String get searchFieldLabel => r'Gözle';
+  String get searchFieldLabel => r'Gözle...';
 
   @override
   String get selectAllButtonLabel => r'HEMMESINI SAÝLA';
@@ -948,56 +952,74 @@ class TmMaterialLocalizations extends GlobalMaterialLocalizations {
   String get unspecifiedDateRange => 'Sene aralygy';
 
   @override
+  // TODO: implement bottomSheetLabel
   String get bottomSheetLabel => throw UnimplementedError();
 
   @override
+  // TODO: implement clearButtonTooltip
   String get clearButtonTooltip => throw UnimplementedError();
 
   @override
+  // TODO: implement collapsedHint
   String get collapsedHint => throw UnimplementedError();
 
   @override
+  // TODO: implement currentDateLabel
   String get currentDateLabel => throw UnimplementedError();
 
   @override
+  // TODO: implement expandedHint
   String get expandedHint => throw UnimplementedError();
 
   @override
+  // TODO: implement expansionTileCollapsedHint
   String get expansionTileCollapsedHint => throw UnimplementedError();
 
   @override
+  // TODO: implement expansionTileCollapsedTapHint
   String get expansionTileCollapsedTapHint => throw UnimplementedError();
 
   @override
+  // TODO: implement expansionTileExpandedHint
   String get expansionTileExpandedHint => throw UnimplementedError();
 
   @override
+  // TODO: implement expansionTileExpandedTapHint
   String get expansionTileExpandedTapHint => throw UnimplementedError();
 
   @override
+  // TODO: implement keyboardKeyShift
   String get keyboardKeyShift => throw UnimplementedError();
 
   @override
+  // TODO: implement lookUpButtonLabel
   String get lookUpButtonLabel => throw UnimplementedError();
 
   @override
+  // TODO: implement menuDismissLabel
   String get menuDismissLabel => throw UnimplementedError();
 
   @override
+  // TODO: implement scanTextButtonLabel
   String get scanTextButtonLabel => throw UnimplementedError();
 
   @override
+  // TODO: implement scrimLabel
   String get scrimLabel => throw UnimplementedError();
 
   @override
+  // TODO: implement scrimOnTapHintRaw
   String get scrimOnTapHintRaw => throw UnimplementedError();
 
   @override
+  // TODO: implement searchWebButtonLabel
   String get searchWebButtonLabel => throw UnimplementedError();
 
   @override
+  // TODO: implement selectedDateLabel
   String get selectedDateLabel => throw UnimplementedError();
 
   @override
+  // TODO: implement shareButtonLabel
   String get shareButtonLabel => throw UnimplementedError();
 }

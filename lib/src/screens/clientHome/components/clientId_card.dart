@@ -2,13 +2,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:get/get.dart';
-
 import 'package:kargo_app/src/design/app_colors.dart';
+import 'package:kargo_app/src/screens/clientHome/clientHome_controller.dart';
 import 'package:kargo_app/src/screens/clientHome/components/custom_button.dart';
 import 'package:kargo_app/src/screens/clientHome/data/models/getOneOrder_model.dart';
-import 'package:kargo_app/src/screens/clientHome/orders_screen.dart';
+import 'package:kargo_app/src/screens/clientHome/data/services/getOneOrder_service.dart';
 
-class ClientIdCard extends StatelessWidget {
+class ClientIdCard extends StatefulWidget {
   final User user;
   final int index;
   const ClientIdCard({
@@ -17,6 +17,14 @@ class ClientIdCard extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<ClientIdCard> createState() => _ClientIdCardState();
+}
+
+class _ClientIdCardState extends State<ClientIdCard> {
+  final ClientHomeController clientHomeController = Get.put(ClientHomeController());
+
+  int _selectedIndex = -1;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -34,6 +42,9 @@ class ClientIdCard extends StatelessWidget {
         ],
       ),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -41,60 +52,88 @@ class ClientIdCard extends StatelessWidget {
               SizedBox(
                 width: Get.width / 2.2,
                 child: Text(
-                  user.userName ?? '',
+                  widget.user.userName ?? '',
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
                     fontFamily: 'ALSHauss',
-                    fontWeight: FontWeight.w500,
+                    fontWeight: FontWeight.bold,
                     fontSize: 18,
                   ),
                 ),
               ),
               Text(
-                '${user.totalDebt} TMT',
+                '${widget.user.totalDebt}',
                 style: const TextStyle(
                   color: AppColors.redColor,
                   fontFamily: 'ALSHauss',
-                  fontWeight: FontWeight.w500,
+                  fontWeight: FontWeight.bold,
                   fontSize: 16,
                 ),
               ),
             ],
           ),
-          SizedBox(
-            height: 50,
+          Container(
+            margin: const EdgeInsets.only(top: 10, bottom: 10),
+            height: 80,
+            alignment: Alignment.center,
             width: Get.width,
             child: GridView.builder(
               scrollDirection: Axis.horizontal,
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: user.tickets!.length,
+              physics: const BouncingScrollPhysics(),
+              itemCount: widget.user.tickets!.length,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2, childAspectRatio: 1 / 3.8,),
-              itemBuilder: (context, index) =>
-                  Text('ID:  ${user.tickets![index].id}'),
+                crossAxisCount: 2,
+                childAspectRatio: 1 / 3.5,
+                mainAxisSpacing: 5,
+                crossAxisSpacing: 5,
+              ),
+              itemBuilder: (context, index) => GestureDetector(
+                onTap: () async {
+                  _selectedIndex = index;
+                  setState(() {});
+                  print(widget.user.tickets!);
+                  for (var a in widget.user.tickets!) {
+                    print(a.code);
+                  }
+                  clientHomeController.showOrderIDList.clear();
+                  await GetOneOrderService().fetchOneOrder(userId: clientHomeController.userId.value, ticketID: widget.user.tickets![index].id.toString()).then((a) {
+                    final List<Datum> list = a;
+
+                    clientHomeController.showOrderIDList.addAll(list);
+                  });
+                },
+                child: Container(
+                  padding: const EdgeInsets.all(8),
+                  alignment: Alignment.centerLeft,
+                  decoration: BoxDecoration(
+                    color: _selectedIndex == index ? AppColors.blueColor : Colors.grey.shade200,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Text(
+                    'ID: ${widget.user.tickets![index].code}',
+                    style: TextStyle(
+                      color: _selectedIndex == index ? Colors.white : AppColors.blackColor,
+                      fontFamily: 'ALSHauss',
+                      fontWeight: _selectedIndex == index ? FontWeight.bold : FontWeight.normal,
+                      fontSize: 16,
+                    ),
+                  ),
+                ),
+              ),
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              CustomButton(
-                onTap: () => Get.to(() => OrdersScreen(
-                      index: index,
-                    ),),
-              ),
-              CustomButton(
-                onTap: () {
-                  FlutterPhoneDirectCaller.callNumber(
-                    '+993${user.phone}',
-                  );
-                },
-                withIcon: true,
-                backColor: AppColors.lightBlue1Color,
-                textColor: AppColors.blueColor,
-              ),
-            ],
+          Center(
+            child: CustomButton(
+              onTap: () {
+                FlutterPhoneDirectCaller.callNumber(
+                  '+993${widget.user.phone}',
+                );
+              },
+              withIcon: true,
+              backColor: AppColors.lightBlue1Color,
+              textColor: AppColors.blueColor,
+            ),
           ),
         ],
       ),

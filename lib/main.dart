@@ -34,33 +34,31 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  final pref = await SharedPreferences.getInstance();
+  var pref = await SharedPreferences.getInstance();
   SingletonSharedPreference(pref);
-  runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (_) => SettingsSingleton(),
-        ),
-        ChangeNotifierProvider(create: (_) => OrdersProvider()),
-        ChangeNotifierProvider(create: (_) => GetOrderByIdProvider()),
-        ChangeNotifierProvider(create: (_) => GetMeProvider()),
-      ],
-      child: const MyApp(),
-    ),
-  );
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(
+        create: (_) => SettingsSingleton(),
+      ),
+      ChangeNotifierProvider(create: (_) => OrdersProvider()),
+      ChangeNotifierProvider(create: (_) => GetOrderByIdProvider()),
+      ChangeNotifierProvider(create: (_) => GetMeProvider()),
+    ],
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   Future<bool> _getOnboardingStatus() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.getBool('onboarding_completed') ?? false;
   }
 
   Future<void> _setOnboardingStatus() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setBool('onboarding_completed', true);
   }
 
@@ -73,20 +71,18 @@ class MyApp extends StatelessWidget {
           title: 'Flutter Demo',
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
-            primarySwatch: Colors.blue,
-            appBarTheme: const AppBarTheme(
-              color: AppColors.whiteColor,
-              systemOverlayStyle: SystemUiOverlayStyle(
-                systemStatusBarContrastEnforced: true,
-                systemNavigationBarContrastEnforced: true,
-                systemNavigationBarColor: AppColors.whiteColor,
-                statusBarColor: AppColors.whiteColor,
-                systemNavigationBarIconBrightness: Brightness.dark,
-                statusBarIconBrightness: Brightness.dark,
-                statusBarBrightness: Brightness.light,
-              ),
-            ),
-          ),
+              primarySwatch: Colors.blue,
+              appBarTheme: const AppBarTheme(
+                  color: AppColors.whiteColor,
+                  systemOverlayStyle: SystemUiOverlayStyle(
+                    systemStatusBarContrastEnforced: true,
+                    systemNavigationBarContrastEnforced: true,
+                    systemNavigationBarColor: AppColors.whiteColor,
+                    statusBarColor: AppColors.whiteColor,
+                    systemNavigationBarIconBrightness: Brightness.dark,
+                    statusBarIconBrightness: Brightness.dark,
+                    statusBarBrightness: Brightness.light,
+                  ))),
           initialRoute: '/',
           routes: {
             '/': (context) => FutureBuilder<bool>(
@@ -112,6 +108,11 @@ class MyApp extends StatelessWidget {
             ...GlobalMaterialLocalizations.delegates,
             GlobalWidgetsLocalizations.delegate,
           ],
+          builder: (context, child) => MediaQuery(
+            data: MediaQuery.of(context)
+                .copyWith(textScaler: TextScaler.noScaling),
+            child: child!,
+          ),
         );
       },
     );

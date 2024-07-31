@@ -45,8 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
               key: _formKey,
               child: SingleChildScrollView(
                 child: Padding(
-                  padding:
-                      const EdgeInsets.only(bottom: 40, right: 20, left: 20),
+                  padding: const EdgeInsets.only(bottom: 40, right: 20, left: 20),
                   child: Container(
                     decoration: BoxDecoration(
                       color: Colors.white,
@@ -127,8 +126,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 Padding(
                                   padding: const EdgeInsets.only(left: 5),
                                   child: SizedBox(
-                                    width:
-                                        MediaQuery.of(context).size.width / 1.8,
+                                    width: MediaQuery.of(context).size.width / 1.8,
                                     child: TextFormField(
                                       controller: phoneController,
                                       maxLines: 1,
@@ -232,8 +230,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       borderRadius: BorderRadius.circular(25.0),
                                     ),
                                     title: const Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
+                                      crossAxisAlignment: CrossAxisAlignment.center,
                                       children: [
                                         Padding(
                                           padding: EdgeInsets.all(10.0),
@@ -297,8 +294,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 errorText2 = 'Password is empty.';
                               });
                             }
-                            if (passwordController.text.isNotEmpty &&
-                                phoneController.text.isNotEmpty) {
+                            if (passwordController.text.isNotEmpty && phoneController.text.isNotEmpty) {
                               LoginRepository()
                                   .login(
                                 context,
@@ -315,8 +311,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 } else {
                                   Navigator.of(context).push(
                                     MaterialPageRoute(
-                                      builder: (context) =>
-                                          const BottomNavScreen(),
+                                      builder: (context) => const BottomNavScreen(),
                                     ),
                                   );
                                 }

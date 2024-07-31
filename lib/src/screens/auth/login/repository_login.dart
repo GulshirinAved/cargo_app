@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:kargo_app/src/screens/CustomWidgets/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginRepository {
@@ -19,10 +20,7 @@ class LoginRepository {
         'https://106cargo.com.tm/api/auth/login',
         data: jsonEncode({'phone': phone, 'password': password}),
         options: Options(
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-          },
+          headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
         ),
       );
       isLoading = true;
@@ -32,15 +30,15 @@ class LoginRepository {
 
         tokens = response.data['data']['token'];
         await preferences.setString('token', tokens!);
-        await preferences.setBool(
-          'is_collector',
-          response.data['data']['user']['is_collector']!,
-        );
+        await preferences.setBool('is_collector', response.data['data']['user']['is_collector']!);
 
         return response.data['data']['user']['is_collector'];
       }
-    } on DioException {
+    } on DioException catch (e) {
       isLoading = false;
+      showSnackBar('Ýalňyş', 'Ulanyjy maglumatlaryny doly we dogry şekilde dolduruň', Colors.red);
+
+      throw Exception(e);
     }
     return false;
   }
@@ -67,12 +65,13 @@ class LogOutRepository {
       if (response.statusCode == 200) {
         isLoading = false;
         final SharedPreferences preferences = await SharedPreferences.getInstance();
-        await preferences.remove('token');
+        preferences.remove('token');
 
         return response.statusCode == 200 ? true : false;
       }
-    } on DioException {
+    } on DioException catch (e) {
       isLoading = false;
+      throw Exception(e);
     }
     return false;
   }

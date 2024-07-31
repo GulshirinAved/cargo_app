@@ -18,7 +18,7 @@ class _SpalshScreenState extends State<SpalshScreen>
     with SingleTickerProviderStateMixin {
   late bool? val;
   Future<void> checkUser() async {
-    final SharedPreferences preferences = await SharedPreferences.getInstance();
+    SharedPreferences preferences = await SharedPreferences.getInstance();
     val = preferences.getBool('is_collector');
   }
 
@@ -29,25 +29,24 @@ class _SpalshScreenState extends State<SpalshScreen>
     checkUser();
 
     Future.delayed(const Duration(seconds: 3), () {
-      val == null
+      val == true
           ? Navigator.of(context).pushReplacement(MaterialPageRoute(
               builder: (_) => const ClientHomeScreen(),
-            ),)
+            ))
           : Navigator.of(context).pushReplacement(MaterialPageRoute(
               builder: (_) => const BottomNavScreen(),
-            ),);
+            ));
     });
     sendToken();
   }
 
-  // ignore: always_declare_return_types
   sendToken() async {
     final FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
-    final String? token = await firebaseMessaging.getToken();
+    String? token = await firebaseMessaging.getToken();
     print(token);
     print('ebofboqufboqfboqbfqofbu');
 
-    await SendFcmTokenRepository().sendToken(token!);
+    SendFcmTokenRepository().sendToken(token!);
   }
 
   @override
@@ -60,7 +59,7 @@ class _SpalshScreenState extends State<SpalshScreen>
             image: DecorationImage(
               image: AssetImage('assets/images/background.png'),
               fit: BoxFit.cover,
-            ),),
+            )),
         child: Padding(
           padding: const EdgeInsets.all(100.0),
           child: Center(

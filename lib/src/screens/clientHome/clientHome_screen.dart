@@ -17,8 +17,7 @@ class ClientHomeScreen extends StatefulWidget {
 }
 
 class _ClientHomeScreenState extends State<ClientHomeScreen> {
-  final ClientHomeController _clientHomeController =
-      Get.put(ClientHomeController());
+  final ClientHomeController _clientHomeController = Get.put(ClientHomeController());
   @override
   void initState() {
     super.initState();
@@ -34,9 +33,7 @@ class _ClientHomeScreenState extends State<ClientHomeScreen> {
       ),
       body: Column(
         children: [
-          //location slider
           LocationSlider(),
-          //user name card
           ClientInfoCardSlider(),
         ],
       ),

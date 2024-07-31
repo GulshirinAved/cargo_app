@@ -19,22 +19,15 @@ class _SearchScreenState extends State<SearchScreen> {
         elevation: 0,
         backgroundColor: Colors.white,
         title: Padding(
-          padding:
-              const EdgeInsets.only(top: 15, left: 10, right: 10, bottom: 10),
+          padding: const EdgeInsets.only(top: 15, left: 10, right: 10, bottom: 10),
           child: Container(
             height: 50,
-            decoration: BoxDecoration(
-                color: AppColors.searchColor,
-                borderRadius: BorderRadius.circular(10),),
+            decoration: BoxDecoration(color: AppColors.searchColor, borderRadius: BorderRadius.circular(10)),
             child: Row(
               children: [
                 Padding(
                   padding: const EdgeInsets.only(left: 22),
-                  child: CustomIcon(
-                      title: 'assets/icons/searchnormal1.svg',
-                      height: 20,
-                      width: 20,
-                      color: AppColors.profilColor,),
+                  child: CustomIcon(title: 'assets/icons/searchnormal1.svg', height: 20, width: 20, color: AppColors.profilColor),
                 ),
                 // SizedBox(
                 //     height: 50,
@@ -55,17 +48,17 @@ class _SearchScreenState extends State<SearchScreen> {
                           errorBorder: InputBorder.none,
                           disabledBorder: InputBorder.none,
                         ),
-                      ),),
+                      )),
                   // Text(
                   //   'Искать товары',
                   //   style: TextStyle(
                   //       color: AppColors.disableColor,
                   //       fontSize: 14,
-                  //       fontFamily: 'Rubik',
+                  //       fontFamily: 'ALSHauss',
                   //       fontStyle: FontStyle.normal,
                   //       fontWeight: FontWeight.w400),
                   // ),
-                ),
+                )
               ],
             ),
           ),

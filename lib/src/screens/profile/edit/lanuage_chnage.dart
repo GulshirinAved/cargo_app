@@ -35,8 +35,7 @@ class _LanguageChangeState extends State<LanguageChange> {
             toolbarHeight: 70,
             elevation: 0,
             centerTitle: true,
-            iconTheme:
-                const IconThemeData(color: AppColors.profilColor, size: 30),
+            iconTheme: const IconThemeData(color: AppColors.profilColor, size: 30),
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(
                 bottom: Radius.circular(15),
@@ -44,12 +43,7 @@ class _LanguageChangeState extends State<LanguageChange> {
             ),
             title: const Text(
               'Dil',
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
-                  fontFamily: 'Roboto',
-                  fontStyle: FontStyle.normal,
-                  fontWeight: FontWeight.w700,),
+              style: TextStyle(color: Colors.black, fontSize: 20, fontFamily: 'Roboto', fontStyle: FontStyle.normal, fontWeight: FontWeight.w700),
             ),
           ),
         ),
@@ -80,12 +74,7 @@ class _LanguageChangeState extends State<LanguageChange> {
                     child: Text(
                       // 'Dil saýlaň',
                       'app_title'.trs,
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
-                          fontFamily: 'Roboto',
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.w700,),
+                      style: TextStyle(color: Colors.black, fontSize: 20, fontFamily: 'Roboto', fontStyle: FontStyle.normal, fontWeight: FontWeight.w700),
                     ),
                   ),
                 ),
@@ -114,14 +103,9 @@ class _LanguageChangeState extends State<LanguageChange> {
                           child: Text(
                             'Türkmen',
                             textAlign: TextAlign.center,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 18,
-                                fontFamily: 'Roboto',
-                                fontStyle: FontStyle.normal,
-                                fontWeight: FontWeight.w400,),
+                            style: TextStyle(color: Colors.black, fontSize: 18, fontFamily: 'Roboto', fontStyle: FontStyle.normal, fontWeight: FontWeight.w400),
                           ),
-                        ),
+                        )
                       ],
                     ),
                   ),
@@ -153,14 +137,9 @@ class _LanguageChangeState extends State<LanguageChange> {
                               child: Text(
                                 'Русский',
                                 textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 18,
-                                    fontFamily: 'Roboto',
-                                    fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.w400,),
+                                style: TextStyle(color: Colors.black, fontSize: 18, fontFamily: 'Roboto', fontStyle: FontStyle.normal, fontWeight: FontWeight.w400),
                               ),
-                            ),
+                            )
                           ],
                         ),
                       ],
@@ -172,23 +151,15 @@ class _LanguageChangeState extends State<LanguageChange> {
                     Navigator.of(context).pop();
                   },
                   child: Padding(
-                    padding: const EdgeInsets.only(
-                        top: 40, right: 20, left: 20, bottom: 30,),
+                    padding: const EdgeInsets.only(top: 40, right: 20, left: 20, bottom: 30),
                     child: Container(
                       height: 50,
                       width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                          color: AppColors.mainColor,
-                          borderRadius: BorderRadius.circular(15),),
+                      decoration: BoxDecoration(color: AppColors.mainColor, borderRadius: BorderRadius.circular(15)),
                       child: const Center(
                         child: Text(
                           'Ýatda sakla',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontFamily: 'Roboto',
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w700,),
+                          style: TextStyle(color: Colors.white, fontSize: 16, fontFamily: 'Roboto', fontStyle: FontStyle.normal, fontWeight: FontWeight.w700),
                         ),
                       ),
                     ),
@@ -223,7 +194,7 @@ class _LanguageChangeState extends State<LanguageChange> {
 //                   style: TextStyle(
 //                       color: Colors.black,
 //                       fontSize: 14,
-//                       fontFamily: 'Rubik',
+//                       fontFamily: 'ALSHauss',
 //                       fontStyle: FontStyle.normal,
 //                       fontWeight: FontWeight.w700),
 //                 ),
@@ -247,7 +218,7 @@ class _LanguageChangeState extends State<LanguageChange> {
 //                   style: TextStyle(
 //                       color: Colors.black,
 //                       fontSize: 14,
-//                       fontFamily: 'Rubik',
+//                       fontFamily: 'ALSHauss',
 //                       fontStyle: FontStyle.normal,
 //                       fontWeight: FontWeight.w700),
 //                 ),
@@ -273,7 +244,7 @@ class _LanguageChangeState extends State<LanguageChange> {
 //                   style: TextStyle(
 //                       color: Colors.black,
 //                       fontSize: 14,
-//                       fontFamily: 'Rubik',
+//                       fontFamily: 'ALSHauss',
 //                       fontStyle: FontStyle.normal,
 //                       fontWeight: FontWeight.w700),
 //                 ),

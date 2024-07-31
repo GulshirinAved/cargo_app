@@ -15,17 +15,21 @@ class GetOrderByIdProvider with ChangeNotifier {
   static Dio dio = Dio();
 
   Future<void> getOrdersById(int id) async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    String? val = preferences.getString('token');
+    final SharedPreferences preferences = await SharedPreferences.getInstance();
+    final String? val = preferences.getString('token');
     final headers = {
       'Authorization': 'Bearer $val',
     };
+    print(val);
 
     try {
-      var response = await dio.get("${Constants.baseUrl}/cargo/fetch/$id",
-          options: Options(headers: headers));
+      final response = await dio.get(
+        '${Constants.baseUrl}/cargo/fetch/$id',
+        options: Options(headers: headers),
+      );
       isLoading = true;
       print(response.data);
+      print('${Constants.baseUrl}/cargo/fetch/$id');
       if (response.statusCode == 200) {
         if (response.data != null) {
           ordersById = TripDataIdModel.fromJson(response.data['data']);
@@ -35,11 +39,11 @@ class GetOrderByIdProvider with ChangeNotifier {
         notifyListeners();
         return;
       }
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       isLoading = false;
       print('fuckkkkk');
       print(e.error);
-      if (e.response != null) print("Error= ${e.response!.realUri}");
+      if (e.response != null) print('Error= ${e.response!.realUri}');
       if (e.response != null) print(e.response!.data);
 
       notifyListeners();

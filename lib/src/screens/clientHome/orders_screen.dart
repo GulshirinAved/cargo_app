@@ -1,8 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'package:kargo_app/src/design/app_colors.dart';
 import 'package:kargo_app/src/screens/CustomWidgets/client_bottomSheet.dart';
 import 'package:kargo_app/src/screens/CustomWidgets/custom_appbar.dart';
@@ -14,10 +12,11 @@ import 'package:kargo_app/src/screens/clientHome/data/services/getOneOrder_servi
 
 class OrdersScreen extends StatelessWidget {
   final int index;
-  const OrdersScreen({
+  OrdersScreen({
     required this.index,
     Key? key,
   }) : super(key: key);
+  final ClientHomeController clientHomeController = Get.put(ClientHomeController());
 
   @override
   Widget build(BuildContext context) {
@@ -28,10 +27,11 @@ class OrdersScreen extends StatelessWidget {
       backgroundColor: AppColors.scaffoldBackColor,
       appBar: const CustomAppBar(
         title: 'Sargytlar',
+        backButton: true,
       ),
       body: FutureBuilder<List<dynamic>>(
         future: Future.wait([
-          GetOneOrderService().fetchOneOrder(userId: userId),
+          GetOneOrderService().fetchOneOrder(userId: userId, ticketID: ''),
           GetOneOrderService().fetchUserData(userId: userId),
         ]),
         builder: (context, snapshot) {
@@ -48,8 +48,9 @@ class OrdersScreen extends StatelessWidget {
               child: Text('No data available'),
             );
           }
+          final List<Datum> list = snapshot.data![0];
 
-          final List<Datum> orders = snapshot.data![0];
+          clientHomeController.showOrderIDList.addAll(list);
           final User user = snapshot.data![1];
 
           return SingleChildScrollView(
@@ -57,19 +58,20 @@ class OrdersScreen extends StatelessWidget {
             child: Column(
               children: [
                 Padding(
-                  padding: EdgeInsets.symmetric(vertical: 8),
+                  padding: const EdgeInsets.symmetric(vertical: 8),
                   child: ClientIdCard(user: user, index: index),
                 ),
-                ListView.builder(
-                  itemCount: orders.length,
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemBuilder: (context, index) => DeliveryTrackerCard(
-                    snapshot:
-                        AsyncSnapshot.withData(ConnectionState.done, orders),
-                    index: index,
-                  ),
-                ),
+                Obx(() {
+                  return ListView.builder(
+                    itemCount: clientHomeController.showOrderIDList.length,
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemBuilder: (context, index) => DeliveryTrackerCard(
+                      snapshot: AsyncSnapshot.withData(ConnectionState.done, clientHomeController.showOrderIDList),
+                      index: index,
+                    ),
+                  );
+                }),
               ],
             ),
           );

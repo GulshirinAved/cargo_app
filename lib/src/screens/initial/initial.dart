@@ -1,15 +1,21 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:kargo_app/src/core/l10n.dart';
+import 'package:kargo_app/src/design/constants.dart';
+import 'package:kargo_app/src/screens/initial/components/cart_main.dart';
+import 'package:kargo_app/src/screens/initial/model/orders_model.dart';
 import 'package:kargo_app/src/screens/initial/notifications/notifications.dart';
 import 'package:kargo_app/src/screens/initial/pages/search_screen.dart';
+import 'package:kargo_app/src/screens/initial/providers/initial_controller.dart';
 import 'package:kargo_app/src/screens/initial/providers/orders_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:upgrader/upgrader.dart';
 
 import '../../design/app_colors.dart';
 import '../../design/custom_icon.dart';
-import 'components/cart_main.dart';
+import '../CustomWidgets/widgets.dart';
 
 class InitialScreen extends StatefulWidget {
   const InitialScreen({Key? key}) : super(key: key);
@@ -21,22 +27,48 @@ class InitialScreen extends StatefulWidget {
 class _InitialScreenState extends State<InitialScreen> {
   @override
   void initState() {
-    fetchData();
     showNotfi();
+
+    fetchData();
     super.initState();
   }
 
-  fetchData() async {
-    await Provider.of<OrdersProvider>(context, listen: false).getOrders();
+  final InitialPageController initialPageController = Get.put(InitialPageController());
+
+  dynamic fetchData() async {
+    await Upgrader.clearSavedSettings();
+
+    initialPageController.showOrders.clear();
+    initialPageController.page.value = 1;
+    initialPageController.loading.value = 0;
+    await OrdersProvider().getOrders(limit: initialPageController.limit.value, page: initialPageController.page.value);
   }
 
-  showNotfi() async {
+  final RefreshController _refreshController = RefreshController(initialRefresh: false);
+
+  void _onRefresh() async {
+    await Future.delayed(const Duration(milliseconds: 1000));
+    _refreshController.refreshCompleted();
+    initialPageController.showOrders.clear();
+
+    initialPageController.page.value = 1;
+    initialPageController.loading.value = 0;
+    await OrdersProvider().getOrders(limit: initialPageController.limit.value, page: initialPageController.page.value);
+  }
+
+  void _onLoading() async {
+    await Future.delayed(const Duration(milliseconds: 1000));
+    _refreshController.loadComplete();
+    initialPageController.page.value += 1;
+    await OrdersProvider().getOrders(limit: initialPageController.limit.value, page: initialPageController.page.value);
+  }
+
+  dynamic showNotfi() async {
     FirebaseMessaging.onMessage.listen((RemoteMessage event) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           backgroundColor: Colors.transparent,
-          shape:
-              BeveledRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          shape: BeveledRectangleBorder(borderRadius: BorderRadius.circular(20)),
           duration: const Duration(seconds: 3),
           padding: const EdgeInsets.all(10),
           elevation: 0,
@@ -90,7 +122,7 @@ class _InitialScreenState extends State<InitialScreen> {
                             style: const TextStyle(
                               color: Colors.black,
                               fontSize: 14,
-                              fontFamily: 'Rubik',
+                              fontFamily: 'ALSHauss',
                               fontStyle: FontStyle.normal,
                               fontWeight: FontWeight.w600,
                             ),
@@ -100,12 +132,7 @@ class _InitialScreenState extends State<InitialScreen> {
                           ),
                           Text(
                             event.notification?.body ?? '',
-                            style: const TextStyle(
-                                color: Colors.black,
-                                fontSize: 14,
-                                fontFamily: 'Rubik',
-                                fontStyle: FontStyle.normal,
-                                fontWeight: FontWeight.w400,),
+                            style: const TextStyle(color: Colors.black, fontSize: 14, fontFamily: 'ALSHauss', fontStyle: FontStyle.normal, fontWeight: FontWeight.w400),
                           ),
                         ],
                       ),
@@ -120,145 +147,135 @@ class _InitialScreenState extends State<InitialScreen> {
     });
   }
 
-  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
-      GlobalKey<RefreshIndicatorState>();
-
   @override
   Widget build(BuildContext context) {
     final order = Provider.of<OrdersProvider>(context);
 
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(55),
-        child: Container(
-          decoration: BoxDecoration(
-            boxShadow: [
-              BoxShadow(
-                color: Colors.blueGrey.withOpacity(0.1),
-                spreadRadius: 3,
-                blurRadius: 8,
-                offset: const Offset(0, 3),
-              ),
-            ],
-          ),
-          child: AppBar(
-            elevation: 0,
-            systemOverlayStyle: const SystemUiOverlayStyle(
-              statusBarColor: Colors.white,
-              statusBarIconBrightness: Brightness.dark,
-              statusBarBrightness: Brightness.light,
-            ),
-            backgroundColor: Colors.white,
-            toolbarHeight: 50,
-            automaticallyImplyLeading: false,
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.vertical(
-                bottom: Radius.circular(15),
-              ),
-            ),
-            title: Padding(
-              padding: EdgeInsets.zero,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 15,
-                      right: 0,
-                      bottom: 10,
-                    ),
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => const SearchScreen(),
-                          ),
-                        );
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: Column(
+          children: [
+            searchField(context),
+            Expanded(
+              child: Obx(
+                () {
+                  if (initialPageController.loading.value == 0) {
+                    return GestureDetector(
+                      onTap: () async {
+                        await OrdersProvider().getOrders(limit: initialPageController.limit.value, page: initialPageController.page.value);
                       },
-                      child: Container(
-                        height: 40,
-                        width: MediaQuery.of(context).size.width - 32,
-                        decoration: BoxDecoration(
-                          color: AppColors.searchColor,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 22),
-                              child: CustomIcon(
-                                  title: 'assets/icons/searchnormal1.svg',
-                                  height: 20,
-                                  width: 20,
-                                  color: AppColors.profilColor,),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 10),
-                              child: Text(
-                                'search'.trs,
-                                style: const TextStyle(
-                                  color: AppColors.profilColor,
-                                  fontSize: 14,
-                                  fontFamily: 'Rubik',
-                                  fontStyle: FontStyle.normal,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+                      child: const Center(child: CircularProgressIndicator()),
+                    );
+                  } else if (initialPageController.loading.value == 1) {
+                    return hasError();
+                  } else if (initialPageController.loading.value == 2) {
+                    return emptyData();
+                  } else if (initialPageController.showOrders.isEmpty && initialPageController.loading.value == 3) {
+                    return emptyData();
+                  }
+                  return showPage(context, order);
+                },
               ),
             ),
-          ),
-        ),
-      ),
-      body: RefreshIndicator(
-        key: _refreshIndicatorKey,
-        color: Colors.amber,
-        backgroundColor: Colors.blue,
-        strokeWidth: 4.0,
-        onRefresh: _refreshLocal,
-        child: SafeArea(
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: EdgeInsets.zero,
-                  child: SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      height: 100,
-                      child: Image.asset(
-                        'assets/images/anmation.gif',
-                        fit: BoxFit.fill,
-                      ),),
-                ),
-                ListView.builder(
-                  padding: EdgeInsets.zero,
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: order.orders.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Padding(
-                      padding: const EdgeInsets.all(5),
-                      child: CartMain(
-                        model: order.orders[index],
-                      ),
-                    );
-                  },
-                ),
-              ],
-            ),
-          ),
+          ],
         ),
       ),
     );
   }
 
-  Future<void> _refreshLocal() async {}
+  Widget showPage(BuildContext context, OrdersProvider order) {
+    return SmartRefresher(
+      footer: footer(),
+      controller: _refreshController,
+      onRefresh: _onRefresh,
+      onLoading: _onLoading,
+      enablePullDown: true,
+      enablePullUp: true,
+      physics: const BouncingScrollPhysics(),
+      header: const MaterialClassicHeader(
+        color: AppColors.blueColor,
+      ),
+      child: ListView(
+        children: [
+          Padding(
+            padding: EdgeInsets.zero,
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width,
+              height: 100,
+              child: Image.asset(
+                'assets/images/anmation.gif',
+                fit: BoxFit.fill,
+              ),
+            ),
+          ),
+          ListView.builder(
+            padding: EdgeInsets.zero,
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            // itemCount: order.orders.length,
+            itemCount: initialPageController.showOrders.length,
+            itemBuilder: (BuildContext context, int index) {
+              final TripModel modelll = TripModel(
+                id: int.parse(initialPageController.showOrders[index]['id'].toString()),
+                date: initialPageController.showOrders[index]['date'],
+                pointFrom: initialPageController.showOrders[index]['point_from'],
+                pointTo: initialPageController.showOrders[index]['point_to'],
+                trackCode: initialPageController.showOrders[index]['track_code'] ?? '',
+                summarySeats: int.parse(initialPageController.showOrders[index]['summary_seats'].toString()),
+                ticketCode: initialPageController.showOrders[index]['ticket_code'] ?? '',
+                location: initialPageController.showOrders[index]['location'],
+                points: initialPageController.showOrders[index]['points'],
+              );
+              return Padding(
+                padding: const EdgeInsets.all(5),
+                child: CartMain(
+                  model: modelll,
+                  // model: order.orders[index],
+                ),
+              );
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget searchField(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => const SearchScreen(),
+          ),
+        );
+      },
+      child: Container(
+        padding: const EdgeInsets.all(10),
+        margin: const EdgeInsets.only(left: 15, right: 15, top: 10, bottom: 15),
+        decoration: const BoxDecoration(
+          color: AppColors.searchColor,
+          borderRadius: borderRadius10,
+        ),
+        child: Row(
+          children: [
+            CustomIcon(title: 'assets/icons/searchnormal1.svg', height: 25, width: 25, color: AppColors.profilColor),
+            Padding(
+              padding: const EdgeInsets.only(left: 10, top: 5),
+              child: Text(
+                'search'.trs,
+                style: const TextStyle(
+                  color: AppColors.profilColor,
+                  fontSize: 18,
+                  fontFamily: 'ALSHauss',
+                  fontStyle: FontStyle.normal,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }

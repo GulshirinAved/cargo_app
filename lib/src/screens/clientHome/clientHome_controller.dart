@@ -1,20 +1,29 @@
-// ignore_for_file: avoid_print
-
 import 'package:get/get.dart';
+import 'package:kargo_app/src/screens/clientHome/data/models/getOneOrder_model.dart' as oneOrder;
 import 'package:kargo_app/src/screens/clientHome/data/models/meRegions_model.dart';
 import 'package:kargo_app/src/screens/clientHome/data/services/meRegions_service.dart';
+import 'package:kargo_app/src/screens/clientHome/data/services/region_service.dart';
 
 class ClientHomeController extends GetxController {
   RxString locationName = ''.obs;
   RxString locationId = ''.obs;
   RxString userId = ''.obs;
-
+  RxInt loading = 0.obs;
+  RxInt page = 0.obs;
+  RxInt limit = 10.obs;
   RxList<Point> regionNames = <Point>[].obs;
-
-  void selectLocation(
-      {required String selectedLocation, required String regionId,}) {
+  RxList showUsersList = [].obs;
+  RxList<oneOrder.Datum> showOrderIDList = <oneOrder.Datum>[].obs;
+  RxBool valueList = false.obs;
+  Future<void> selectLocation({
+    required String selectedLocation,
+    required String regionId,
+  }) async {
     locationName.value = selectedLocation;
     locationId.value = regionId;
+    page.value = 0;
+    loading.value = 0;
+    await RegionService().fetchRegion(id: locationId.value, limit: limit.value, page: page.value);
   }
 
   void selectUserId({required String value}) {
@@ -45,6 +54,7 @@ class ClientHomeController extends GetxController {
       } else {
         locationName.value = '';
       }
+      await RegionService().fetchRegion(id: locationId.value, limit: limit.value, page: page.value);
     }
   }
 }

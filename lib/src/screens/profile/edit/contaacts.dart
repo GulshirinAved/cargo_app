@@ -42,7 +42,7 @@ class Contacts extends StatelessWidget {
                   fontSize: 20,
                   fontFamily: 'Roboto',
                   fontStyle: FontStyle.normal,
-                  fontWeight: FontWeight.w700,),
+                  fontWeight: FontWeight.w700),
             ),
           ),
         ),
@@ -74,7 +74,7 @@ class Contacts extends StatelessWidget {
                         title: 'assets/icons/phone.svg',
                         height: 24,
                         width: 24,
-                        color: AppColors.profilColor,),
+                        color: AppColors.profilColor),
                     const Padding(
                       padding: EdgeInsets.only(left: 10),
                       child: Text(
@@ -84,7 +84,7 @@ class Contacts extends StatelessWidget {
                             fontSize: 16,
                             fontFamily: 'Roboto',
                             fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.w400,),
+                            fontWeight: FontWeight.w400),
                       ),
                     ),
                   ],
@@ -97,7 +97,7 @@ class Contacts extends StatelessWidget {
                           title: 'assets/icons/phone.svg',
                           height: 24,
                           width: 24,
-                          color: AppColors.profilColor,),
+                          color: AppColors.profilColor),
                       const Padding(
                         padding: EdgeInsets.only(left: 10),
                         child: Text(
@@ -107,7 +107,7 @@ class Contacts extends StatelessWidget {
                               fontSize: 16,
                               fontFamily: 'Roboto',
                               fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w400,),
+                              fontWeight: FontWeight.w400),
                         ),
                       ),
                     ],
@@ -121,7 +121,7 @@ class Contacts extends StatelessWidget {
                           title: 'assets/icons/phone.svg',
                           height: 24,
                           width: 24,
-                          color: AppColors.profilColor,),
+                          color: AppColors.profilColor),
                       const Padding(
                         padding: EdgeInsets.only(left: 10),
                         child: Text(
@@ -131,7 +131,7 @@ class Contacts extends StatelessWidget {
                               fontSize: 16,
                               fontFamily: 'Roboto',
                               fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w400,),
+                              fontWeight: FontWeight.w400),
                         ),
                       ),
                     ],
@@ -151,7 +151,7 @@ class Contacts extends StatelessWidget {
                         title: 'assets/icons/mail.svg',
                         height: 24,
                         width: 24,
-                        color: AppColors.profilColor,),
+                        color: AppColors.profilColor),
                     const Padding(
                       padding: EdgeInsets.only(left: 10),
                       child: Text(
@@ -161,7 +161,7 @@ class Contacts extends StatelessWidget {
                             fontSize: 16,
                             fontFamily: 'Roboto',
                             fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.w400,),
+                            fontWeight: FontWeight.w400),
                       ),
                     ),
                   ],
@@ -180,7 +180,7 @@ class Contacts extends StatelessWidget {
                         title: 'assets/icons/map_pin.svg',
                         height: 24,
                         width: 24,
-                        color: AppColors.profilColor,),
+                        color: AppColors.profilColor),
                     const Padding(
                       padding: EdgeInsets.only(left: 10),
                       child: Text(
@@ -190,7 +190,7 @@ class Contacts extends StatelessWidget {
                             fontSize: 16,
                             fontFamily: 'Roboto',
                             fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.w400,),
+                            fontWeight: FontWeight.w400),
                       ),
                     ),
                   ],
@@ -199,7 +199,7 @@ class Contacts extends StatelessWidget {
             ),
           ),
         ),
-      ),),
+      )),
     );
   }
 }

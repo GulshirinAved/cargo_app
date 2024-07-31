@@ -16,11 +16,12 @@ class WelcomePage extends StatelessWidget {
       backgroundColor: Colors.white,
       body: Container(
         decoration: const BoxDecoration(
-            color: Colors.white,
-            image: DecorationImage(
-              image: AssetImage('assets/images/background.png'),
-              fit: BoxFit.cover,
-            ),),
+          color: Colors.white,
+          image: DecorationImage(
+            image: AssetImage('assets/images/background.png'),
+            fit: BoxFit.cover,
+          ),
+        ),
         child: PageView.builder(
           controller: _pageController,
           itemBuilder: (context, index) {
@@ -32,19 +33,24 @@ class WelcomePage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       TextButton(
-                          onPressed: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => const BottomNavScreen(),),);
-                          },
-                          child: const Text(
-                            'Geç',
-                            style: TextStyle(
-                                color: AppColors.mainColor,
-                                fontSize: 18,
-                                fontFamily: 'Roboto',
-                                fontStyle: FontStyle.normal,
-                                fontWeight: FontWeight.w600,),
-                          ),),
+                        onPressed: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const BottomNavScreen(),
+                            ),
+                          );
+                        },
+                        child: const Text(
+                          'Geç',
+                          style: TextStyle(
+                            color: AppColors.mainColor,
+                            fontSize: 18,
+                            fontFamily: 'Roboto',
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -63,89 +69,98 @@ class WelcomePage extends StatelessWidget {
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.only(
-                        top: 20, left: 30, right: 30, bottom: 40,),
+                      top: 20,
+                      left: 30,
+                      right: 30,
+                      bottom: 40,
+                    ),
                     child: SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: SafeArea(
-                        child: Column(children: [
-                          Text(
-                            Items.WelcomeData[index]['title']!,
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(
+                        child: Column(
+                          children: [
+                            Text(
+                              Items.WelcomeData[index]['title']!,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
                                 color: Colors.black,
                                 fontSize: 30,
-                                fontWeight: FontWeight.bold,),
-                          ),
-                          const SizedBox(
-                            height: 11,
-                          ),
-                          Text(
-                            Items.WelcomeData[index]['text']!,
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(
-                              color: Color(0xff485068),
-                              fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                          ),
-                          const Spacer(),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 25),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: List<Widget>.generate(
+                            const SizedBox(
+                              height: 11,
+                            ),
+                            Text(
+                              Items.WelcomeData[index]['text']!,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                color: Color(0xff485068),
+                                fontSize: 18,
+                              ),
+                            ),
+                            const Spacer(),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(vertical: 25),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: List<Widget>.generate(
                                       3,
                                       (indicator) => Container(
-                                            margin: const EdgeInsets.symmetric(
-                                                horizontal: 3.0,),
-                                            height: 10.0,
-                                            width:
-                                                indicator == index ? 20 : 10.0,
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                                color: indicator == index
-                                                    ? const Color(0xff347af0)
-                                                    : const Color(0xffedf1f9),),
-                                          ),),
+                                        margin: const EdgeInsets.symmetric(
+                                          horizontal: 3.0,
+                                        ),
+                                        height: 10.0,
+                                        width: indicator == index ? 20 : 10.0,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10),
+                                          color: indicator == index ? const Color(0xff347af0) : const Color(0xffedf1f9),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
                                 ),
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  if (index < 2) {
-                                    _pageController.animateToPage(index + 1,
-                                        duration:
-                                            const Duration(microseconds: 500),
-                                        curve: Curves.ease,);
-                                  } else {
-                                    Navigator.of(context).push(
+                                InkWell(
+                                  onTap: () {
+                                    if (index < 2) {
+                                      _pageController.animateToPage(
+                                        index + 1,
+                                        duration: const Duration(microseconds: 500),
+                                        curve: Curves.ease,
+                                      );
+                                    } else {
+                                      Navigator.of(context).push(
                                         MaterialPageRoute(
-                                            builder: (context) =>
-                                                const BottomNavScreen(),),);
-                                  }
-                                },
-                                child: Container(
-                                  height: 60,
-                                  width: 60,
-                                  decoration: BoxDecoration(
+                                          builder: (context) => const BottomNavScreen(),
+                                        ),
+                                      );
+                                    }
+                                  },
+                                  child: Container(
+                                    height: 60,
+                                    width: 60,
+                                    decoration: BoxDecoration(
                                       color: AppColors.mainColor,
-                                      borderRadius: BorderRadius.circular(24),),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(15.0),
-                                    child: CustomIcon(
+                                      borderRadius: BorderRadius.circular(24),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(15.0),
+                                      child: CustomIcon(
                                         title: 'assets/icons/arrow_right.svg',
                                         height: 10,
                                         width: 10,
-                                        color: Colors.white,),
+                                        color: Colors.white,
+                                      ),
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        ],),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),

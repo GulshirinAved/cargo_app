@@ -1,5 +1,3 @@
-// ignore_for_file: file_names
-
 import 'package:dio/dio.dart';
 import 'package:kargo_app/src/screens/clientHome/data/models/meRegions_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -25,13 +23,10 @@ class MeRegionService {
           headers: headers,
         ),
       );
-
+      print(response.data);
       if (response.statusCode == 200) {
-        if (response.data['data'] != null &&
-            response.data['data']['points'] is List) {
-          final List<Point> data = (response.data['data']['points'] as List)
-              .map((item) => Point.fromJson(item))
-              .toList();
+        if (response.data['data'] != null && response.data['data']['points'] is List) {
+          final List<Point> data = (response.data['data']['points'] as List).map((item) => Point.fromJson(item)).toList();
           return data;
         } else {
           throw Exception('Invalid data format');

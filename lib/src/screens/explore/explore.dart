@@ -39,12 +39,7 @@ class ExploreScreen extends StatelessWidget {
             title: const Center(
               child: Text(
                 'Marketler',
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20,
-                    fontFamily: 'Roboto',
-                    fontStyle: FontStyle.normal,
-                    fontWeight: FontWeight.w700,),
+                style: TextStyle(color: Colors.black, fontSize: 20, fontFamily: 'Roboto', fontStyle: FontStyle.normal, fontWeight: FontWeight.w700),
               ),
             ),
           ),
@@ -60,8 +55,7 @@ class ExploreScreen extends StatelessWidget {
               padding: const EdgeInsets.all(20.0),
               child: InkWell(
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const SearchScreen(),),);
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SearchScreen()));
                 },
                 child: Container(
                   height: 60,
@@ -82,24 +76,15 @@ class ExploreScreen extends StatelessWidget {
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(left: 22),
-                        child: CustomIcon(
-                            title: 'assets/icons/searchnormal1.svg',
-                            height: 24,
-                            width: 24,
-                            color: AppColors.profilColor,),
+                        child: CustomIcon(title: 'assets/icons/searchnormal1.svg', height: 24, width: 24, color: AppColors.profilColor),
                       ),
                       const Padding(
                         padding: EdgeInsets.only(left: 22),
                         child: Text(
                           'Gözleg',
-                          style: TextStyle(
-                              color: AppColors.profilColor,
-                              fontSize: 16,
-                              fontFamily: 'Rubik',
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w400,),
+                          style: TextStyle(color: AppColors.profilColor, fontSize: 16, fontFamily: 'ALSHauss', fontStyle: FontStyle.normal, fontWeight: FontWeight.w400),
                         ),
-                      ),
+                      )
                     ],
                   ),
                 ),
@@ -130,26 +115,15 @@ class ExploreScreen extends StatelessWidget {
                 children: [
                   const Text(
                     'Kategoriýalar',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16,
-                        fontFamily: 'Rubik',
-                        fontStyle: FontStyle.normal,
-                        fontWeight: FontWeight.w600,),
+                    style: TextStyle(color: Colors.black, fontSize: 16, fontFamily: 'ALSHauss', fontStyle: FontStyle.normal, fontWeight: FontWeight.w600),
                   ),
                   TextButton(
                     onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const AllProducts(),),);
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => const AllProducts()));
                     },
                     child: const Text(
                       'hemmesi',
-                      style: TextStyle(
-                          color: AppColors.mainColor,
-                          fontSize: 14,
-                          fontFamily: 'Rubik',
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.w400,),
+                      style: TextStyle(color: AppColors.mainColor, fontSize: 14, fontFamily: 'ALSHauss', fontStyle: FontStyle.normal, fontWeight: FontWeight.w400),
                     ),
                   ),
                 ],
@@ -167,8 +141,7 @@ class ExploreScreen extends StatelessWidget {
                 itemBuilder: (BuildContext context, int index) {
                   return InkWell(
                     onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const ItemMarket(),),);
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ItemMarket()));
                     },
                     child: Padding(
                       padding: const EdgeInsets.all(5),
@@ -181,22 +154,14 @@ class ExploreScreen extends StatelessWidget {
                             SizedBox(
                               height: 180,
                               width: MediaQuery.of(context).size.width / 2 - 40,
-                              child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(15),
-                                  child:
-                                      Image.asset('assets/images/ayakgap.png'),),
+                              child: ClipRRect(borderRadius: BorderRadius.circular(15), child: Image.asset('assets/images/ayakgap.png')),
                             ),
                             const Padding(
                               padding: EdgeInsets.only(top: 5, bottom: 5),
                               child: Text(
                                 'Aýakgap',
                                 textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 14,
-                                    fontFamily: 'Montserrat',
-                                    fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.w600,),
+                                style: TextStyle(color: Colors.black, fontSize: 14, fontFamily: 'Montserrat', fontStyle: FontStyle.normal, fontWeight: FontWeight.w600),
                               ),
                             ),
                           ],
@@ -204,10 +169,10 @@ class ExploreScreen extends StatelessWidget {
                       ),
                     ),
                   );
-                },),
+                }),
           ],
         ),
-      ),),
+      )),
     );
   }
 }
