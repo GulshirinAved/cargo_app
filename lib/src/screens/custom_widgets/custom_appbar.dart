@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
-import 'package:kargo_app/src/design/app_colors.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
@@ -35,19 +34,19 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: Text(
         title,
         style: const TextStyle(
-          fontFamily: 'ALSHauss',
-          color: AppColors.blackColor,
-          fontWeight: FontWeight.w500,
-          fontSize: 28,
+          fontFamily: 'Roboto',
+          color: Colors.black,
+          fontWeight: FontWeight.bold,
+          fontSize: 24,
         ),
       ),
       flexibleSpace: Container(
         decoration: BoxDecoration(
-          color: AppColors.whiteColor,
+          color: Colors.white,
           boxShadow: [
             BoxShadow(
               blurRadius: 20,
-              color: AppColors.greyColor.withOpacity(0.4),
+              color: Colors.grey.withOpacity(0.4),
               offset: const Offset(3, 3),
             ),
           ],

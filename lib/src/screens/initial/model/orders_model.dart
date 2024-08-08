@@ -4,8 +4,13 @@ class TripModel {
   final String pointFrom;
   final String pointTo;
   final String trackCode;
+  final String transportNumber;
   final int summarySeats;
+  final dynamic summaryPrice;
+  final String summaryKg;
+  final String summaryCube;
   final String ticketCode;
+  final String danhaoCode;
   final String location;
   final List<Point>? points;
 
@@ -15,9 +20,14 @@ class TripModel {
     required this.pointFrom,
     required this.pointTo,
     required this.trackCode,
+    required this.transportNumber,
     required this.summarySeats,
     required this.ticketCode,
     required this.location,
+    required this.summaryKg,
+    required this.summaryCube,
+    required this.summaryPrice,
+    required this.danhaoCode,
     this.points,
   });
 
@@ -25,7 +35,8 @@ class TripModel {
     final List<dynamic>? pointsJson = json['points'];
     List<Point>? points;
     if (pointsJson != null) {
-      points = pointsJson.map((pointJson) => Point.fromJson(pointJson)).toList();
+      points =
+          pointsJson.map((pointJson) => Point.fromJson(pointJson)).toList();
     }
     return TripModel(
       id: json['id'] ?? 0,
@@ -33,8 +44,14 @@ class TripModel {
       pointFrom: json['point_from'] ?? '',
       pointTo: json['point_to'] ?? '',
       trackCode: json['track_code'] ?? '',
+      transportNumber: json['transport_number'] ?? '',
       summarySeats: json['summary_seats'] ?? 0,
+      summaryKg: json['summary_kg'] ?? '',
+      summaryCube: json['summary_cube'] ?? '',
+      summaryPrice: json['summary_price'] ?? 0,
+      // images: List<String>.from(json['images']),
       ticketCode: json['ticket_code'] ?? '',
+      danhaoCode: json['danhao_code'] ?? '',
       location: json['location'] ?? '',
       points: points ?? [],
     );

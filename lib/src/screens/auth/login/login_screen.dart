@@ -1,12 +1,15 @@
+// ignore_for_file: deprecated_member_use
+
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:kargo_app/src/bottom_nav/bottom_nav_screen.dart';
-import 'package:kargo_app/src/screens/clientHome/clientHome_screen.dart';
+import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../design/app_colors.dart';
 import 'repository_login.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+  const LoginScreen({super.key});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -17,6 +20,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController passwordController = TextEditingController();
 
   bool _isHidden = true;
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   void validateAndSave() {
     final FormState? form = _formKey.currentState;
@@ -26,11 +30,64 @@ class _LoginScreenState extends State<LoginScreen> {
 
   String errorText = '';
   String errorText2 = '';
+  void _makePhoneCall(String phoneNumber) async {
+    if (await canLaunch(phoneNumber)) {
+      await launch(phoneNumber);
+    } else {}
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    // fetchData();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(kToolbarHeight),
+        child: Container(
+          decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                color: Colors.blueGrey.withOpacity(0.1),
+                spreadRadius: 3,
+                blurRadius: 8,
+                offset: const Offset(0, 3),
+              ),
+            ],
+          ),
+          child: AppBar(
+            backgroundColor: Colors.white,
+            toolbarHeight: 70,
+            elevation: 0,
+            centerTitle: true,
+            iconTheme: const IconThemeData(color: AppColors.profilColor, size: 30),
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(
+                bottom: Radius.circular(15),
+              ),
+            ),
+            title: Text(
+              'login'.tr(),
+              style: const TextStyle(
+                color: Colors.black,
+                fontSize: 20,
+                fontFamily: 'Roboto',
+                fontStyle: FontStyle.normal,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ),
+        ),
+      ),
       body: SafeArea(
         child: Container(
           decoration: const BoxDecoration(
@@ -64,12 +121,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Padding(
-                          padding: EdgeInsets.only(top: 30),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 30),
                           child: Center(
                             child: Text(
-                              'Ulgama gir',
-                              style: TextStyle(
+                              'login'.tr(),
+                              style: const TextStyle(
                                 color: Colors.black,
                                 fontSize: 25,
                                 fontFamily: 'Roboto',
@@ -180,7 +237,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     enabledBorder: InputBorder.none,
                                     errorBorder: InputBorder.none,
                                     disabledBorder: InputBorder.none,
-                                    hintText: 'Açar sözi',
+                                    hintText: 'key_word'.tr(),
                                     hintStyle: const TextStyle(
                                       color: AppColors.authTextColor,
                                       fontSize: 18,
@@ -229,15 +286,15 @@ class _LoginScreenState extends State<LoginScreen> {
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(25.0),
                                     ),
-                                    title: const Column(
+                                    title: Column(
                                       crossAxisAlignment: CrossAxisAlignment.center,
                                       children: [
                                         Padding(
-                                          padding: EdgeInsets.all(10.0),
+                                          padding: const EdgeInsets.all(10.0),
                                           child: Text(
-                                            'Açar sözüni dikeltmek üçin administrator bilen habarlaşyň:',
+                                            'admestrator_call'.tr(),
                                             textAlign: TextAlign.center,
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                               color: Colors.black,
                                               fontSize: 16,
                                               fontFamily: 'Roboto',
@@ -246,23 +303,41 @@ class _LoginScreenState extends State<LoginScreen> {
                                             ),
                                           ),
                                         ),
-                                        Row(
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsets.all(10.0),
-                                              child: Text(
-                                                '+993 64 42 23 12',
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 20,
-                                                  fontFamily: 'Roboto',
-                                                  fontStyle: FontStyle.normal,
-                                                  fontWeight: FontWeight.w700,
+                                        InkWell(
+                                          onTap: () {
+                                            _makePhoneCall(
+                                              'tel:+993 71 35 33 75',
+                                            );
+                                          },
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              const Padding(
+                                                padding: EdgeInsets.all(10.0),
+                                                child: Text(
+                                                  '+993 71 35 33 75',
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 20,
+                                                    fontFamily: 'Roboto',
+                                                    fontStyle: FontStyle.normal,
+                                                    fontWeight: FontWeight.w700,
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                          ],
+                                              Padding(
+                                                padding: const EdgeInsets.all(8.0),
+                                                child: SizedBox(
+                                                  height: 35,
+                                                  width: 35,
+                                                  child: Image.asset(
+                                                    'assets/images/green_phone.png',
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -270,9 +345,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                 },
                               );
                             },
-                            child: const Text(
-                              'Açar sözüni dikeltmek',
-                              style: TextStyle(
+                            child: Text(
+                              'restore_key'.tr(),
+                              style: const TextStyle(
                                 color: AppColors.authTextColor,
                                 fontSize: 14,
                                 fontFamily: 'Roboto',
@@ -282,70 +357,63 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                         ),
-                        InkWell(
-                          onTap: () {
-                            if (passwordController.text.isEmpty) {
-                              setState(() {
-                                errorText = 'Phone number is empty.';
-                              });
-                            }
-                            if (phoneController.text.isEmpty) {
-                              setState(() {
-                                errorText2 = 'Password is empty.';
-                              });
-                            }
-                            if (passwordController.text.isNotEmpty && phoneController.text.isNotEmpty) {
-                              LoginRepository()
-                                  .login(
-                                context,
-                                phoneController.text,
-                                passwordController.text,
-                              )
-                                  .then((isCollector) {
-                                if (isCollector) {
-                                  Navigator.of(context).pushReplacement(
-                                    MaterialPageRoute(
-                                      builder: (_) => const ClientHomeScreen(),
-                                    ),
-                                  );
-                                } else {
-                                  Navigator.of(context).push(
-                                    MaterialPageRoute(
-                                      builder: (context) => const BottomNavScreen(),
-                                    ),
-                                  );
+                        Selector<LoginRepository, bool>(
+                          selector: (context, login) => login.isLoading,
+                          builder: (_, isLoading, __) {
+                            return InkWell(
+                              onTap: () {
+                                if (passwordController.text.isEmpty) {
+                                  setState(() {
+                                    errorText = 'phone_error'.tr();
+                                  });
                                 }
-                              });
-                            } else {}
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                              top: 40,
-                              right: 20,
-                              left: 20,
-                              bottom: 30,
-                            ),
-                            child: Container(
-                              height: 65,
-                              width: MediaQuery.of(context).size.width,
-                              decoration: BoxDecoration(
-                                color: AppColors.mainColor,
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: const Center(
-                                child: Text(
-                                  'Ulgama gir',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 16,
-                                    fontFamily: 'Roboto',
-                                    fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.w700,
+                                if (phoneController.text.isEmpty) {
+                                  setState(() {
+                                    errorText2 = 'password_error'.tr();
+                                  });
+                                }
+                                if (passwordController.text.isNotEmpty && phoneController.text.isNotEmpty) {
+                                  LoginRepository().login(
+                                    context,
+                                    phoneController.text,
+                                    passwordController.text,
+                                  );
+                                } else {}
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                  top: 40,
+                                  right: 20,
+                                  left: 20,
+                                  bottom: 30,
+                                ),
+                                child: Container(
+                                  height: 55,
+                                  width: MediaQuery.of(context).size.width,
+                                  decoration: BoxDecoration(
+                                    color: AppColors.mainColor,
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  child: Center(
+                                    child: isLoading == false
+                                        ? Text(
+                                            'log_in'.tr(),
+                                            style: const TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 16,
+                                              fontFamily: 'Roboto',
+                                              fontStyle: FontStyle.normal,
+                                              fontWeight: FontWeight.w700,
+                                            ),
+                                          )
+                                        : const CircularProgressIndicator(
+                                            color: Colors.white,
+                                          ),
                                   ),
                                 ),
                               ),
-                            ),
-                          ),
+                            );
+                          },
                         ),
                       ],
                     ),

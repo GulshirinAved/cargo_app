@@ -3,11 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kargo_app/src/design/app_colors.dart';
-import 'package:kargo_app/src/screens/CustomWidgets/client_bottomSheet.dart';
-import 'package:kargo_app/src/screens/CustomWidgets/custom_appbar.dart';
 import 'package:kargo_app/src/screens/clientHome/clientHome_controller.dart';
 import 'package:kargo_app/src/screens/clientHome/components/clientInfoCard_slider.dart';
 import 'package:kargo_app/src/screens/clientHome/components/location_slider.dart';
+import 'package:kargo_app/src/screens/custom_widgets/custom_appbar.dart';
 
 class ClientHomeScreen extends StatefulWidget {
   const ClientHomeScreen({Key? key}) : super(key: key);
@@ -18,6 +17,7 @@ class ClientHomeScreen extends StatefulWidget {
 
 class _ClientHomeScreenState extends State<ClientHomeScreen> {
   final ClientHomeController _clientHomeController = Get.put(ClientHomeController());
+
   @override
   void initState() {
     super.initState();
@@ -26,18 +26,17 @@ class _ClientHomeScreenState extends State<ClientHomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: AppColors.scaffoldBackColor,
-      appBar: CustomAppBar(
+    return Scaffold(
+      backgroundColor: AppColors.searchColor,
+      appBar: const CustomAppBar(
         title: 'Müşderiler',
       ),
       body: Column(
         children: [
           LocationSlider(),
-          ClientInfoCardSlider(),
+          const ClientInfoCardSlider(),
         ],
       ),
-      bottomSheet: CustomClientBottomSheet(),
     );
   }
 }

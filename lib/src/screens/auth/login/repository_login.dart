@@ -1,44 +1,91 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:kargo_app/src/screens/CustomWidgets/widgets.dart';
+import 'package:kargo_app/src/screens/clientHome/clientHome_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class LoginRepository {
+import '../../../bottom_nav/bottom_nav_screen.dart';
+import '../../../design/constants.dart';
+
+class LoginRepository with ChangeNotifier {
   String? tokens;
   bool isLoading = false;
   static Dio dio = Dio();
+  String? errorMessage;
 
   Future<bool> login(
     BuildContext context,
     String phone,
     String password,
   ) async {
+    isLoading = true;
     try {
+      notifyListeners();
+      await Future.delayed(const Duration(seconds: 2));
       final response = await dio.post(
-        'https://106cargo.com.tm/api/auth/login',
+        '${Constants.baseUrl}/auth/login',
         data: jsonEncode({'phone': phone, 'password': password}),
         options: Options(
-          headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
+          headers: {
+            'Content-Type': 'application/json',
+          },
         ),
       );
-      isLoading = true;
+
+      notifyListeners();
+
       if (response.statusCode == 200) {
         isLoading = false;
         final SharedPreferences preferences = await SharedPreferences.getInstance();
 
-        tokens = response.data['data']['token'];
+        tokens = response.data!['data']['token'];
         await preferences.setString('token', tokens!);
         await preferences.setBool('is_collector', response.data['data']['user']['is_collector']!);
 
+        notifyListeners();
+        print(response.data['data']['user']['is_collector']);
+        final bool isCollector = bool.parse(response.data['data']['user']['is_collector'].toString());
+        if (isCollector) {
+          await Navigator.of(context).pushReplacement(
+            MaterialPageRoute(
+              builder: (_) => const ClientHomeScreen(),
+            ),
+          );
+        } else {
+          await Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => const BottomNavScreen(),
+            ),
+          );
+        }
         return response.data['data']['user']['is_collector'];
+      } else {
+        await Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => const BottomNavScreen(),
+          ),
+        );
+        return false;
       }
     } on DioException catch (e) {
       isLoading = false;
-      showSnackBar('Ýalňyş', 'Ulanyjy maglumatlaryny doly we dogry şekilde dolduruň', Colors.red);
 
-      throw Exception(e);
+      if (e.response != null) {
+        final snackBar = SnackBar(
+          backgroundColor: Colors.red,
+          content: Text(
+            e.response!.data['message'],
+            style: const TextStyle(color: Colors.white),
+          ),
+        );
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        notifyListeners();
+      }
+
+      notifyListeners();
     }
     return false;
   }
@@ -48,7 +95,7 @@ class LogOutRepository {
   bool isLoading = false;
   static Dio dio = Dio();
 
-  Future<bool?> logOut(
+  Future<void> logOut(
     BuildContext context,
     String tokens,
   ) async {
@@ -57,7 +104,7 @@ class LogOutRepository {
     };
     try {
       final response = await dio.post(
-        'https://106cargo.com.tm/api/auth/logout',
+        '${Constants.baseUrl}/auth/logout',
         options: Options(headers: headers),
       );
       isLoading = true;
@@ -65,14 +112,18 @@ class LogOutRepository {
       if (response.statusCode == 200) {
         isLoading = false;
         final SharedPreferences preferences = await SharedPreferences.getInstance();
-        preferences.remove('token');
-
-        return response.statusCode == 200 ? true : false;
+        await preferences.remove('token');
+        await Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(
+            builder: (context) => const BottomNavScreen(),
+          ),
+          (route) => false,
+        );
+        return;
       }
-    } on DioException catch (e) {
+    } on DioException {
       isLoading = false;
-      throw Exception(e);
     }
-    return false;
+    return;
   }
 }

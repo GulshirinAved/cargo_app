@@ -1,8 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../design/app_colors.dart';
 import '../design/custom_icon.dart';
 
+// ignore: must_be_immutable
 class BottomNavbarButton extends StatefulWidget {
   final Function() onTapp;
   final int selectedIndex;
@@ -22,10 +24,9 @@ class BottomNavbarButton extends StatefulWidget {
 
 class _BottomNavbarButtonState extends State<BottomNavbarButton> {
   List<String> title = [
-    'Sargyt',
-    'Market',
-    'Biz barada',
-    'Profil',
+    'order'.tr(),
+    'about'.tr(),
+    'profile'.tr(),
   ];
 
   List iconsLight = [
@@ -36,13 +37,7 @@ class _BottomNavbarButtonState extends State<BottomNavbarButton> {
       color: AppColors.disableColor,
     ),
     CustomIcon(
-      title: 'assets/icons/compass.svg',
-      height: 26,
-      width: 26,
-      color: AppColors.disableColor,
-    ),
-    CustomIcon(
-      title: 'assets/icons/about.svg',
+      title: 'assets/icons/logo.svg',
       height: 26,
       width: 26,
       color: AppColors.disableColor,
@@ -63,15 +58,9 @@ class _BottomNavbarButtonState extends State<BottomNavbarButton> {
       color: AppColors.mainColor,
     ),
     CustomIcon(
-      title: 'assets/icons/compass.svg',
-      height: 26,
-      width: 26,
-      color: AppColors.mainColor,
-    ),
-    CustomIcon(
-      title: 'assets/icons/about.svg',
-      height: 26,
-      width: 26,
+      title: 'assets/icons/logo.svg',
+      height: 35,
+      width: 35,
       color: AppColors.mainColor,
     ),
     CustomIcon(
@@ -122,7 +111,7 @@ class _BottomNavbarButtonState extends State<BottomNavbarButton> {
                         color: widget.index == widget.selectedIndex ? AppColors.mainColor : AppColors.disableColor,
                         fontWeight: widget.index == widget.selectedIndex ? FontWeight.w600 : FontWeight.w400,
                         fontStyle: FontStyle.normal,
-                        fontFamily: 'ALSHauss',
+                        fontFamily: 'Roboto',
                         fontSize: 12,
                       ),
                     ),

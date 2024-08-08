@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
 import 'package:kargo_app/src/design/app_colors.dart';
@@ -16,7 +17,7 @@ SnackbarController showSnackBar(String title, String subtitle, Color color) {
         ? const SizedBox.shrink()
         : Text(
             title.tr,
-            style: const TextStyle(fontFamily: 'ALSHauss', fontWeight: FontWeight.bold, fontSize: 18, color: Colors.white),
+            style: const TextStyle(fontFamily: 'Roboto', fontWeight: FontWeight.bold, fontSize: 18, color: Colors.white),
           ),
     messageText: Text(
       subtitle.tr,
@@ -84,6 +85,17 @@ PreferredSize appBar() {
   );
 }
 
+Padding customDivider() {
+  return Padding(
+    padding: const EdgeInsets.only(top: 40, bottom: 15, right: 10),
+    child: Container(
+      color: AppColors.profilColor.withOpacity(0.1),
+      width: double.infinity,
+      height: 1.5,
+    ),
+  );
+}
+
 CustomFooter footer() {
   return CustomFooter(
     builder: (BuildContext context, LoadStatus? mode) {
@@ -92,7 +104,7 @@ CustomFooter footer() {
         body = const Text('Garaşyň...');
       } else if (mode == LoadStatus.loading) {
         body = const CircularProgressIndicator(
-          color: AppColors.blueColor,
+          color: AppColors.mainColor,
         );
       } else if (mode == LoadStatus.failed) {
         body = const Text('Load Failed!Click retry!');
@@ -109,10 +121,19 @@ CustomFooter footer() {
   );
 }
 
-Center emptyData() => const Center(child: Text('No data available'));
+Center emptyDataMine() => const Center(child: Text('No data available'));
 
 Center hasError() {
   return const Center(
     child: Text('Error fetching data'),
+  );
+}
+
+Widget loading() {
+  return const Center(
+    child: SpinKitFadingCircle(
+      color: Colors.grey,
+      size: 50.0,
+    ),
   );
 }

@@ -1,18 +1,21 @@
+import 'package:easy_localization/easy_localization.dart';
+
 class Items {
-  static const WelcomeData = [
+  // ignore: non_constant_identifier_names
+  static List<Map<String, String>> WelcomeData = [
     {
-      'title': 'Onlaýn treking',
-      'text': 'Her ädimde iberilen harytlaryňyzy hakyky wagtda görmek',
+      'title': 'online_trecking'.tr(),
+      'text': 'welcome_text'.tr(),
       'image': 'assets/images/image1.png',
     },
     {
-      'title': 'Onlaýn treking',
-      'text': 'Her ädimde iberilen harytlaryňyzy hakyky wagtda görmek',
+      'title': 'online_trecking'.tr(),
+      'text': 'welcome_text'.tr(),
       'image': 'assets/images/image2.png',
     },
     {
-      'title': 'Onlaýn treking',
-      'text': 'Her ädimde iberilen harytlaryňyzy hakyky wagtda görmek',
+      'title': 'online_trecking'.tr(),
+      'text': 'welcome_text'.tr(),
       'image': 'assets/images/image3.png',
     },
   ];

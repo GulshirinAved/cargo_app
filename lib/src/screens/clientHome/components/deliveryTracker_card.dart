@@ -2,9 +2,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:kargo_app/src/design/app_colors.dart';
+import 'package:kargo_app/src/screens/auth/components/custom_text_fild.dart';
 import 'package:kargo_app/src/screens/clientHome/components/custom_button.dart';
 import 'package:kargo_app/src/screens/clientHome/components/numberStepper.dart';
 import 'package:kargo_app/src/screens/clientHome/data/models/getOneOrder_model.dart';
+import 'package:kargo_app/src/screens/clientHome/data/services/region_service.dart';
 
 class DeliveryTrackerCard extends StatelessWidget {
   final AsyncSnapshot<List<Datum>> snapshot;
@@ -48,7 +50,7 @@ class DeliveryTrackerCard extends StatelessWidget {
                     const TextSpan(
                       text: 'ID: ',
                       style: TextStyle(
-                        fontFamily: 'ALSHauss',
+                        fontFamily: 'Roboto',
                         fontWeight: FontWeight.w400,
                         fontSize: 14,
                       ),
@@ -56,7 +58,7 @@ class DeliveryTrackerCard extends StatelessWidget {
                     TextSpan(
                       text: snapshot.data![index].ticketCode.toString(),
                       style: const TextStyle(
-                        fontFamily: 'ALSHauss',
+                        fontFamily: 'Roboto',
                         fontWeight: FontWeight.w400,
                         fontSize: 14,
                       ),
@@ -70,7 +72,7 @@ class DeliveryTrackerCard extends StatelessWidget {
                     const TextSpan(
                       text: 'Maşyn №',
                       style: TextStyle(
-                        fontFamily: 'ALSHauss',
+                        fontFamily: 'Roboto',
                         fontWeight: FontWeight.w400,
                         fontSize: 14,
                       ),
@@ -78,7 +80,7 @@ class DeliveryTrackerCard extends StatelessWidget {
                     TextSpan(
                       text: snapshot.data![index].transportNumber ?? '',
                       style: const TextStyle(
-                        fontFamily: 'ALSHauss',
+                        fontFamily: 'Roboto',
                         fontWeight: FontWeight.w500,
                         fontSize: 14,
                       ),
@@ -93,7 +95,7 @@ class DeliveryTrackerCard extends StatelessWidget {
             snapshot.data![index].date ?? '',
             style: const TextStyle(
               color: AppColors.lightBlueColor,
-              fontFamily: 'ALSHauss',
+              fontFamily: 'Roboto',
               fontWeight: FontWeight.w400,
               fontSize: 12,
             ),
@@ -105,7 +107,7 @@ class DeliveryTrackerCard extends StatelessWidget {
               Text(
                 snapshot.data![index].pointFrom ?? '',
                 style: const TextStyle(
-                  fontFamily: 'ALSHauss',
+                  fontFamily: 'Roboto',
                   fontWeight: FontWeight.w500,
                   fontSize: 16,
                 ),
@@ -121,7 +123,7 @@ class DeliveryTrackerCard extends StatelessWidget {
               Text(
                 snapshot.data![index].pointTo ?? '',
                 style: const TextStyle(
-                  fontFamily: 'ALSHauss',
+                  fontFamily: 'Roboto',
                   fontWeight: FontWeight.w500,
                   fontSize: 16,
                 ),
@@ -148,7 +150,7 @@ class DeliveryTrackerCard extends StatelessWidget {
                     const TextSpan(
                       text: 'Ýer: ',
                       style: TextStyle(
-                        fontFamily: 'ALSHauss',
+                        fontFamily: 'Roboto',
                         fontWeight: FontWeight.w400,
                         fontSize: 14,
                       ),
@@ -156,7 +158,7 @@ class DeliveryTrackerCard extends StatelessWidget {
                     TextSpan(
                       text: snapshot.data![index].summarySeats.toString(),
                       style: const TextStyle(
-                        fontFamily: 'ALSHauss',
+                        fontFamily: 'Roboto',
                         fontWeight: FontWeight.w500,
                         fontSize: 14,
                       ),
@@ -169,7 +171,7 @@ class DeliveryTrackerCard extends StatelessWidget {
                   const Text(
                     'Kub: ',
                     style: TextStyle(
-                      fontFamily: 'ALSHauss',
+                      fontFamily: 'Roboto',
                       fontWeight: FontWeight.w400,
                       fontSize: 14,
                     ),
@@ -177,7 +179,7 @@ class DeliveryTrackerCard extends StatelessWidget {
                   Text(
                     snapshot.data![index].summaryCube.toString(),
                     style: const TextStyle(
-                      fontFamily: 'ALSHauss',
+                      fontFamily: 'Roboto',
                       fontWeight: FontWeight.w400,
                       fontSize: 14,
                     ),
@@ -189,7 +191,7 @@ class DeliveryTrackerCard extends StatelessWidget {
                   const Text(
                     'Baha: ',
                     style: TextStyle(
-                      fontFamily: 'ALSHauss',
+                      fontFamily: 'Roboto',
                       fontWeight: FontWeight.w400,
                       fontSize: 14,
                     ),
@@ -197,7 +199,7 @@ class DeliveryTrackerCard extends StatelessWidget {
                   Text(
                     snapshot.data![index].summaryPrice.toString(),
                     style: const TextStyle(
-                      fontFamily: 'ALSHauss',
+                      fontFamily: 'Roboto',
                       fontWeight: FontWeight.w400,
                       fontSize: 14,
                     ),
@@ -211,33 +213,178 @@ class DeliveryTrackerCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
+                Expanded(
+                  flex: 2,
+                  child: Row(
+                    children: [
+                      SvgPicture.asset(
+                        'assets/icons/map_pin.svg',
+                        color: AppColors.blueColor,
+                      ),
+                      Expanded(
+                        child: Text(
+                          snapshot.data![index].points![currentStepIndex].point.toString(),
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            color: AppColors.blueColor,
+                            fontFamily: 'Roboto',
+                            fontWeight: FontWeight.w500,
+                            fontSize: 14,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  flex: 3,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          showPayOneCargo(context, snapshot.data![index].summaryPrice.toString(), snapshot.data![index].id.toString());
+                        },
+                        child: Container(
+                          height: 36,
+                          margin: const EdgeInsets.only(right: 10),
+                          decoration: BoxDecoration(
+                            color: AppColors.blueColor,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          alignment: Alignment.center,
+                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+                          child: const Text(
+                            'Töle',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: AppColors.whiteColor,
+                              fontFamily: 'Roboto',
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                      ),
+                      CustomButton(
+                        backColor: Colors.white,
+                        textColor: AppColors.blueColor,
+                        onTap: () {
+                          // Navigator.of(context).push(
+                          //   MaterialPageRoute(
+                          //     builder: (context) => InfoOrderMine(orderInfo: TripDataIdModel.fromJson(snapshot.data![index])),
+                          //   ),
+                          // );
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+        ],
+      ),
+    );
+  }
+
+  Future showPayOneCargo(BuildContext context, String text, String ID) async {
+    final TextEditingController controller = TextEditingController();
+    controller.text = text;
+    await showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(25.0),
+          ),
+          title: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Padding(
+                padding: EdgeInsets.all(10.0),
+                child: Text(
+                  'Tölegi tassykläň',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16,
+                    fontFamily: 'Roboto',
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              CustomTextFild(hint: '', controller: controller),
+              Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SvgPicture.asset(
-                      'assets/icons/map_pin.svg',
-                      color: AppColors.blueColor,
+                    InkWell(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Container(
+                        height: 40,
+                        width: MediaQuery.of(context).size.width / 3 - 20,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: AppColors.redColor,
+                        ),
+                        child: const Center(
+                          child: Text(
+                            'Ýap',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontFamily: 'Roboto',
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width / 3,
-                      child: Text(
-                        snapshot.data![index].points![currentStepIndex].point.toString(),
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          color: AppColors.blueColor,
-                          fontFamily: 'ALSHauss',
-                          fontWeight: FontWeight.w500,
-                          fontSize: 14,
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    InkWell(
+                      onTap: () async {
+                        final instance = RegionService();
+                        await instance.payOneCargoPOST(id: ID, amount: controller.text);
+                        Navigator.pop(context);
+                      },
+                      child: Container(
+                        height: 40,
+                        width: MediaQuery.of(context).size.width / 3 - 20,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: AppColors.mainColor,
+                        ),
+                        child: const Center(
+                          child: Text(
+                            'Tassykla',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: AppColors.whiteColor,
+                              fontSize: 16,
+                              fontFamily: 'Roboto',
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
                         ),
                       ),
                     ),
                   ],
                 ),
-                const CustomButton(),
-              ],
-            ),
-        ],
-      ),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

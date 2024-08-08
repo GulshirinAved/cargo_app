@@ -1,9 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../design/app_colors.dart';
 
 class ReadMore extends StatelessWidget {
-  const ReadMore({Key? key}) : super(key: key);
+  const ReadMore({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,21 +28,21 @@ class ReadMore extends StatelessWidget {
             toolbarHeight: 70,
             elevation: 0,
             centerTitle: true,
-            iconTheme:
-                const IconThemeData(color: AppColors.profilColor, size: 30),
+            iconTheme: const IconThemeData(color: AppColors.profilColor, size: 30),
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(
                 bottom: Radius.circular(15),
               ),
             ),
-            title: const Text(
-              'Aýakgap',
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
-                  fontFamily: 'Roboto',
-                  fontStyle: FontStyle.normal,
-                  fontWeight: FontWeight.w700),
+            title: Text(
+              'shoose'.tr(),
+              style: const TextStyle(
+                color: Colors.black,
+                fontSize: 20,
+                fontFamily: 'Roboto',
+                fontStyle: FontStyle.normal,
+                fontWeight: FontWeight.w700,
+              ),
             ),
           ),
         ),

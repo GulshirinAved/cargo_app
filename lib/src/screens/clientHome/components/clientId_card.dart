@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:get/get.dart';
 import 'package:kargo_app/src/design/app_colors.dart';
+import 'package:kargo_app/src/screens/auth/components/custom_text_fild.dart';
 import 'package:kargo_app/src/screens/clientHome/clientHome_controller.dart';
 import 'package:kargo_app/src/screens/clientHome/components/custom_button.dart';
 import 'package:kargo_app/src/screens/clientHome/data/models/getOneOrder_model.dart';
@@ -23,8 +24,9 @@ class ClientIdCard extends StatefulWidget {
 
 class _ClientIdCardState extends State<ClientIdCard> {
   final ClientHomeController clientHomeController = Get.put(ClientHomeController());
-
+  bool value = false;
   int _selectedIndex = -1;
+  String tickedIDMine = '';
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -56,7 +58,7 @@ class _ClientIdCardState extends State<ClientIdCard> {
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
-                    fontFamily: 'ALSHauss',
+                    fontFamily: 'Roboto',
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
                   ),
@@ -66,7 +68,7 @@ class _ClientIdCardState extends State<ClientIdCard> {
                 '${widget.user.totalDebt}',
                 style: const TextStyle(
                   color: AppColors.redColor,
-                  fontFamily: 'ALSHauss',
+                  fontFamily: 'Roboto',
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
                 ),
@@ -75,7 +77,7 @@ class _ClientIdCardState extends State<ClientIdCard> {
           ),
           Container(
             margin: const EdgeInsets.only(top: 10, bottom: 10),
-            height: 80,
+            height: 90,
             alignment: Alignment.center,
             width: Get.width,
             child: GridView.builder(
@@ -84,43 +86,58 @@ class _ClientIdCardState extends State<ClientIdCard> {
               itemCount: widget.user.tickets!.length,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                childAspectRatio: 1 / 3.5,
+                childAspectRatio: 1 / 4,
                 mainAxisSpacing: 5,
                 crossAxisSpacing: 5,
               ),
               itemBuilder: (context, index) => GestureDetector(
                 onTap: () async {
-                  _selectedIndex = index;
-                  setState(() {});
-                  print(widget.user.tickets!);
-                  for (var a in widget.user.tickets!) {
-                    print(a.code);
+                  if (value == false) {
+                    value = true;
+                    _selectedIndex = index;
+                    setState(() {});
+                    clientHomeController.showOrderIDList.clear();
+                    tickedIDMine = widget.user.tickets![index].id.toString();
+                    await GetOneOrderService().fetchOneOrder(userId: clientHomeController.userId.value, ticketID: widget.user.tickets![index].id.toString()).then((a) {
+                      final List<Datum> list = a;
+                      clientHomeController.showOrderIDList.addAll(list);
+                    });
+                  } else {
+                    _selectedIndex = -1;
+                    value = false;
+                    setState(() {});
+                    clientHomeController.showOrderIDList.clear();
                   }
-                  clientHomeController.showOrderIDList.clear();
-                  await GetOneOrderService().fetchOneOrder(userId: clientHomeController.userId.value, ticketID: widget.user.tickets![index].id.toString()).then((a) {
-                    final List<Datum> list = a;
-
-                    clientHomeController.showOrderIDList.addAll(list);
-                  });
                 },
                 child: Container(
                   padding: const EdgeInsets.all(8),
                   alignment: Alignment.centerLeft,
                   decoration: BoxDecoration(
-                    color: _selectedIndex == index ? AppColors.blueColor : Colors.grey.shade200,
+                    color: _selectedIndex == index ? AppColors.blueColor.withOpacity(0.1) : Colors.transparent,
+                    border: Border.all(
+                      width: _selectedIndex == index ? 2 : 1,
+                      color: _selectedIndex == index ? AppColors.blueColor : Colors.grey.shade200,
+                    ),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Text(
                     'ID: ${widget.user.tickets![index].code}',
+                    overflow: TextOverflow.ellipsis,
                     style: TextStyle(
-                      color: _selectedIndex == index ? Colors.white : AppColors.blackColor,
-                      fontFamily: 'ALSHauss',
+                      color: _selectedIndex == index ? AppColors.blueColor : AppColors.blackColor,
+                      fontFamily: 'Roboto',
                       fontWeight: _selectedIndex == index ? FontWeight.bold : FontWeight.normal,
                       fontSize: 16,
                     ),
                   ),
                 ),
               ),
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.symmetric(vertical: 8),
+            child: CustomTextFildMINE(
+              tickedID: tickedIDMine,
             ),
           ),
           Center(

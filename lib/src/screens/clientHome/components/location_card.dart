@@ -18,10 +18,12 @@ class LocationCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => clientHomeController.selectLocation(
-        selectedLocation: locationName,
-        regionId: locationId,
-      ),
+      onTap: () {
+        clientHomeController.selectLocation(
+          selectedLocation: locationName,
+          regionId: locationId,
+        );
+      },
       child: Obx(
         () => Container(
           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
@@ -36,7 +38,7 @@ class LocationCard extends StatelessWidget {
             locationName,
             style: TextStyle(
               color: clientHomeController.locationName == locationName ? AppColors.blueColor : AppColors.lightBlueColor,
-              fontFamily: 'ALSHauss',
+              fontFamily: 'Roboto',
               fontWeight: clientHomeController.locationName == locationName ? FontWeight.bold : FontWeight.w500,
               fontSize: 14,
             ),

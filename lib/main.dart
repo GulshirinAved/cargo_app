@@ -1,118 +1,118 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:kargo_app/firebase_options.dart';
 import 'package:kargo_app/src/application/settings_singleton.dart';
-import 'package:kargo_app/src/core/l10n.dart';
-import 'package:kargo_app/src/design/app_colors.dart';
-import 'package:kargo_app/src/design/constants.dart';
+import 'package:kargo_app/src/core/language_delegates.dart';
+import 'package:kargo_app/src/screens/auth/register/repository_register.dart';
+import 'package:kargo_app/src/screens/initial/providers/invoice_providers.dart';
 import 'package:kargo_app/src/screens/initial/providers/orders_provider.dart';
+import 'package:kargo_app/src/screens/initial/repository/search_repository.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'src/screens/auth/login/repository_login.dart';
 import 'src/screens/auth/providers/me_provider.dart';
 import 'src/screens/initial/providers/orders_byid_provider.dart';
 import 'src/screens/language/language.dart';
 import 'src/screens/welcome/splash_screen.dart';
 
+int? initScreen;
 void main() async {
-  SystemChrome.setSystemUIOverlayStyle(
-    const SystemUiOverlayStyle(
-      systemStatusBarContrastEnforced: true,
-      systemNavigationBarContrastEnforced: true,
-      systemNavigationBarColor: AppColors.whiteColor,
-      statusBarColor: AppColors.whiteColor,
-      systemNavigationBarIconBrightness: Brightness.dark,
-      statusBarIconBrightness: Brightness.dark,
-      statusBarBrightness: Brightness.light,
-    ),
-  );
   WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
+
+  final pref = await SharedPreferences.getInstance();
+  initScreen = pref.getInt('initScreen');
+
+  await pref.setInt('initScreen', 1);
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  var pref = await SharedPreferences.getInstance();
+  final remoteConfig = FirebaseRemoteConfig.instance;
+
+  await remoteConfig.fetchAndActivate();
+  remoteConfig.onConfigUpdated.listen((event) async {
+    await remoteConfig.activate();
+  });
+  await remoteConfig.setConfigSettings(
+    RemoteConfigSettings(
+      fetchTimeout: const Duration(minutes: 1),
+      minimumFetchInterval: const Duration(seconds: 1),
+    ),
+  );
+
   SingletonSharedPreference(pref);
-  runApp(MultiProvider(
-    providers: [
-      ChangeNotifierProvider(
-        create: (_) => SettingsSingleton(),
+  runApp(
+    EasyLocalization(
+      supportedLocales: const [Locale('en'), Locale('tk'), Locale('ru')],
+      path: 'assets/languages',
+      fallbackLocale: const Locale('tk'),
+      child: MultiProvider(
+        providers: [
+          ChangeNotifierProvider(
+            create: (_) => SettingsSingleton(),
+          ),
+          ChangeNotifierProvider(create: (_) => LoginRepository()),
+          ChangeNotifierProvider(create: (_) => OrdersProvider()),
+          ChangeNotifierProvider(create: (_) => GetOrderByIdProvider()),
+          ChangeNotifierProvider(create: (_) => GetMeProvider()),
+          ChangeNotifierProvider(create: (_) => InvoiceProvider()),
+          ChangeNotifierProvider(create: (_) => RegisterRepository()),
+          ChangeNotifierProvider(create: (_) => SearchProvider()),
+        ],
+        child: const GetMaterialApp(
+          debugShowCheckedModeBanner: false,
+          home: MyApp(),
+          // UpgradeAlert(
+          //   barrierDismissible: true,
+          //   showIgnore: false,
+          //   showLater: false,
+          //   showReleaseNotes: false,
+          //   upgrader: Upgrader(
+          //     languageCode: 'ru',
+          //     countryCode: 'ru',
+          //     debugDisplayAlways: true,
+          //     messages: UpgraderMessages(code: 'ru'),
+          //   ),
+          //   child: const MyApp(),
+          // ),
+        ),
       ),
-      ChangeNotifierProvider(create: (_) => OrdersProvider()),
-      ChangeNotifierProvider(create: (_) => GetOrderByIdProvider()),
-      ChangeNotifierProvider(create: (_) => GetMeProvider()),
-    ],
-    child: const MyApp(),
-  ));
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  Future<bool> _getOnboardingStatus() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.getBool('onboarding_completed') ?? false;
-  }
-
-  Future<void> _setOnboardingStatus() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setBool('onboarding_completed', true);
-  }
-
-  // This widget is the root of your application.
+  const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
     return Consumer<SettingsSingleton>(
       builder: (_, settings, __) {
-        return GetMaterialApp(
-          title: 'Flutter Demo',
+        return MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
-              primarySwatch: Colors.blue,
-              appBarTheme: const AppBarTheme(
-                  color: AppColors.whiteColor,
-                  systemOverlayStyle: SystemUiOverlayStyle(
-                    systemStatusBarContrastEnforced: true,
-                    systemNavigationBarContrastEnforced: true,
-                    systemNavigationBarColor: AppColors.whiteColor,
-                    statusBarColor: AppColors.whiteColor,
-                    systemNavigationBarIconBrightness: Brightness.dark,
-                    statusBarIconBrightness: Brightness.dark,
-                    statusBarBrightness: Brightness.light,
-                  ))),
-          initialRoute: '/',
+              // primarySwatch: Colors.blue,
+              ),
+          initialRoute: initScreen == 0 || initScreen == null ? 'first' : '/',
           routes: {
-            '/': (context) => FutureBuilder<bool>(
-                  future: _getOnboardingStatus(),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Container(); // Placeholder widget while checking the status
-                    } else if (!snapshot.data!) {
-                      _setOnboardingStatus();
-                      return const LanguageScreen();
-                    } else {
-                      return const SpalshScreen();
-                    }
-                  },
-                ), // Replace with your main content screen widget
+            '/': (context) => const SpalshScreen(),
+            'first': (context) => const LanguageScreen(),
           },
-          supportedLocales: AppConstants.supportedLocales,
-          locale: settings.locale,
-          localizationsDelegates: const [
-            AppLocalizations.delegate,
-            TmMaterialLocalizations.delegate,
-            TmCupertinoLocalizations.delegate,
-            ...GlobalMaterialLocalizations.delegates,
+          localizationsDelegates: [
+            ...context.localizationDelegates,
+            MaterialLocalizationTkDelegate(),
+            CupertinoLocalizationTkDelegate(),
+            GlobalMaterialLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
           ],
-          builder: (context, child) => MediaQuery(
-            data: MediaQuery.of(context)
-                .copyWith(textScaler: TextScaler.noScaling),
-            child: child!,
-          ),
+          supportedLocales: context.supportedLocales,
+          locale: context.locale,
         );
       },
     );

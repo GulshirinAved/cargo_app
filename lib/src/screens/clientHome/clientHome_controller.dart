@@ -6,6 +6,7 @@ import 'package:kargo_app/src/screens/clientHome/data/services/region_service.da
 
 class ClientHomeController extends GetxController {
   RxString locationName = ''.obs;
+  RxString urlParamsString = ''.obs;
   RxString locationId = ''.obs;
   RxString userId = ''.obs;
   RxInt loading = 0.obs;
@@ -13,6 +14,7 @@ class ClientHomeController extends GetxController {
   RxInt limit = 10.obs;
   RxList<Point> regionNames = <Point>[].obs;
   RxList showUsersList = [].obs;
+  RxList<oneOrder.PaymentModel> paymentHistory = <oneOrder.PaymentModel>[].obs;
   RxList<oneOrder.Datum> showOrderIDList = <oneOrder.Datum>[].obs;
   RxBool valueList = false.obs;
   Future<void> selectLocation({
@@ -21,8 +23,10 @@ class ClientHomeController extends GetxController {
   }) async {
     locationName.value = selectedLocation;
     locationId.value = regionId;
-    page.value = 0;
+    page.value = 1;
     loading.value = 0;
+    showUsersList.clear();
+
     await RegionService().fetchRegion(id: locationId.value, limit: limit.value, page: page.value);
   }
 

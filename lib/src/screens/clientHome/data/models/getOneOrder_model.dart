@@ -13,24 +13,19 @@ class RegionModel {
     this.user,
   });
 
-  factory RegionModel.fromRawJson(String str) =>
-      RegionModel.fromJson(json.decode(str));
+  factory RegionModel.fromRawJson(String str) => RegionModel.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
   factory RegionModel.fromJson(Map<String, dynamic> json) => RegionModel(
-        data: json['data'] == null
-            ? []
-            : List<Datum>.from(json['data']!.map((x) => Datum.fromJson(x))),
+        data: json['data'] == null ? [] : List<Datum>.from(json['data']!.map((x) => Datum.fromJson(x))),
         links: json['links'] == null ? null : Links.fromJson(json['links']),
         meta: json['meta'] == null ? null : Meta.fromJson(json['meta']),
         user: json['user'] == null ? null : User.fromJson(json['user']),
       );
 
   Map<String, dynamic> toJson() => {
-        'data': data == null
-            ? []
-            : List<dynamic>.from(data!.map((x) => x.toJson())),
+        'data': data == null ? [] : List<dynamic>.from(data!.map((x) => x.toJson())),
         'links': links?.toJson(),
         'meta': meta?.toJson(),
         'user': user?.toJson(),
@@ -94,16 +89,10 @@ class Datum {
         summaryPrice: json['summary_price'],
         summaryPaid: json['summary_paid'],
         ticketCode: json['ticket_code'],
-        images: json['images'] == null
-            ? []
-            : List<String>.from(json['images']!.map((x) => x)),
-        transportImages: json['transport_images'] == null
-            ? []
-            : List<dynamic>.from(json['transport_images']!.map((x) => x)),
+        images: json['images'] == null ? [] : List<String>.from(json['images']!.map((x) => x)),
+        transportImages: json['transport_images'] == null ? [] : List<dynamic>.from(json['transport_images']!.map((x) => x)),
         location: json['location'],
-        points: json['points'] == null
-            ? []
-            : List<Point>.from(json['points']!.map((x) => Point.fromJson(x))),
+        points: json['points'] == null ? [] : List<Point>.from(json['points']!.map((x) => Point.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -120,15 +109,10 @@ class Datum {
         'summary_price': summaryPrice,
         'summary_paid': summaryPaid,
         'ticket_code': ticketCode,
-        'images':
-            images == null ? [] : List<dynamic>.from(images!.map((x) => x)),
-        'transport_images': transportImages == null
-            ? []
-            : List<dynamic>.from(transportImages!.map((x) => x)),
+        'images': images == null ? [] : List<dynamic>.from(images!.map((x) => x)),
+        'transport_images': transportImages == null ? [] : List<dynamic>.from(transportImages!.map((x) => x)),
         'location': location,
-        'points': points == null
-            ? []
-            : List<dynamic>.from(points!.map((x) => x.toJson())),
+        'points': points == null ? [] : List<dynamic>.from(points!.map((x) => x.toJson())),
       };
 }
 
@@ -157,6 +141,44 @@ class Point {
         'point': point,
         'is_current': isCurrent,
         'date': date,
+      };
+}
+
+class PaymentModel {
+  final int? id;
+  final int? status;
+  final String? ticketCode;
+  final String? transport;
+  final String? paid;
+  final String? createdAT;
+
+  PaymentModel({
+    this.createdAT,
+    this.id,
+    this.status,
+    this.ticketCode,
+    this.transport,
+    this.paid,
+  });
+
+  factory PaymentModel.fromRawJson(String str) => PaymentModel.fromJson(json.decode(str));
+
+  factory PaymentModel.fromJson(Map<String, dynamic> json) => PaymentModel(
+        id: json['id'],
+        status: json['status'],
+        ticketCode: json['ticket_code'],
+        transport: json['transport'],
+        paid: json['paid'],
+        createdAT: json['created_at'],
+      );
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'status': status,
+        'ticket_code': ticketCode,
+        'transport': transport,
+        'paid': paid,
+        'created_at': createdAT,
       };
 }
 
@@ -221,9 +243,7 @@ class Meta {
         currentPage: json['current_page'],
         from: json['from'],
         lastPage: json['last_page'],
-        links: json['links'] == null
-            ? []
-            : List<Link>.from(json['links']!.map((x) => Link.fromJson(x))),
+        links: json['links'] == null ? [] : List<Link>.from(json['links']!.map((x) => Link.fromJson(x))),
         path: json['path'],
         perPage: json['per_page'],
         to: json['to'],
@@ -234,9 +254,7 @@ class Meta {
         'current_page': currentPage,
         'from': from,
         'last_page': lastPage,
-        'links': links == null
-            ? []
-            : List<dynamic>.from(links!.map((x) => x.toJson())),
+        'links': links == null ? [] : List<dynamic>.from(links!.map((x) => x.toJson())),
         'path': path,
         'per_page': perPage,
         'to': to,
@@ -296,16 +314,15 @@ class User {
         tickets: json['tickets'] == null
             ? []
             : List<Ticket>.from(
-                json['tickets']!.map((x) => Ticket.fromJson(x))),
+                json['tickets']!.map((x) => Ticket.fromJson(x)),
+              ),
       );
 
   Map<String, dynamic> toJson() => {
         'user_name': userName,
         'total_debt': totalDebt,
         'phone': phone,
-        'tickets': tickets == null
-            ? []
-            : List<dynamic>.from(tickets!.map((x) => x.toJson())),
+        'tickets': tickets == null ? [] : List<dynamic>.from(tickets!.map((x) => x.toJson())),
       };
 }
 

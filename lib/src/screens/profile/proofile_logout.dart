@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kargo_app/src/design/app_colors.dart';
 
@@ -5,7 +6,7 @@ import '../auth/login/login_screen.dart';
 import '../auth/register/register_screen.dart';
 
 class ProfileLogOut extends StatefulWidget {
-  const ProfileLogOut({Key? key}) : super(key: key);
+  const ProfileLogOut({super.key});
 
   @override
   State<ProfileLogOut> createState() => _ProfileLogOutState();
@@ -39,10 +40,10 @@ class _ProfileLogOutState extends State<ProfileLogOut> {
                 bottom: Radius.circular(15),
               ),
             ),
-            title: const Center(
+            title: Center(
               child: Text(
-                'Profil',
-                style: TextStyle(
+                'profile'.tr(),
+                style: const TextStyle(
                   color: Colors.black,
                   fontSize: 20,
                   fontFamily: 'Roboto',
@@ -62,10 +63,10 @@ class _ProfileLogOutState extends State<ProfileLogOut> {
             SizedBox(
               height: MediaQuery.of(context).size.height / 6,
             ),
-            const Center(
+            Center(
               child: Text(
-                'Şahsy otag',
-                style: TextStyle(
+                'my_office'.tr(),
+                style: const TextStyle(
                   color: Colors.black,
                   fontSize: 20,
                   fontFamily: 'Roboto',
@@ -74,12 +75,12 @@ class _ProfileLogOutState extends State<ProfileLogOut> {
                 ),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(left: 40, right: 40, top: 20),
+            Padding(
+              padding: const EdgeInsets.only(left: 40, right: 40, top: 20),
               child: Text(
-                'Goşundynyň mümkinçiliklerini doly ulanmak üçin ulgama giriň ýa-da akkaunt dörediň',
+                'create_account_info'.tr(),
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                   color: AppColors.profilColor,
                   fontSize: 16,
                   fontFamily: 'Roboto',
@@ -100,16 +101,16 @@ class _ProfileLogOutState extends State<ProfileLogOut> {
               child: Padding(
                 padding: const EdgeInsets.only(top: 40, right: 20, left: 20),
                 child: Container(
-                  height: 55,
+                  height: 50,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                     color: AppColors.mainColor,
                     borderRadius: BorderRadius.circular(15),
                   ),
-                  child: const Center(
+                  child: Center(
                     child: Text(
-                      'Ulgama gir',
-                      style: TextStyle(
+                      'login'.tr(),
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 16,
                         fontFamily: 'Roboto',
@@ -132,17 +133,17 @@ class _ProfileLogOutState extends State<ProfileLogOut> {
               child: Padding(
                 padding: const EdgeInsets.only(top: 20, right: 20, left: 20),
                 child: Container(
-                  height: 55,
+                  height: 50,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                     border: Border.all(color: AppColors.borderColor),
                     color: AppColors.authRegisterColor,
                     borderRadius: BorderRadius.circular(15),
                   ),
-                  child: const Center(
+                  child: Center(
                     child: Text(
-                      'Akkaunt döret',
-                      style: TextStyle(
+                      'create_account'.tr(),
+                      style: const TextStyle(
                         color: AppColors.mainColor,
                         fontSize: 16,
                         fontFamily: 'Roboto',

@@ -4,7 +4,7 @@ import 'package:kargo_app/src/design/custom_icon.dart';
 import '../../../design/app_colors.dart';
 
 class Notifications extends StatelessWidget {
-  const Notifications({Key? key}) : super(key: key);
+  const Notifications({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +28,7 @@ class Notifications extends StatelessWidget {
             toolbarHeight: 70,
             elevation: 0,
             centerTitle: true,
-            iconTheme:
-                const IconThemeData(color: AppColors.profilColor, size: 30),
+            iconTheme: const IconThemeData(color: AppColors.profilColor, size: 30),
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(
                 bottom: Radius.circular(15),
@@ -38,11 +37,12 @@ class Notifications extends StatelessWidget {
             title: const Text(
               'Bildirişler',
               style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
-                  fontFamily: 'Roboto',
-                  fontStyle: FontStyle.normal,
-                  fontWeight: FontWeight.w700),
+                color: Colors.black,
+                fontSize: 20,
+                fontFamily: 'Roboto',
+                fontStyle: FontStyle.normal,
+                fontWeight: FontWeight.w700,
+              ),
             ),
           ),
         ),
@@ -73,114 +73,114 @@ class Notifications extends StatelessWidget {
                     child: Text(
                       '03.08.2023',
                       style: TextStyle(
-                          color: AppColors.authTextColor,
-                          fontSize: 18,
-                          fontFamily: 'Montserrat',
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.w400),
+                        color: AppColors.authTextColor,
+                        fontSize: 18,
+                        fontFamily: 'Montserrat',
+                        fontStyle: FontStyle.normal,
+                        fontWeight: FontWeight.w400,
+                      ),
                     ),
                   ),
                   ListView.builder(
-                      padding: const EdgeInsets.all(10),
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: 5,
-                      itemBuilder: (BuildContext context, int index) {
-                        return Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Column(
+                    padding: const EdgeInsets.all(10),
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: 5,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Column(
+                          children: [
+                            Visibility(
+                              visible: index == 0 ? false : true,
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                  top: 0,
+                                  bottom: 15,
+                                  right: 0,
+                                ),
+                                child: Container(
+                                  color: AppColors.profilColor.withOpacity(0.1),
+                                  width: double.infinity,
+                                  height: 1.5,
+                                ),
+                              ),
+                            ),
+                            Row(
                               children: [
-                                Visibility(
-                                  visible: index == 0 ? false : true,
+                                Container(
+                                  height: 60,
+                                  width: 60,
+                                  decoration: const BoxDecoration(
+                                    color: AppColors.searchColor,
+                                    shape: BoxShape.circle,
+                                  ),
                                   child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 0, bottom: 15, right: 0),
-                                    child: Container(
-                                      color: AppColors.profilColor
-                                          .withOpacity(0.1),
-                                      width: double.infinity,
-                                      height: 1.5,
+                                    padding: const EdgeInsets.all(15.0),
+                                    child: CustomIcon(
+                                      title: 'assets/icons/truck_delivery.svg',
+                                      height: 20,
+                                      width: 20,
+                                      color: AppColors.mainColor,
                                     ),
                                   ),
                                 ),
-                                Row(
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Container(
-                                      height: 60,
-                                      width: 60,
-                                      decoration: const BoxDecoration(
-                                          color: AppColors.searchColor,
-                                          shape: BoxShape.circle),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(15.0),
-                                        child: CustomIcon(
-                                          title:
-                                              'assets/icons/truck_delivery.svg',
-                                          height: 20,
-                                          width: 20,
-                                          color: AppColors.mainColor,
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 15),
+                                      child: SizedBox(
+                                        width: MediaQuery.of(context).size.width - 160,
+                                        child: const Text(
+                                          'Harydyňyz Hytaý gümrük terminalyna geldi',
+                                          textAlign: TextAlign.start,
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 14,
+                                            fontFamily: 'Montserrat',
+                                            fontStyle: FontStyle.normal,
+                                            fontWeight: FontWeight.w400,
+                                          ),
                                         ),
                                       ),
                                     ),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                    const Row(
                                       children: [
                                         Padding(
-                                          padding:
-                                              const EdgeInsets.only(left: 15),
-                                          child: SizedBox(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width -
-                                                160,
-                                            child: const Text(
-                                              'Harydyňyz Hytaý gümrük terminalyna geldi',
-                                              textAlign: TextAlign.start,
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 14,
-                                                  fontFamily: 'Montserrat',
-                                                  fontStyle: FontStyle.normal,
-                                                  fontWeight: FontWeight.w400),
+                                          padding: EdgeInsets.only(left: 15),
+                                          child: Text(
+                                            'ID: ',
+                                            style: TextStyle(
+                                              color: AppColors.authTextColor,
+                                              fontSize: 16,
+                                              fontFamily: 'Roboto',
+                                              fontStyle: FontStyle.normal,
+                                              fontWeight: FontWeight.w400,
                                             ),
                                           ),
                                         ),
-                                        Row(
-                                          children: const [
-                                            Padding(
-                                              padding:
-                                                  EdgeInsets.only(left: 15),
-                                              child: Text(
-                                                'ID: ',
-                                                style: TextStyle(
-                                                    color:
-                                                        AppColors.authTextColor,
-                                                    fontSize: 16,
-                                                    fontFamily: 'Roboto',
-                                                    fontStyle: FontStyle.normal,
-                                                    fontWeight:
-                                                        FontWeight.w400),
-                                              ),
-                                            ),
-                                            Text(
-                                              'D45',
-                                              style: TextStyle(
-                                                  color: AppColors.mainColor,
-                                                  fontSize: 16,
-                                                  fontFamily: 'Roboto',
-                                                  fontStyle: FontStyle.normal,
-                                                  fontWeight: FontWeight.w600),
-                                            ),
-                                          ],
-                                        )
+                                        Text(
+                                          'D45',
+                                          style: TextStyle(
+                                            color: AppColors.mainColor,
+                                            fontSize: 16,
+                                            fontFamily: 'Roboto',
+                                            fontStyle: FontStyle.normal,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
                                       ],
-                                    )
+                                    ),
                                   ],
                                 ),
                               ],
-                            ));
-                      }),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
                 ],
               ),
             ),

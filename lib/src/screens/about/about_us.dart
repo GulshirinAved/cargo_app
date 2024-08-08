@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:kargo_app/src/design/custom_icon.dart';
 
 class AboutUs extends StatefulWidget {
-  const AboutUs({Key? key}) : super(key: key);
+  const AboutUs({super.key});
 
   @override
   State<AboutUs> createState() => _AboutUsState();
@@ -27,68 +29,80 @@ class _AboutUsState extends State<AboutUs> {
           ),
           child: AppBar(
             backgroundColor: Colors.white,
-            toolbarHeight: 70,
             elevation: 0,
             automaticallyImplyLeading: false,
+            centerTitle: true,
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(
                 bottom: Radius.circular(15),
               ),
             ),
-            title: const Center(
-              child: Text(
-                'Biz barada',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
-                  fontFamily: 'Roboto',
-                  fontStyle: FontStyle.normal,
-                  fontWeight: FontWeight.w700,
-                ),
+            title: Text(
+              'about'.tr(),
+              style: const TextStyle(
+                color: Colors.black,
+                fontSize: 20,
+                fontFamily: 'Roboto',
+                fontStyle: FontStyle.normal,
+                fontWeight: FontWeight.w700,
               ),
             ),
           ),
         ),
       ),
-      body: SafeArea(
+      body: Container(
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          image: DecorationImage(
+            image: AssetImage('assets/images/background.png'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        alignment: Alignment.center,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: SizedBox(
-                height: 210,
-                width: MediaQuery.of(context).size.width - 40,
-                child: Image.asset(
-                  'assets/images/delivery.png',
-                  fit: BoxFit.fill,
-                ),
-              ),
+            Image.asset(
+              'assets/images/logo.png',
+              width: 200,
+              height: 200,
             ),
-            const Padding(
-              padding: EdgeInsets.only(left: 22),
-              child: Text(
-                'cargotm@gmail.com',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 22,
-                  fontFamily: 'ALSHauss',
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+            CustomIconText(
+              text: '+8617699509372 Berdi',
+              title: 'assets/icons/phone.svg',
+              height: 24,
+              width: 24,
+              color: Colors.red,
             ),
-            const Padding(
-              padding: EdgeInsets.only(left: 22, top: 10),
-              child: Text(
-                'Habaşlamşmak üçin şu gmail sms ýazyň.',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 16,
-                  fontFamily: 'ALSHauss',
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
+            CustomIconText(
+              text: '+8618690868865 Batyr',
+              title: 'assets/icons/phone.svg',
+              height: 24,
+              width: 24,
+              color: Colors.red,
+            ),
+            const SizedBox(height: 20),
+            CustomIconText(
+              text: '+99361 00 00 66 Batyr  ',
+              title: 'assets/icons/phone.svg',
+              height: 24,
+              width: 24,
+              color: Colors.green,
+            ),
+            CustomIconText(
+              text: '+99365 67 77 67 Kakajan',
+              title: 'assets/icons/phone.svg',
+              height: 24,
+              width: 24,
+              color: Colors.green,
+            ),
+            CustomIconText(
+              text: '+99365 49 94 46 Berdi',
+              title: 'assets/icons/phone.svg',
+              height: 24,
+              width: 24,
+              color: Colors.green,
             ),
           ],
         ),

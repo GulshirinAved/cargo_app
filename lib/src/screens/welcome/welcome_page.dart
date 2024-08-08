@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kargo_app/src/design/app_colors.dart';
 import 'package:kargo_app/src/design/custom_icon.dart';
@@ -6,7 +7,7 @@ import '../../bottom_nav/bottom_nav_screen.dart';
 import 'welcome_page_items.dart';
 
 class WelcomePage extends StatelessWidget {
-  WelcomePage({Key? key}) : super(key: key);
+  WelcomePage({super.key});
 
   final _pageController = PageController(initialPage: 0);
 
@@ -34,15 +35,16 @@ class WelcomePage extends StatelessWidget {
                     children: [
                       TextButton(
                         onPressed: () {
-                          Navigator.of(context).push(
+                          Navigator.of(context).pushAndRemoveUntil(
                             MaterialPageRoute(
                               builder: (context) => const BottomNavScreen(),
                             ),
+                            (route) => false,
                           );
                         },
-                        child: const Text(
-                          'Geç',
-                          style: TextStyle(
+                        child: Text(
+                          'next'.tr(),
+                          style: const TextStyle(
                             color: AppColors.mainColor,
                             fontSize: 18,
                             fontFamily: 'Roboto',
@@ -132,10 +134,11 @@ class WelcomePage extends StatelessWidget {
                                         curve: Curves.ease,
                                       );
                                     } else {
-                                      Navigator.of(context).push(
+                                      Navigator.of(context).pushAndRemoveUntil(
                                         MaterialPageRoute(
                                           builder: (context) => const BottomNavScreen(),
                                         ),
+                                        (route) => false,
                                       );
                                     }
                                   },

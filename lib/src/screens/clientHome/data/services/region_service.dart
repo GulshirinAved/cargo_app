@@ -1,11 +1,91 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart' as getWidget;
 import 'package:kargo_app/src/screens/clientHome/clientHome_controller.dart';
 import 'package:kargo_app/src/screens/clientHome/data/models/region_model.dart';
+import 'package:kargo_app/src/screens/custom_widgets/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class RegionService {
   final Dio dio = Dio();
+
+  Future<bool> payOneCargoPOST({required String id, required String amount}) async {
+    final SharedPreferences preferences = await SharedPreferences.getInstance();
+    final String? token = preferences.getString('token');
+    const String regionUrl = 'https://106cargo.com.tm/api/collector/pay-one-cargo';
+
+    try {
+      final headers = {
+        'User-Agent': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer $token',
+      };
+
+      final response = await dio.post(
+        regionUrl,
+        data: {
+          'cargo_id': id,
+          'payment_amount': amount,
+        },
+        options: Options(
+          headers: headers,
+        ),
+      );
+      if (response.statusCode == 200) {
+        showSnackBar('Tölendi', 'Tölegiňiz tassyklandy', Colors.green);
+        return true;
+      } else {
+        showSnackBar('Ýalňyşlyk', 'Ýalňyşlyk ýüze çykdy täzeden deňäp görüň', Colors.red);
+
+        return false;
+      }
+    } catch (e) {
+      showSnackBar('Ýalňyşlyk', 'Ýalňyşlyk ýüze çykdy täzeden deňäp görüň', Colors.red);
+      return false;
+    }
+  }
+
+  Future<bool> payManyCargoPOST({required String id, required String urlParams}) async {
+    final SharedPreferences preferences = await SharedPreferences.getInstance();
+    final String? token = preferences.getString('token');
+    const String regionUrl = 'https://106cargo.com.tm/api/collector/pay-many-cargo';
+
+    try {
+      final headers = {
+        'User-Agent': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer $token',
+      };
+
+      final response = await dio.post(
+        regionUrl,
+        data: {
+          'user_id': id,
+          'url_params': urlParams,
+        },
+        options: Options(
+          headers: headers,
+        ),
+      );
+      print(id);
+      print(urlParams);
+      print(regionUrl);
+      print(response.statusCode);
+      print(response.data);
+      if (response.statusCode == 200) {
+        showSnackBar('Tölendi', 'Tölegiňiz tassyklandy', Colors.green);
+        return true;
+      } else {
+        showSnackBar('Ýalňyşlyk', 'Ýalňyşlyk ýüze çykdy täzeden deňäp görüň', Colors.red);
+
+        return false;
+      }
+    } catch (e) {
+      showSnackBar('Ýalňyşlyk', 'Ýalňyşlyk ýüze çykdy täzeden deňäp görüň', Colors.red);
+      return false;
+    }
+  }
+
   Future<List<Datum>> fetchRegion({
     required String id,
     required int page,

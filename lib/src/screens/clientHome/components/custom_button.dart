@@ -24,6 +24,7 @@ class CustomButton extends StatelessWidget {
         decoration: BoxDecoration(
           color: backColor ?? AppColors.blueColor,
           borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: textColor ?? AppColors.whiteColor),
         ),
         alignment: Alignment.center,
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
@@ -44,23 +45,65 @@ class CustomButton extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: textColor,
-                      fontFamily: 'ALSHauss',
+                      fontFamily: 'Roboto',
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
                 ],
               )
-            : const Text(
+            : Text(
                 'Doly maglumat',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: AppColors.whiteColor,
-                  fontFamily: 'ALSHauss',
+                  color: textColor ?? AppColors.whiteColor,
+                  fontFamily: 'Roboto',
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
                 ),
               ),
+      ),
+    );
+  }
+}
+
+class CustomButtonWithText extends StatelessWidget {
+  final bool? withIcon;
+  final Color? backColor;
+  final Color? textColor;
+  final String? text;
+  final VoidCallback? onTap;
+  const CustomButtonWithText({
+    Key? key,
+    this.withIcon = false,
+    this.backColor,
+    this.textColor,
+    this.onTap,
+    this.text,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        decoration: BoxDecoration(
+          color: backColor ?? AppColors.blueColor,
+          borderRadius: BorderRadius.circular(15),
+          border: Border.all(color: textColor ?? AppColors.whiteColor),
+        ),
+        alignment: Alignment.center,
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        child: Text(
+          text!,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: textColor ?? AppColors.whiteColor,
+            fontFamily: 'Roboto',
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
     );
   }

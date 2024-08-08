@@ -9,6 +9,7 @@ abstract class AppColors {
   static const Color authTextColor = Color.fromRGBO(136, 153, 184, 1);
   static const Color authRegisterColor = Color.fromRGBO(243, 246, 255, 1);
   static const Color textFildColor = Color.fromRGBO(243, 246, 255, 1);
+
   static const Color initialButtonColor = Color.fromRGBO(38, 110, 241, 0.2);
   static const Color profilColor = Color.fromRGBO(136, 153, 184, 1);
   static const Color blueColor = Color(0xFF266EF1);

@@ -6,9 +6,8 @@ import 'package:kargo_app/src/screens/clientHome/clientHome_controller.dart';
 import 'package:kargo_app/src/screens/clientHome/components/custom_button.dart';
 import 'package:kargo_app/src/screens/clientHome/data/services/region_service.dart';
 import 'package:kargo_app/src/screens/clientHome/orders_screen.dart';
+import 'package:kargo_app/src/screens/custom_widgets/widgets.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-
-import '../../CustomWidgets/widgets.dart';
 
 class ClientInfoCardSlider extends StatefulWidget {
   const ClientInfoCardSlider({
@@ -76,13 +75,13 @@ class _ClientInfoCardSliderState extends State<ClientInfoCardSlider> {
             child: Obx(
               () {
                 if (clientHomeController.loading.value == 0) {
-                  return const Center(child: CircularProgressIndicator());
+                  return loading();
                 } else if (clientHomeController.loading.value == 1) {
                   return hasError();
                 } else if (clientHomeController.loading.value == 2) {
-                  return emptyData();
+                  return emptyDataMine();
                 } else if (clientHomeController.showUsersList.isEmpty && clientHomeController.loading.value == 3) {
-                  return emptyData();
+                  return emptyDataMine();
                 }
                 return showPage();
               },
@@ -116,7 +115,7 @@ class _ClientInfoCardSliderState extends State<ClientInfoCardSlider> {
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
                         color: AppColors.mainTextColor,
-                        fontFamily: 'ALSHauss',
+                        fontFamily: 'Roboto',
                         fontWeight: FontWeight.w500,
                         fontSize: 18,
                       ),
@@ -127,7 +126,7 @@ class _ClientInfoCardSliderState extends State<ClientInfoCardSlider> {
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
                       color: AppColors.redColor,
-                      fontFamily: 'ALSHauss',
+                      fontFamily: 'Roboto',
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),

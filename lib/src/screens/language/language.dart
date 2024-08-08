@@ -1,20 +1,17 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:kargo_app/src/core/l10n.dart';
 
-import '../../application/settings_singleton.dart';
 import '../../design/app_colors.dart';
 import '../welcome/welcome_page.dart';
 
 class LanguageScreen extends StatefulWidget {
-  const LanguageScreen({Key? key}) : super(key: key);
+  const LanguageScreen({super.key});
 
   @override
   State<LanguageScreen> createState() => _LanguageScreenState();
 }
 
 class _LanguageScreenState extends State<LanguageScreen> {
-  int _value = 1;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,10 +48,10 @@ class _LanguageScreenState extends State<LanguageScreen> {
                     padding: const EdgeInsets.only(top: 30),
                     child: Center(
                       child: Text(
-                        'app_title'.trs,
+                        'app_title'.tr(),
                         style: const TextStyle(
                           color: Colors.black,
-                          fontSize: 25,
+                          fontSize: 22,
                           fontFamily: 'Roboto',
                           fontStyle: FontStyle.normal,
                           fontWeight: FontWeight.w700,
@@ -62,24 +59,44 @@ class _LanguageScreenState extends State<LanguageScreen> {
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10, top: 30),
-                    child: InkWell(
-                      onTap: () async {
-                        await SettingsSingleton().changeLocale('tk');
-                      },
+                  InkWell(
+                    onTap: () async {
+                      await context.setLocale(const Locale('tk'));
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 20, top: 30),
                       child: Row(
                         children: [
-                          Radio(
-                            value: 1,
-                            groupValue: _value,
-                            onChanged: (value) {
-                              setState(() {
-                                _value = value! as int;
-                              });
-                            },
+                          Container(
+                            height: 20,
+                            width: 20,
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: context.locale.languageCode == 'tk' ? AppColors.mainColor : Colors.grey,
+                                width: 1.5,
+                              ),
+                              shape: BoxShape.circle,
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(2.0),
+                              child: Container(
+                                height: 10,
+                                width: 10,
+                                decoration: BoxDecoration(
+                                  color: context.locale.languageCode == 'tk' ? AppColors.mainColor : Colors.white,
+                                  border: Border.all(
+                                    color: context.locale.languageCode == 'tk' ? AppColors.mainColor : Colors.grey,
+                                    width: 1.5,
+                                  ),
+                                  shape: BoxShape.circle,
+                                ),
+                              ),
+                            ),
                           ),
-                          Image.asset('assets/images/turkman.png'),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: Image.asset('assets/images/turkman.png'),
+                          ),
                           const Padding(
                             padding: EdgeInsets.only(left: 10),
                             child: Text(
@@ -98,28 +115,54 @@ class _LanguageScreenState extends State<LanguageScreen> {
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10, top: 10),
-                    child: InkWell(
-                      onTap: () async {
-                        await SettingsSingleton().changeLocale('ru');
-                      },
+                  InkWell(
+                    onTap: () async {
+                      await context.setLocale(const Locale('en'));
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 20, top: 15),
                       child: Row(
                         children: [
-                          Radio(
-                            value: 2,
-                            groupValue: _value,
-                            onChanged: (value) {
-                              setState(() {
-                                _value = value! as int;
-                              });
-                            },
+                          Container(
+                            height: 20,
+                            width: 20,
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: context.locale.languageCode == 'en' ? AppColors.mainColor : Colors.grey,
+                                width: 1.5,
+                              ),
+                              shape: BoxShape.circle,
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(2.0),
+                              child: Container(
+                                height: 10,
+                                width: 10,
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: context.locale.languageCode == 'en' ? AppColors.mainColor : Colors.grey,
+                                    width: 1.5,
+                                  ),
+                                  color: context.locale.languageCode == 'en' ? AppColors.mainColor : Colors.white,
+                                  shape: BoxShape.circle,
+                                ),
+                              ),
+                            ),
                           ),
-                          Image.asset('assets/images/russian.png'),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: SizedBox(
+                              height: 30,
+                              width: 30,
+                              child: Image.asset(
+                                'assets/images/united-kingdom.png',
+                              ),
+                            ),
+                          ),
                           const Padding(
                             padding: EdgeInsets.only(left: 10),
                             child: Text(
-                              'Русский',
+                              'English',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 color: Colors.black,
@@ -134,30 +177,36 @@ class _LanguageScreenState extends State<LanguageScreen> {
                       ),
                     ),
                   ),
+                  const SizedBox(
+                    height: 30,
+                  ),
                   InkWell(
                     onTap: () {
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (_) => WelcomePage(),
-                      ));
+                      Navigator.of(context).pushAndRemoveUntil(
+                        MaterialPageRoute(
+                          builder: (context) => WelcomePage(),
+                        ),
+                        (route) => false,
+                      );
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(
-                        top: 38,
+                        top: 40,
                         right: 20,
                         left: 20,
                         bottom: 30,
                       ),
                       child: Container(
-                        height: 65,
+                        height: 45,
                         width: MediaQuery.of(context).size.width,
                         decoration: BoxDecoration(
                           color: AppColors.mainColor,
-                          borderRadius: BorderRadius.circular(20),
+                          borderRadius: BorderRadius.circular(15),
                         ),
-                        child: const Center(
+                        child: Center(
                           child: Text(
-                            'Dowam et',
-                            style: TextStyle(
+                            'next_to'.tr(),
+                            style: const TextStyle(
                               color: Colors.white,
                               fontSize: 16,
                               fontFamily: 'Roboto',

@@ -21,7 +21,7 @@ class SearchTextField extends StatelessWidget {
         fillColor: AppColors.whiteColor,
         hintStyle: const TextStyle(
           color: AppColors.grey3Color,
-          fontFamily: 'ALSHauss',
+          fontFamily: 'Roboto',
           fontWeight: FontWeight.w400,
         ),
         border: OutlineInputBorder(

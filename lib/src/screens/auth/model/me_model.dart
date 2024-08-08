@@ -15,14 +15,13 @@ class UserData {
 
   factory UserData.fromJson(Map<String, dynamic> json) {
     final List<dynamic> ticketsJson = json['tickets'];
-    final List<Ticket> tickets =
-        ticketsJson.map((ticketJson) => Ticket.fromJson(ticketJson)).toList();
+    final List<Ticket> tickets = ticketsJson.map((ticketJson) => Ticket.fromJson(ticketJson)).toList();
 
     return UserData(
-      id: json['id'],
-      firstName: json['first_name'],
-      lastName: json['last_name'],
-      phone: json['phone'],
+      id: json['id'] ?? 0,
+      firstName: json['first_name'] ?? '',
+      lastName: json['last_name'] ?? '',
+      phone: json['phone'] ?? '',
       tickets: tickets,
     );
   }

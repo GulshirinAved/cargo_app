@@ -10,39 +10,35 @@ class SendFcmTokenRepository {
   static Dio dio = Dio();
 
   Future<void> sendToken(
-    String fcm_token,
+    String fcmToken,
   ) async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    String? val = preferences.getString('token');
+    final SharedPreferences preferences = await SharedPreferences.getInstance();
+    final String? val = preferences.getString('token');
 
     final headers = {
       'Authorization': 'Bearer $val',
       'Content-Type': 'application/json',
     };
     try {
-      var response = await dio.patch(
-        "${Constants.baseUrl}/auth/update-token",
+      final response = await dio.patch(
+        '${Constants.baseUrl}/auth/update-token',
         data: jsonEncode({
-          "fcm_token": fcm_token,
+          'fcm_token': fcmToken,
         }),
         options: Options(
           headers: headers,
         ),
       );
       isLoading = true;
-      print(response.data);
+
       if (response.statusCode == 200) {
         isLoading = false;
-        print(response.data);
 
         return;
       }
-    } on DioError catch (e) {
+      // ignore: deprecated_member_use
+    } on DioError {
       isLoading = false;
-      print('fuckkkkk');
-      print(e.error);
-      if (e.response != null) print("Error= ${e.response!.realUri}");
-      if (e.response != null) print(e.response!.data);
     }
     return;
   }

@@ -1,18 +1,17 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:kargo_app/src/core/l10n.dart';
+import 'package:kargo_app/src/bottom_nav/bottom_nav_screen.dart';
 
-import '../../../application/settings_singleton.dart';
 import '../../../design/app_colors.dart';
 
 class LanguageChange extends StatefulWidget {
-  const LanguageChange({Key? key}) : super(key: key);
+  const LanguageChange({super.key});
 
   @override
   State<LanguageChange> createState() => _LanguageChangeState();
 }
 
 class _LanguageChangeState extends State<LanguageChange> {
-  int _value = 1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,9 +40,15 @@ class _LanguageChangeState extends State<LanguageChange> {
                 bottom: Radius.circular(15),
               ),
             ),
-            title: const Text(
-              'Dil',
-              style: TextStyle(color: Colors.black, fontSize: 20, fontFamily: 'Roboto', fontStyle: FontStyle.normal, fontWeight: FontWeight.w700),
+            title: Text(
+              'laguage'.tr(),
+              style: const TextStyle(
+                color: Colors.black,
+                fontSize: 20,
+                fontFamily: 'Roboto',
+                fontStyle: FontStyle.normal,
+                fontWeight: FontWeight.w700,
+              ),
             ),
           ),
         ),
@@ -69,97 +74,230 @@ class _LanguageChangeState extends State<LanguageChange> {
             child: Column(
               children: [
                 Padding(
-                  padding: EdgeInsets.only(top: 30),
+                  padding: const EdgeInsets.only(top: 30),
                   child: Center(
                     child: Text(
                       // 'Dil saýlaň',
-                      'app_title'.trs,
-                      style: TextStyle(color: Colors.black, fontSize: 20, fontFamily: 'Roboto', fontStyle: FontStyle.normal, fontWeight: FontWeight.w700),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 10, top: 30),
-                  child: InkWell(
-                    onTap: () async {
-                      setState(() async {
-                        await SettingsSingleton().changeLocale('tk');
-                      });
-                    },
-                    child: Row(
-                      children: [
-                        Radio(
-                          value: 1,
-                          groupValue: _value,
-                          onChanged: (value) {
-                            setState(() {
-                              _value = value! as int;
-                            });
-                          },
-                        ),
-                        Image.asset('assets/images/turkman.png'),
-                        const Padding(
-                          padding: EdgeInsets.only(left: 10),
-                          child: Text(
-                            'Türkmen',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(color: Colors.black, fontSize: 18, fontFamily: 'Roboto', fontStyle: FontStyle.normal, fontWeight: FontWeight.w400),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 10, top: 10),
-                  child: InkWell(
-                    onTap: () async {
-                      setState(() async {
-                        await SettingsSingleton().changeLocale('ru');
-                      });
-                    },
-                    child: Row(
-                      children: [
-                        Radio(
-                          value: 2,
-                          groupValue: _value,
-                          onChanged: (value) {
-                            setState(() {
-                              _value = value! as int;
-                            });
-                          },
-                        ),
-                        Row(
-                          children: [
-                            Image.asset('assets/images/russian.png'),
-                            const Padding(
-                              padding: EdgeInsets.only(left: 10),
-                              child: Text(
-                                'Русский',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(color: Colors.black, fontSize: 18, fontFamily: 'Roboto', fontStyle: FontStyle.normal, fontWeight: FontWeight.w400),
-                              ),
-                            )
-                          ],
-                        ),
-                      ],
+                      'app_title'.tr(),
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                        fontFamily: 'Roboto',
+                        fontStyle: FontStyle.normal,
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
                   ),
                 ),
                 InkWell(
                   onTap: () async {
-                    Navigator.of(context).pop();
+                    await context.setLocale(const Locale('tk'));
                   },
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 40, right: 20, left: 20, bottom: 30),
+                    padding: const EdgeInsets.only(left: 20, top: 30),
+                    child: Row(
+                      children: [
+                        Container(
+                          height: 20,
+                          width: 20,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: context.locale.languageCode == 'tk' ? AppColors.mainColor : Colors.grey,
+                              width: 1.5,
+                            ),
+                            shape: BoxShape.circle,
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(2.0),
+                            child: Container(
+                              height: 10,
+                              width: 10,
+                              decoration: BoxDecoration(
+                                color: context.locale.languageCode == 'tk' ? AppColors.mainColor : Colors.white,
+                                border: Border.all(
+                                  color: context.locale.languageCode == 'tk' ? AppColors.mainColor : Colors.grey,
+                                  width: 1.5,
+                                ),
+                                shape: BoxShape.circle,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10),
+                          child: Image.asset('assets/images/turkman.png'),
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.only(left: 10),
+                          child: Text(
+                            'Türkmen',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 18,
+                              fontFamily: 'Roboto',
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                // InkWell(
+                //   onTap: () async {
+                //     context.setLocale(const Locale('ru'));
+                //   },
+                //   child: Padding(
+                //     padding: const EdgeInsets.only(left: 20, top: 10),
+                //     child: Row(
+                //       children: [
+                //         Container(
+                //           height: 20,
+                //           width: 20,
+                //           decoration: BoxDecoration(
+                //               border: Border.all(
+                //                   color: context.locale.languageCode == 'ru'
+                //                       ? AppColors.mainColor
+                //                       : Colors.grey,
+                //                   width: 1.5),
+                //               shape: BoxShape.circle),
+                //           child: Padding(
+                //             padding: const EdgeInsets.all(2.0),
+                //             child: Container(
+                //               height: 10,
+                //               width: 10,
+                //               decoration: BoxDecoration(
+                //                   border: Border.all(
+                //                       color: context.locale.languageCode == 'ru'
+                //                           ? AppColors.mainColor
+                //                           : Colors.grey,
+                //                       width: 1.5),
+                //                   color: context.locale.languageCode == 'ru'
+                //                       ? AppColors.mainColor
+                //                       : Colors.white,
+                //                   shape: BoxShape.circle),
+                //             ),
+                //           ),
+                //         ),
+                //         Padding(
+                //           padding: const EdgeInsets.only(left: 10),
+                //           child: Image.asset('assets/images/russian.png'),
+                //         ),
+                //         const Padding(
+                //           padding: EdgeInsets.only(left: 10),
+                //           child: Text(
+                //             'Русский',
+                //             textAlign: TextAlign.center,
+                //             style: TextStyle(
+                //                 color: Colors.black,
+                //                 fontSize: 18,
+                //                 fontFamily: 'Roboto',
+                //                 fontStyle: FontStyle.normal,
+                //                 fontWeight: FontWeight.w400),
+                //           ),
+                //         )
+                //       ],
+                //     ),
+                //   ),
+                // ),
+                InkWell(
+                  onTap: () async {
+                    await context.setLocale(const Locale('en'));
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 20, top: 15),
+                    child: Row(
+                      children: [
+                        Container(
+                          height: 20,
+                          width: 20,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: context.locale.languageCode == 'en' ? AppColors.mainColor : Colors.grey,
+                              width: 1.5,
+                            ),
+                            shape: BoxShape.circle,
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(2.0),
+                            child: Container(
+                              height: 10,
+                              width: 10,
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: context.locale.languageCode == 'en' ? AppColors.mainColor : Colors.grey,
+                                  width: 1.5,
+                                ),
+                                color: context.locale.languageCode == 'en' ? AppColors.mainColor : Colors.white,
+                                shape: BoxShape.circle,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10),
+                          child: SizedBox(
+                            height: 30,
+                            width: 30,
+                            child: Image.asset('assets/images/united-kingdom.png'),
+                          ),
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.only(left: 10),
+                          child: Text(
+                            'English',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 18,
+                              fontFamily: 'Roboto',
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                InkWell(
+                  onTap: () async {
+                    await Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(
+                        builder: (context) => const BottomNavScreen(),
+                      ),
+                      (route) => false,
+                    );
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                      top: 40,
+                      right: 20,
+                      left: 20,
+                      bottom: 30,
+                    ),
                     child: Container(
                       height: 50,
                       width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(color: AppColors.mainColor, borderRadius: BorderRadius.circular(15)),
-                      child: const Center(
+                      decoration: BoxDecoration(
+                        color: AppColors.mainColor,
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: Center(
                         child: Text(
-                          'Ýatda sakla',
-                          style: TextStyle(color: Colors.white, fontSize: 16, fontFamily: 'Roboto', fontStyle: FontStyle.normal, fontWeight: FontWeight.w700),
+                          'save'.tr(),
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontFamily: 'Roboto',
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.w700,
+                          ),
                         ),
                       ),
                     ),
@@ -174,12 +312,11 @@ class _LanguageChangeState extends State<LanguageChange> {
   }
 }
 
-
 //  PopupMenuItem<String>(
 //           value: 'assets/images/turkmenistan.png',
 //           onTap: () async {
-            // await SettingsSingleton().changeLocale('tk');
-            // setState(() {});
+// await SettingsSingleton().changeLocale('tk');
+// setState(() {});
 //           },
 //           child: Row(
 //             children: [
@@ -194,7 +331,7 @@ class _LanguageChangeState extends State<LanguageChange> {
 //                   style: TextStyle(
 //                       color: Colors.black,
 //                       fontSize: 14,
-//                       fontFamily: 'ALSHauss',
+//                       fontFamily: 'Rubik',
 //                       fontStyle: FontStyle.normal,
 //                       fontWeight: FontWeight.w700),
 //                 ),
@@ -218,7 +355,7 @@ class _LanguageChangeState extends State<LanguageChange> {
 //                   style: TextStyle(
 //                       color: Colors.black,
 //                       fontSize: 14,
-//                       fontFamily: 'ALSHauss',
+//                       fontFamily: 'Rubik',
 //                       fontStyle: FontStyle.normal,
 //                       fontWeight: FontWeight.w700),
 //                 ),
@@ -244,7 +381,7 @@ class _LanguageChangeState extends State<LanguageChange> {
 //                   style: TextStyle(
 //                       color: Colors.black,
 //                       fontSize: 14,
-//                       fontFamily: 'ALSHauss',
+//                       fontFamily: 'Rubik',
 //                       fontStyle: FontStyle.normal,
 //                       fontWeight: FontWeight.w700),
 //                 ),

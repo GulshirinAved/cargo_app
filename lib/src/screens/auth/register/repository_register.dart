@@ -1,14 +1,15 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../bottom_nav/bottom_nav_screen.dart';
 import '../../../design/constants.dart';
 
-class RegisterRepository {
+class RegisterRepository with ChangeNotifier {
   String? tokens;
   bool isLoading = false;
   static Dio dio = Dio();
@@ -21,8 +22,10 @@ class RegisterRepository {
     String password,
     String passwordConfirmation,
   ) async {
+    isLoading = true;
+    await Future.delayed(const Duration(seconds: 2));
     try {
-      var response = await dio.post(
+      final response = await dio.post(
         '${Constants.baseUrl}/auth/register',
         data: jsonEncode({
           'first_name': firstName,
@@ -38,23 +41,38 @@ class RegisterRepository {
         ),
       );
 
-      isLoading = true;
-      print(response.data);
+      isLoading = false;
+
       if (response.statusCode == 200) {
         isLoading = false;
-        SharedPreferences preferences = await SharedPreferences.getInstance();
+        final SharedPreferences preferences = await SharedPreferences.getInstance();
 
         tokens = response.data!['data']['token'];
         await preferences.setString('token', tokens!);
-        Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => const BottomNavScreen()));
+
+        await Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => const BottomNavScreen()),
+          (route) => false,
+        );
+        // Navigator.of(context).push(
+        //     MaterialPageRoute(builder: (context) => const BottomNavScreen()));
 
         return;
       }
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       isLoading = false;
-      throw Exception(e);
+      if (e.response != null) {
+        final snackBar = SnackBar(
+          backgroundColor: Colors.red,
+          content: Text(
+            e.response!.data['message'],
+            style: const TextStyle(color: Colors.white),
+          ),
+        );
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      }
     }
+    isLoading = false;
     return;
   }
 }
